@@ -15,7 +15,7 @@ services:
         build: .
         command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
         volumes:
-            - .:/Part-ner
+            - .:/myapp
             - gem_data:/usr/local/bundle
         ports:
             - 8080:8080
