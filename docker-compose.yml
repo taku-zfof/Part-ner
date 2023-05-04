@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    db:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            POSTGRES_HOST_AUTH_METHOD: 'trust'
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./db/mysql/volumes:/var/lib/mysql
+
+    web:
+        build: .
+        command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
+        volumes:
+            - .:/Part-ner
+            - gem_data:/usr/local/bundle
+        ports:
+            - 8080:8080
+        depends_on:
+            - db 
+        tty: true
+        stdin_open: true
+
+volumes:
+  gem_data:
