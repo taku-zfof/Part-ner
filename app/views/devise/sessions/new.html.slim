@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-lg-6.offset-lg-3.col-md-10.offset-md-1
+      .card.mt-5.pt-3.text-center
+        .card-body
+          h3.card-title
+            | ログイン
+          p.card-text.mb-5
+            = form_with model: @user, url: user_session_path do |f|
+              = render "devise/shared/error_messages", resource: resource
+              = f.email_field :email, autocomplete: "email", class: "form-control mb-4 w-50 mx-auto", placeholder: "メールアドレス"
+              = f.password_field :password, autocomplete: "current-password",class: "form-control mb-4 w-50 mx-auto", placeholder: "パスワード（６文字以上）"
+              = f.submit "ログイン", class: "btn btn-success mb-4"
+            = render "devise/shared/links"
