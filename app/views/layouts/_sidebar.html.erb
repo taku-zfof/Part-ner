@@ -1,0 +1,22 @@
+<div class="sidebar col-3 bg-light vh-100">
+ <div class="card mt-5">
+   <!--プロフィール画像-->
+   <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
+     <%= image_tag current_user.image, class: 'rounded-circle mt-2',size: "100x100"%>
+     <h5><%= current_user.name %></h5>
+   <% end %>
+   <!--プロフィール画像-->
+   <!--リンクリスト-->
+   
+    <div class="list-group list-group-light">
+      <a href="#" class="list-group-item list-group-item-action px-3 mb-3 border-0 <%= "active" if params[:controller] == "users" %>">プロフィール</a>
+      <a href="#" class="list-group-item list-group-item-action px-3 mb-3 border-0 <%= "active" if params[:controller] == "chat_rooms" %>">DM</a>
+      <a href="#" class="list-group-item list-group-item-action px-3 mb-3 border-0 <%= "active" if params[:controller] == "bookmarks" %>">ブックマーク</a>
+      <a href="#" class="list-group-item list-group-item-action px-3 mb-3 border-0 <%= "active" if params[:controller] == "offers" %>">オファー</a>
+      <a class="list-group-item list-group-item-action px-3 border-0 mb-3 disabled <%= "active" if params[:controller] == "jobs/new" %>">募集する</a>
+    </div>
+   
+   <!--リンクリスト-->
+   
+ </div>
+</div>

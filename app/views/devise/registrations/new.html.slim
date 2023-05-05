@@ -10,7 +10,7 @@
               = render "devise/shared/error_messages", resource: resource
               = f.label :image, class: "mb-4" do
                 = image_tag('noimage.png', class: 'avatar rounded-circle d-inline',size: "100x100")
-                = f.file_field :image, class: 'uploader d-inline form-control mb-4  w-25'
+                = f.file_field :image, class: 'uploader d-inline form-control mb-4 w-25'
               = f.text_field :name, class: "form-control mb-4 w-50 mx-auto", placeholder: "アカウント名"
               = f.email_field :email, autocomplete: "email", class: "form-control mb-4 w-50 mx-auto", placeholder: "メールアドレス"
               = f.password_field :password, autocomplete: "new-password",class: "form-control mb-4 w-50 mx-auto", placeholder: "パスワード（６文字以上）"
@@ -22,4 +22,14 @@
               = f.submit "作成する", class: "btn btn-success mb-4"
             = render "devise/shared/links"
 script
-  |  window.addEventListener('load', () => { const uploader = document.querySelector('.uploader'); uploader.addEventListener('change', (e) => { const file = uploader.files[0]; const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = () => { const image = reader.result; document.querySelector('.avatar').setAttribute('src', image); } }); }); 
+  |  window.addEventListener('load', () => { 
+      const uploader = document.querySelector('.uploader'); uploader.addEventListener('change', (e) => { 
+        const file = uploader.files[0]; 
+        const reader = new FileReader(); 
+        reader.readAsDataURL(file); 
+        reader.onload = () => { 
+          const image = reader.result; 
+          document.querySelector('.avatar').setAttribute('src', image); 
+          } 
+        }); 
+      }); 
