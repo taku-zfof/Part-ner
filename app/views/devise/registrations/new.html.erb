@@ -1,29 +1,58 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1">
+      
+      <div class="card mt-5 pt-3 text-center">
+    
+        <div class="card-body">
+          <h3 class="card-title">アカウントを作成</h3>
+          <p class="card-text mb-5">
+            <%= form_with model: @user,url: user_registration_path do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              
+             
+             
+              <%= f.label :image, class: "mb-4" do %>
+                <%= image_tag('noimage.png', class: 'avatar rounded-circle d-inline',size: "100x100") %>
+                <%= f.file_field :image, class: 'uploader d-inline form-control mb-4  w-25' %>
+              <% end %>
+  
+  
+              <%= f.text_field :name, class: "form-control mb-4 w-50 mx-auto", placeholder: "アカウント名"%>
+              <%= f.email_field :email, autocomplete: "email", class: "form-control mb-4 w-50 mx-auto", placeholder: "メールアドレス"%>
+              <%= f.password_field :password, autocomplete: "new-password",class: "form-control mb-4 w-50 mx-auto", placeholder: "パスワード（６文字以上）"%>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control mb-4 w-50 mx-auto", placeholder: "パスワード（確認用）"%>
+              
+              <%= f.select :sex, User.sexes.keys, { include_blank: '性別を選択'}, { class: 'form-control mb-4 w-25 mx-auto' , required: true } %>
+              <%= f.select :prefecture, User.prefectures.keys, { include_blank: '地域を選択'}, { class: 'form-control mb-4 w-25 mx-auto' , required: true } %>
+              <%= f.select :age,  options_for_select((18..85).to_a), { include_blank: '年齢'}, { class: 'form-control mb-4 w-25 mx-auto' , required: true } %>
+              
+              <%=f.text_area :introduction, class: "form-control mb-4 w-50 mx-auto", placeholder: "自己紹介"%>
+              <%= f.submit "作成する", class: "btn btn-success mb-4" %>
+             
+            <% end %>
+        
+            <%= render "devise/shared/links" %>
+          </p>
+        </div>
+      </div>
+      
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<!--画像プレビュースクリプト-->
+<script>
+ window.addEventListener('load', () => {
+    const uploader = document.querySelector('.uploader');
+    uploader.addEventListener('change', (e) => {
+      const file = uploader.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const image = reader.result;
+        document.querySelector('.avatar').setAttribute('src', image);
+      }
+    });
+});
+</script>
