@@ -22,7 +22,7 @@
               = f.submit "作成する", class: "btn btn-success mb-4"
             = render "devise/shared/links"
 script
-  |  window.addEventListener('load', () => { 
+  |  window.addEventListener('turbolinks:load', () => { 
       const uploader = document.querySelector('.uploader'); uploader.addEventListener('change', (e) => { 
         const file = uploader.files[0]; 
         const reader = new FileReader(); 

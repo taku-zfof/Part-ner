@@ -10,5 +10,8 @@
               = render "devise/shared/error_messages", resource: resource
               = f.email_field :email, autocomplete: "email", class: "form-control mb-4 w-50 mx-auto", placeholder: "メールアドレス"
               = f.password_field :password, autocomplete: "current-password",class: "form-control mb-4 w-50 mx-auto", placeholder: "パスワード（６文字以上）"
-              = f.submit "ログイン", class: "btn btn-success mb-4"
+              = f.submit "ログイン", class: "btn btn-secondary btn-sm btn-block mb-4"
+            
+            = link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post
+            
             = render "devise/shared/links"

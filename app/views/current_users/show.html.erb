@@ -16,7 +16,10 @@
         </div>
         <div class="d-flex justify-content-evenly">  
           <p><%= link_to "募集を見る", root_path, class: "btn btn-secondary btn-rounded"%></p>
-          <p><%= link_to "編集する", edit_current_user_path(@user), class: "btn btn-secondary btn-rounded"%></p>
+          <!--編集ボタンはゲストユーザーには非表示-->
+          <% if @user.name != "guestuser" %>
+           <p><%= link_to "編集する", edit_current_user_path(@user), class: "btn btn-secondary btn-rounded"%></p>
+          <% end %>
         </div>
       </div>
       <!--プロフィールカード-->
