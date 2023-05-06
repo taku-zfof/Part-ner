@@ -20,4 +20,12 @@ class User < ApplicationRecord
   enum sex: {
     男:1,女:2,その他:3
   }
+  
+   def get_image(width,height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/noimage.png')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/png')
+    end
+    image.variant(resize_to_limit: [width, height]).processed
+  end
 end

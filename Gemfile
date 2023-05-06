@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #以下追加gem
 
 gem 'devise' #ユーザー認証
+gem 'image_processing' #画像リサイズ
 gem 'kaminari' #ページネーション
 gem 'dotenv-rails' #環境変数
 gem 'rails-i18n' #日本語化
