@@ -3,15 +3,19 @@
     <!--サイドバー-->
     <%= render "layouts/sidebar", active: false%>
     <!--サイドバー-->
-     <div class="col-9">
-      <div class="card my-5">
-        <%= image_tag @job.get_image(100,100), class: "card-img-top"%>
+     <div class="col-8 offset-1">
+      <div class="card my-5 h-75">
+        <%= image_tag @job.get_image(100,100), class: "card-img-top h-50 img-fluid" %>
+        <h2 class="text-center"><%= @job.tytle %></h2>
+        <div class="hourly_wage_and_job_type text-center">
+          <h4>時給：<%= @job.hourly_wage %> 円　 / 　<%= @job.job_type %>系</h4>
+        </div>
         <%=@job.near_station%>
         <%=@job.near_station_line%>
         <%= @job.user.name %>
-        
+
         <!--マップ呼び出し-->
-        <%= render "/jobs/map", job: @job%> 
+        <%= render "/jobs/map", job: @job%>
       </div>
     </div>
   </div>

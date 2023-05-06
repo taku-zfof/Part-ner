@@ -14,8 +14,8 @@ class Job < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-   enum type: {
-    飲食:1,軽作業:2,その他:3
+   enum job_type: {
+    飲食:0,軽作業:1,その他:2
   }
 
    enum prefecture_code: {

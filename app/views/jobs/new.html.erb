@@ -18,7 +18,7 @@
                   <%= f.text_field :tytle, class: "form-control mb-4 w-100 mx-auto", placeholder: "募集タイトル" %>
 
                   <%= f.label :job_type ,"職種"%>
-                  <%= f.select :job_type, Job.types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4 w-100 mx-auto' , required: true } %>
+                  <%= f.select :job_type, Job.job_types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4 w-50' , required: true } %>
 
                   <%= f.label :introduction,"紹介文"%>
                   <%= f.text_area :introduction, class: "form-control mb-4 w-100 mx-auto", placeholder: "仕事の詳細やアピールポイントなど" %>
