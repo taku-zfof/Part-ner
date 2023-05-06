@@ -1,7 +1,7 @@
 <div class="sidebar col-3 bg-light vh-100">
  <div class="card mt-5">
    <!--プロフィール画像-->
-   <%= link_to current_user_path(current_user),class: "mx-auto text-center" do%>
+   <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
      <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2'%>
      <h5><%= current_user.name %></h5>
    <% end %>
@@ -9,7 +9,7 @@
    <!--リンクリスト-->
 
     <div class="list-group list-group-light">
-      <%= link_to "プロフィール",current_user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active_if('current_users')}" %>
+      <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active ? 'active' : ''}" %>
       <%= link_to "DM", "#",class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active_if('chat_rooms')}" %>
       <%= link_to "ブックマーク","#" ,class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active_if('bookmarks')}" %>
       <%= link_to "オファー","#", class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active_if('offers')}" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_05_091128) do
+ActiveRecord::Schema.define(version: 2023_05_06_140533) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -42,16 +42,20 @@ ActiveRecord::Schema.define(version: 2023_05_05_091128) do
 
   create_table "jobs", charset: "utf8mb4", force: :cascade do |t|
     t.string "tytle", null: false
-    t.integer "type", null: false
     t.text "introduction", null: false
     t.string "postal_code", null: false
     t.string "prefecture_code", null: false
     t.string "other_address", null: false
     t.string "near_station", null: false
     t.string "near_station_line", null: false
-    t.boolean "is_released", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "hourly_wage"
+    t.float "latitude", limit: 53
+    t.float "longitude", limit: 53
+    t.boolean "released"
+    t.integer "job_type"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|

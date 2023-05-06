@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <!--サイドバー-->
+    <%= render "layouts/sidebar", active: false%>
+    <!--サイドバー-->
+
+    <div class="col-9">
+      <div class="card my-5">
+        <div class="row">
+          <div class="col-8 offset-2">
+            <h3 class="mt-4 text-center">新規作成</h3>
+              <%= form_with model: @job do|f|%>
+
+                  <%= image_tag 'noimage_job.png', class: 'avatar  d-inline mb-4',size: "240x180" %>
+                  <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-50' %></br>
+
+                  <%= f.label :tytle ,"タイトル"%>
+                  <%= f.text_field :tytle, class: "form-control mb-4 w-100 mx-auto", placeholder: "募集タイトル" %>
+
+                  <%= f.label :job_type ,"職種"%>
+                  <%= f.select :job_type, Job.types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4 w-100 mx-auto' , required: true } %>
+
+                  <%= f.label :introduction,"紹介文"%>
+                  <%= f.text_area :introduction, class: "form-control mb-4 w-100 mx-auto", placeholder: "仕事の詳細やアピールポイントなど" %>
+
+                  <%= f.label :hourly_wage,"時給"%><br>
+                  <%= f.text_field :hourly_wage, class: "form-control mb-4 w-50 d-inline", placeholder: "半角数字"%>円<br>
+
+                  <%= f.label :postal_code, "郵便番号"%>
+                  <%= f.text_field :postal_code, class: "postal_code form-control mb-4 w-50", placeholder: "半角数字" %>
+
+                  <%= f.label :prefecture_code, "所在地（都道府県）"%><br>
+                  <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '都道府県を選択'}, { class: 'prefecture_code form-control mb-4 w-50 d-inline' , required: true }%><br>
+
+                  <%= f.label :other_address, "市区町村以降の住所" %>
+                  <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
+
+                  <%= f.submit "募集を作成", class: "btn btn-secondary btn-rounded mb-4"%>
+
+              <%end%>
+            </div>
+          </div>
+      </div>
+
+     </div>
+  </div>
+</div>
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>

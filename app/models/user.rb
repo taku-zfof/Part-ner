@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  
+  has_many :jobs, dependent: :destroy
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,13 +21,13 @@ class User < ApplicationRecord
      沖縄県:47 }
 
   enum sex: {
-    男:1,女:2,その他:3
+    男性:1,女性:2,その他:3
   }
 
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.png')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/png')
+      image.attach(io: File.open(file_path), filename: 'noimage.jpg', content_type: 'image/png')
     end
     image.variant(resize_to_limit: [width, height]).processed
   end

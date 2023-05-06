@@ -7,14 +7,17 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto ms-auto">
         <% if user_signed_in? %>
-        <li class="nav-item">
+         <li class="nav-item ms-auto">
+          <%= link_to "募集する",new_job_path, class: 'nav-link text-dark' %>
+        </li>
+        <li class="nav-item ms-auto">
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
         </li>
         <% else %>
-        <li class="nav-item">
+        <li class="nav-item ms-auto">
           <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ms-auto">
           <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
         </li>
         <% end %>
@@ -22,7 +25,7 @@
       </div>
       
       <!--ハンバーガーメニュー-->
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler ms-auto" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
       

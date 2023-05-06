@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <!--サイドバー-->
+    <%= render "layouts/sidebar", active: false%>
+    <!--サイドバー-->
+     <div class="col-9">
+      <div class="card my-5">
+        <%= image_tag @job.get_image(100,100), class: "card-img-top"%>
+        <%=@job.near_station%>
+        <%=@job.near_station_line%>
+        <%= @job.user.name %>
+        
+        <!--マップ呼び出し-->
+        <%= render "/jobs/map", job: @job%> 
+      </div>
+    </div>
+  </div>
+</div>
