@@ -1,5 +1,5 @@
 //jpostalの実行コード
-$(window).ready( function() {
+$(window).on('turbolinks:load', function() {
   $('#job_postal_code').jpostal({
     postcode : [
       '#job_postal_code',
