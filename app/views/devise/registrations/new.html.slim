@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-6.offset-lg-3.col-md-10.offset-md-1
-      .card.mt-5.pt-3.text-center
+      .card.my-5.pt-3.text-center
         .card-body
           h3.card-title
             | アカウントを作成
@@ -19,17 +19,5 @@
               = f.select :prefecture, User.prefectures.keys, { include_blank: '地域を選択'}, { class: 'form-control mb-4 w-25 mx-auto' , required: true }
               = f.select :age,  options_for_select((18..85).to_a), { include_blank: '年齢'}, { class: 'form-control mb-4 w-25 mx-auto' , required: true }
               =f.text_area :introduction, class: "form-control mb-4 w-50 mx-auto", placeholder: "自己紹介"
-              = f.submit "作成する", class: "btn btn-success mb-4"
+              = f.submit "作成する", class: "btn btn-secondary btn-block mb-4"
             = render "devise/shared/links"
-script
-  |  window.addEventListener('turbolinks:load', () => { 
-      const uploader = document.querySelector('.uploader'); uploader.addEventListener('change', (e) => { 
-        const file = uploader.files[0]; 
-        const reader = new FileReader(); 
-        reader.readAsDataURL(file); 
-        reader.onload = () => { 
-          const image = reader.result; 
-          document.querySelector('.avatar').setAttribute('src', image); 
-          } 
-        }); 
-      }); 

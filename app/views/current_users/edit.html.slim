@@ -17,16 +17,3 @@
               = f.select :age,  options_for_select((18..85).to_a, selected: @user.age), { include_blank: '年齢'}, { class: 'form-control mb-4 w-25 mx-auto' , required: true }
               = f.text_area :introduction, class: "form-control mb-4 w-50 mx-auto", placeholder: "自己紹介"
               = f.submit "変更を保存", class: "btn btn-secondary btn-rounded"
-              
-script
-  |  window.addEventListener('turbolinks:load', () => { 
-      const uploader = document.querySelector('.uploader'); uploader.addEventListener('change', (e) => { 
-        const file = uploader.files[0]; 
-        const reader = new FileReader(); 
-        reader.readAsDataURL(file); 
-        reader.onload = () => { 
-          const image = reader.result; 
-          document.querySelector('.avatar').setAttribute('src', image); 
-          } 
-        }); 
-      }); 
