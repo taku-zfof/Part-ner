@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: "homes#top"
+  root to: "homes#about"
 
   resources :users,only:[:show, :edit, :update]
   get "jobs/search" => "jobs#search", as: "job_search"

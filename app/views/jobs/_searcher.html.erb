@@ -1,0 +1,21 @@
+<div class="card my-5 py-4">
+  <div class="row">
+    <div class="col-8 offset-2">
+      
+      <h2 class="text-center mb-4 mt-3"><strong>どんなバイトがしたい？</strong></h2>
+        <%= form_with url: job_search_path, method: :get do |f| %>
+          <%= f.label :job_type ,"ジャンル"%>
+          <%= f.select :job_type, Job.job_types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4' } %>
+          
+          <%= f.label :prefecture_code ,"地域（都道府県）"%>
+          <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '都道府県を選択'}, { class: 'form-control mb-4' } %>
+          
+          <%= f.label :key_word,"キーワード"%>
+          <%= f.text_field :key_word,  class: "form-control mb-5" %>
+          
+         <p class="text-center"><%= f.submit "この条件で探す", class: "btn btn-info btn-rounded " %></p> 
+        <% end %>
+      
+    </div>
+  </div>
+</div>

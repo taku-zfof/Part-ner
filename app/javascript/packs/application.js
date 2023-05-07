@@ -4,8 +4,7 @@
 // that code so it'll be compiled.
 import * as mdb from 'mdb-ui-kit'; //MDBootstrap
 import './mdb' //MdBootstrap
-import './preview' //画像プレビューのスクリプトト
-import "./jpostal.js"//jpostalの実行スクリプト
+import './preview' //画像プレビューのスクリプト
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"

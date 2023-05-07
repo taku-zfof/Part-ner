@@ -35,7 +35,7 @@
 
                   <%= f.label :other_address, "市区町村以降の住所" %>
                   <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
-                  
+
                   <% if @job.user == current_user%>
                     <p class="text-center"><%= f.submit "編集を保存", class: "btn btn-info btn-rounded"%>　<%= link_to "削除する", job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" %></p>
                   <% end %>
@@ -48,4 +48,5 @@
      </div>
   </div>
 </div>
-<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+<!--jpostal読み込み-->
+<%= render "/jobs/jpostal" %> 
