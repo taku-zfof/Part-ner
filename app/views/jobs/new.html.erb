@@ -4,15 +4,16 @@
     <%= render "layouts/sidebar", active: false%>
     <!--サイドバー-->
 
-    <div class="col-9">
-      <div class="card my-5">
+    <div class="col-8 offset-1">
+      <div class="card my-5 py-4">
         <div class="row">
           <div class="col-8 offset-2">
-            <h3 class="mt-4 text-center">新規作成</h3>
+            <h3 class="mt-4 text-center"><strong>パートナーを募集しよう</strong></h3>
               <%= form_with model: @job do|f|%>
 
-                  <%= image_tag 'noimage_job.png', class: 'avatar  d-inline mb-4',size: "240x180" %>
-                  <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-50' %></br>
+                  <%= image_tag 'noimage_job.png', class: 'avatar  d-inline my-4 img-thumbnail',size: "250x250" %></br>
+                  <%= f.label :image,"紹介画像"%></br>
+                  <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75' %></br>
 
                   <%= f.label :tytle ,"タイトル"%>
                   <%= f.text_field :tytle, class: "form-control mb-4 w-100 mx-auto", placeholder: "募集タイトル" %>
@@ -35,7 +36,7 @@
                   <%= f.label :other_address, "市区町村以降の住所" %>
                   <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
 
-                  <%= f.submit "募集を作成", class: "btn btn-secondary btn-rounded mb-4"%>
+                  <p class="text-center"><%= f.submit "作成する", class: "btn btn-info btn-rounded"%></p>
 
               <%end%>
             </div>
@@ -45,4 +46,5 @@
      </div>
   </div>
 </div>
-<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+<!--jpostal読み込み-->
+<%= render "/jobs/jpostal" %>

@@ -5,8 +5,6 @@
 import * as mdb from 'mdb-ui-kit'; //MDBootstrap
 import './mdb' //MdBootstrap
 import './preview' //画像プレビューのスクリプト
-import "./jquery.jpostal.js"//郵便番号から住所入力スクリプト
-import "./jpostal.js"//jpostalの実行スクリプト
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"

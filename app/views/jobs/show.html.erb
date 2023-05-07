@@ -4,58 +4,61 @@
     <%= render "layouts/sidebar", active: false%>
     <!--サイドバー-->
      <div class="col-8 offset-1">
-      <div class="card my-5 pb-5">
-        <%= image_tag @job.get_image(10000,10000), class: "card-img-top h-50" %>
-        <h2 class="text-center mt-4"><%= @job.tytle %></h2>
+      <div class="card job_card my-5 h-75">
+        <%= image_tag @job.get_image(500,500), class: "card-img-top img-thumbnail" %>
+        <div class="card_body my-auto">
+           <h2 class="text-center"><%= @job.tytle %></h2>
 
-        <div class="hourly_wage_and_job_type text-center">
-          <h4>時給：<%= @job.hourly_wage %> 円 / <%= @job.job_type %>系</h4>
-        </div>
-
-        <div class="row px-5 py-2 user_and_introduction">
-          <div class="col-lg-2 col-md-12 text-center">
-            <%= link_to user_path(@job.user) do %>
-              <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle mt-2'%>
-              <%= @job.user.name %>
-            <%end%>
-          </div>
-          <div class="col-lg-10 col-md-12 border rounded-8 py-3">
-            <%= @job.introduction %>
-          </div>
-        </div>
-
-        <div class="row px-5 mt-4 map_and_addresses_and_actions">
-          
-          <div class="col-lg-6 col-md-12 order-lg-2">
-            <!--マップ呼び出し-->
-            <%= render "/jobs/map", job: @job%>
-          </div>
-          
-          <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-md-5">
-            <h6 class="fw-bold">所在地：　<%= @job.prefecture_code %> <%= @job.other_address %></h6>
-            <h6 class="fw-bold">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
-              
-            <div class="mt-5 d-flex justify-content-around">
-              <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
-              <% if @job.user == current_user %>
-                <%= link_to "#",class: "btn btn-primary btn-rounded" do%>
-                 <i class="fa fa-pen-nib fa-2x"></i>
-                <% end %>
-              <% else %>
-                <%= link_to "#",class: "btn btn-primary btn-rounded" do%>
-                 <i class="fa fa-paper-plane fa-2x"></i>
-                <% end %>
-              <% end %>
-              
-              <!--共通で表示-->
-              <%= link_to "#",class: "btn btn-primary btn-rounded" do%>
-               <i class="fa fa-bookmark fa-2x"></i>
-              <% end %>
+            <div class="hourly_wage_and_job_type text-center">
+              <h4>時給：<%= @job.hourly_wage %> 円 / <%= @job.job_type %>系</h4>
             </div>
-          </div>
+    
+            <div class="row px-5 py-3 user_and_introduction">
+              <div class="col-lg-2 col-md-12 text-center">
+                <%= link_to user_path(@job.user) do %>
+                  <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2'%>
+                  <%= @job.user.name %>
+                <%end%>
+              </div>
+              <div class="col-lg-10 col-md-12 border rounded-8 bg-light py-3">
+                <%= @job.introduction %>
+              </div>
+            </div>
+    
+            <div class="row px-5 my-4 map_and_addresses_and_actions">
+              
+              <div class="col-lg-6 col-md-12 order-lg-2">
+                <!--マップ呼び出し-->
+                <%= render "/jobs/map", job: @job%>
+              </div>
+              
+              <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-md-5">
+                <h6 class="fw-bold text-center">所在地： <%= @job.prefecture_code %> <%= @job.other_address %></h6>
+                <h6 class="fw-bold text-center">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
+                  
+                <div class="mt-5 d-flex justify-content-around">
+                  <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
+                  <% if @job.user == current_user %>
+                    <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
+                     <i class="fa fa-pen-nib fa-2x"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to "#",class: "btn btn-info btn-rounded" do%>
+                     <i class="fa fa-paper-plane fa-2x"></i>
+                    <% end %>
+                  <% end %>
+                  
+                  <!--共通で表示-->
+                  <%= link_to "#",class: "btn btn-info btn-rounded" do%>
+                   <i class="fa fa-bookmark fa-2x"></i>
+                  <% end %>
+                </div>
+              </div>
+    
+            </div>
 
         </div>
-
+       
       </div>
     </div>
   </div>
