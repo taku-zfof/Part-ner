@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users,only:[:show, :edit, :update]
   get "jobs/search" => "jobs#search", as: "job_search"
   resources :jobs
-  
+ 
+  resource :bookmarks, only:[:create,:destroy]
+  get "bookmarks/index" => "bookmarks#index", as: "bookmark_index"
+  #resourceだとindexアクションが生成されないため自作。"bookmarks"を使おうとするとエラーになる。
 
 end

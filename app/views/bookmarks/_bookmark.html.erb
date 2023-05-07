@@ -1,0 +1,14 @@
+<!--ブックマークが存在するか否かで分岐-->
+<% if job.keeped_by?(current_user) %>
+
+  <%= link_to bookmarks_path(job_id: job.id), method: :delete, remote: true, class: "btn btn-secondary btn-rounded" do%>
+    <i class="fa fa-regular fa-bookmark fa-2x"></i>
+  <% end %>
+  
+<% else %>
+
+  <%= link_to bookmarks_path(job_id: job.id), method: :post, remote: true, class: "btn btn-info btn-rounded" do%>
+    <i class="fa fa-solid fa-bookmark fa-2x"></i>
+  <% end %>
+  
+<% end %>
