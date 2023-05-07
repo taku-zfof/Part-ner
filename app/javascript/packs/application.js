@@ -4,8 +4,7 @@
 // that code so it'll be compiled.
 import * as mdb from 'mdb-ui-kit'; //MDBootstrap
 import './mdb' //MdBootstrap
-import './preview' //画像プレビューのスクリプト
-import "./jquery.jpostal.js"//郵便番号から住所入力スクリプト
+import './preview' //画像プレビューのスクリプトト
 import "./jpostal.js"//jpostalの実行スクリプト
 
 import Rails from "@rails/ujs"

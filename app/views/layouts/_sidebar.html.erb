@@ -1,21 +1,20 @@
-<div class="sidebar col-3 bg-light">
- <div class="card mt-5">
-   <!--プロフィール画像-->
+<div class="col-3 bg-info", style="min-height: 100vh;">
+  <!--プロフィール画像-->
+  <div style="position: sticky; top: 120px;">
+  <div class="card mt-5">
    <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
      <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2'%>
      <h5><%= current_user.name %></h5>
    <% end %>
+  </div>
    <!--プロフィール画像-->
    <!--リンクリスト-->
-
-    <div class="list-group list-group-light">
-      <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active ? 'active' : ''}" %>
-      <%= link_to "DM", "#",class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active_if('chat_rooms')}" %>
-      <%= link_to "ブックマーク","#" ,class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active_if('bookmarks')}" %>
-      <%= link_to "オファー","#", class: "list-group-item list-group-item-action px-3 mb-3 border-0 #{active_if('offers')}" %>
+    <div class="list-group list-group-light mt-3">
+      <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-5 #{active ? 'active' : ''}" %>
+      <%= link_to "DM", "#",class: "list-group-item list-group-item-action px-3 mb-3 rounded-5 #{active_if('chat_rooms')}" %>
+      <%= link_to "ブックマーク","#" ,class: "list-group-item list-group-item-action px-3 mb-3 rounded-5 #{active_if('bookmarks')}" %>
+      <%= link_to "オファー","#", class: "list-group-item list-group-item-action px-3 mb-3 rounded-5 #{active_if('offers')}" %>
     </div>
-
    <!--リンクリスト-->
-
- </div>
+   </div>
 </div>

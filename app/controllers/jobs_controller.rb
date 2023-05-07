@@ -21,7 +21,7 @@ class JobsController < ApplicationController
     else
       render :new
     end
-    
+
   end
 
   def show
@@ -32,6 +32,7 @@ class JobsController < ApplicationController
   end
 
   def index
+    @jobs=Job.all
   end
 
 private
