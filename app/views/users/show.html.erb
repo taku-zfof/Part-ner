@@ -5,8 +5,8 @@
     <!--サイドバー-->
     <!--プロフィールカード-->
     <div class="col-8 offset-1">
-      <div class="card mt-5">
-        <%= image_tag @user.image, class: 'rounded-circle mx-auto mt-5',size: "170x170"%>
+      <div class="card mt-5 py-5">
+        <%= image_tag @user.image, class: 'rounded-circle mx-auto img-thumbnail',size: "170x170"%>
         <h2 class="mx-auto"><%= @user.name %></h2>
         <h5 class="mx-auto"><%= @user.age %>歳 / <%= @user.sex %> / <%= @user.prefecture %></h5>
         <div class="row">
@@ -15,11 +15,11 @@
           </div>
         </div>
         <div class="d-flex justify-content-evenly">
-          <p><%= link_to "募集を見る", "#", class: "btn btn-secondary btn-rounded"%></p>
+          <p><%= link_to "募集を見る", "#", class: "btn btn-info border btn-rounded"%></p>
           
           <!--編集ボタンはゲストユーザーには非表示-->
           <% if @user.name != "guestuser" && @user == current_user %>
-           <p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-secondary btn-rounded"%></p>
+           <p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-info border btn-rounded"%></p>
           <% end %>
         </div>
         

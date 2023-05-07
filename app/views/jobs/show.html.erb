@@ -16,11 +16,11 @@
             <div class="row px-5 py-3 user_and_introduction">
               <div class="col-lg-2 col-md-12 text-center">
                 <%= link_to user_path(@job.user) do %>
-                  <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle mt-2'%>
+                  <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2'%>
                   <%= @job.user.name %>
                 <%end%>
               </div>
-              <div class="col-lg-10 col-md-12 border rounded-8 py-3">
+              <div class="col-lg-10 col-md-12 border rounded-8 bg-light py-3">
                 <%= @job.introduction %>
               </div>
             </div>
@@ -33,23 +33,23 @@
               </div>
               
               <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-md-5">
-                <h6 class="fw-bold">所在地： <%= @job.prefecture_code %> <%= @job.other_address %></h6>
-                <h6 class="fw-bold">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
+                <h6 class="fw-bold text-center">所在地： <%= @job.prefecture_code %> <%= @job.other_address %></h6>
+                <h6 class="fw-bold text-center">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
                   
                 <div class="mt-5 d-flex justify-content-around">
                   <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
                   <% if @job.user == current_user %>
-                    <%= link_to edit_job_path,class: "btn btn-primary btn-rounded",data: {"turbolinks" => false} do%>
+                    <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
                      <i class="fa fa-pen-nib fa-2x"></i>
                     <% end %>
                   <% else %>
-                    <%= link_to "#",class: "btn btn-primary btn-rounded" do%>
+                    <%= link_to "#",class: "btn btn-info btn-rounded" do%>
                      <i class="fa fa-paper-plane fa-2x"></i>
                     <% end %>
                   <% end %>
                   
                   <!--共通で表示-->
-                  <%= link_to "#",class: "btn btn-primary btn-rounded" do%>
+                  <%= link_to "#",class: "btn btn-info btn-rounded" do%>
                    <i class="fa fa-bookmark fa-2x"></i>
                   <% end %>
                 </div>

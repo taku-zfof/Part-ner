@@ -9,12 +9,12 @@
           p.card-text.mb-5
             = form_with model: @user do |f|
               = f.label :image do
-                = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle', size:"100x100")
+                = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle img-thumbnail', size:"100x100")
                 = f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75'
               = f.text_field :name, class: "form-control my-4 w-75 mx-auto", placeholder: "アカウント名"
               = f.select :sex, User.sexes.keys, { include_blank: '性別を選択'}, { class: 'form-control mb-4 w-25 mx-auto d-inline' , required: true }
               = f.select :prefecture, User.prefectures.keys, { include_blank: '地域を選択'}, { class: 'form-control mb-4 w-25 mx-auto d-inline' , required: true }
               = f.select :age,  options_for_select((18..85).to_a, selected: @user.age), { include_blank: '年齢'}, { class: 'form-control mb-4 w-25 mx-auto d-inline' , required: true }
               = f.text_area :introduction, class: "form-control mb-4 w-75 mx-auto", placeholder: "自己紹介を追加"
-              = f.submit "変更を保存", class: "btn btn-secondary btn-rounded"
+              = f.submit "変更を保存", class: "btn btn-info btn-rounded border"
 

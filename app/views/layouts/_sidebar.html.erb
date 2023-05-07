@@ -3,7 +3,7 @@
   <div style="position: sticky; top: 130px;">
   <div class="card sidecard mt-5">
    <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
-     <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2'%>
+     <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail'%>
      <h5><%= current_user.name %></h5>
    <% end %>
   </div>
