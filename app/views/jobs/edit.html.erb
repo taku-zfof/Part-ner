@@ -8,10 +8,10 @@
       <div class="card my-5">
         <div class="row">
           <div class="col-8 offset-2">
-            <h3 class="mt-4 text-center">新規作成</h3>
+            <h3 class="mt-4 text-center">仕事情報を編集</h3>
               <%= form_with model: @job do|f|%>
 
-                  <%= image_tag 'noimage_job.png', class: 'avatar  d-inline mb-4',size: "240x180" %>
+                  <%= image_tag @job.get_image(250,250), class: 'avatar  d-inline mb-4 img-thumbnail'%>
                   <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-50' %></br>
 
                   <%= f.label :tytle ,"タイトル"%>
@@ -35,7 +35,7 @@
                   <%= f.label :other_address, "市区町村以降の住所" %>
                   <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
 
-                  <%= f.submit "募集を作成", class: "btn btn-secondary btn-rounded mb-4"%>
+                  <p class="text-center"><%= f.submit "編集を保存", class: "btn btn-secondary btn-rounded mb-4"%></p>
 
               <%end%>
             </div>

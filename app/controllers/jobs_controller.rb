@@ -34,7 +34,20 @@ class JobsController < ApplicationController
   end
   
   def update
-    
+    job=Job.find(params[:id])
+    # 最寄り駅情報を取得して代入
+      uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{job.longitude}&y=#{job.latitude}")
+      response = Net::HTTP.get_response(uri)
+      result = JSON.parse(response.body)
+      job.near_station = result["response"]["station"][0]["name"]
+      job.near_station_line = result["response"]["station"][0]["line"]
+   
+    if job.update(job_params)
+      redirect_to job_path(job)
+    else
+      @job=job
+      render :edit
+    end
   end
 
   def index

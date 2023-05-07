@@ -4,7 +4,7 @@
     <%= render "layouts/sidebar", active: false%>
     <!--サイドバー-->
      <div class="col-8 offset-1">
-      <div class="card my-5 h-75">
+      <div class="card job_card my-5 h-75">
         <%= image_tag @job.get_image(500,500), class: "card-img-top img-thumbnail" %>
         <div class="card_body my-auto">
            <h2 class="text-center"><%= @job.tytle %></h2>
@@ -25,7 +25,7 @@
               </div>
             </div>
     
-            <div class="row px-5 mt-4 map_and_addresses_and_actions">
+            <div class="row px-5 my-4 map_and_addresses_and_actions">
               
               <div class="col-lg-6 col-md-12 order-lg-2">
                 <!--マップ呼び出し-->
@@ -33,13 +33,13 @@
               </div>
               
               <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-md-5">
-                <h6 class="fw-bold">所在地：　<%= @job.prefecture_code %> <%= @job.other_address %></h6>
+                <h6 class="fw-bold">所在地： <%= @job.prefecture_code %> <%= @job.other_address %></h6>
                 <h6 class="fw-bold">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
                   
                 <div class="mt-5 d-flex justify-content-around">
                   <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
                   <% if @job.user == current_user %>
-                    <%= link_to edit_job_path,class: "btn btn-primary btn-rounded" do%>
+                    <%= link_to edit_job_path,class: "btn btn-primary btn-rounded",data: {"turbolinks" => false} do%>
                      <i class="fa fa-pen-nib fa-2x"></i>
                     <% end %>
                   <% else %>
