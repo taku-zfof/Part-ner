@@ -12,5 +12,6 @@ Rails.application.routes.draw do
  
   resource :bookmarks, only:[:create,:destroy]
   get "bookmarks/index" => "bookmarks#index", as: "bookmark_index"
+  #resourceだとindexアクションが生成されないため自作。"bookmarks"を使おうとするとエラーになる。
 
 end
