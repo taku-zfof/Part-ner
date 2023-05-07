@@ -4,21 +4,22 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job=Job.new(job_params)
-    @job.user = current_user
-    @job.near_station_line = ""
-    @job.near_station = "" # 一度保存しないとgeocoderが動かないため最寄り駅空欄でいったん保存
-    if @job.save
+    job=Job.new(job_params)
+    job.user = current_user
+    job.near_station_line = ""
+    job.near_station = "" # 一度保存しないとgeocoderが動かないため最寄り駅空欄でいったん保存
+    if job.save
       # 最寄り駅情報を取得して代入
-      uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{@job.longitude}&y=#{@job.latitude}")
+      uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{job.longitude}&y=#{job.latitude}")
       response = Net::HTTP.get_response(uri)
       result = JSON.parse(response.body)
-      @job.near_station = result["response"]["station"][0]["name"]
-      @job.near_station_line = result["response"]["station"][0]["line"]
+      job.near_station = result["response"]["station"][0]["name"]
+      job.near_station_line = result["response"]["station"][0]["line"]
       # 再度保存
-      @job.save
-      redirect_to job_path(@job)
+      job.save
+      redirect_to job_path(job)
     else
+      @job=job
       render :new
     end
 
@@ -29,6 +30,11 @@ class JobsController < ApplicationController
   end
 
   def edit
+    @job=Job.find(params[:id])
+  end
+  
+  def update
+    
   end
 
   def index

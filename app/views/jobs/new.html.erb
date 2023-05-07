@@ -11,7 +11,7 @@
             <h3 class="mt-4 text-center">新規作成</h3>
               <%= form_with model: @job do|f|%>
 
-                  <%= image_tag 'noimage_job.png', class: 'avatar  d-inline mb-4',size: "240x180" %>
+                  <%= image_tag 'noimage_job.png', class: 'avatar  d-inline mb-4 img-thumbnail',size: "250x250" %>
                   <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-50' %></br>
 
                   <%= f.label :tytle ,"タイトル"%>
