@@ -12,7 +12,7 @@
       <div class="list-group list-group-light mt-3">
         <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active ? 'active' : ''}" %>
         <%= link_to "DM", "#",class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('chat_rooms')}" %>
-        <%= link_to "ブックマーク","#" ,class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('bookmarks')}" %>
+        <%= link_to "ブックマーク", bookmark_index_path,class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('bookmarks')}" %>
         <%= link_to "オファー","#", class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('offers')}" %>
       </div>
      <!--リンクリスト-->
