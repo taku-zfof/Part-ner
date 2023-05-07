@@ -4,7 +4,7 @@
     <%= render "layouts/sidebar", active: false%>
     <!--サイドバー-->
       <div class="col-8 offset-1">
-
+        <%= render "/jobs/search_card"%>
         <% @jobs.each do |job|%>
 
           <%= link_to job_path(job) do%>
