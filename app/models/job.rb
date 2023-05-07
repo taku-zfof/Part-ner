@@ -3,6 +3,7 @@ class Job < ApplicationRecord
     after_validation :geocode, if: :other_address_changed?
 
     belongs_to :user
+    has_many :bookmarks, dependent: :destroy
 
     has_one_attached :image
 
@@ -12,6 +13,10 @@ class Job < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'noimage_job.jpg', content_type: 'image/png')
     end
     image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  def keeped_by?(user)
+    bookmarks.exists?(user_id: user.id)
   end
 
    enum job_type: {

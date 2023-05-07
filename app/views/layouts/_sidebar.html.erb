@@ -3,7 +3,7 @@
     <!--プロフィール画像-->
       <div class="card my-5">
        <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
-         <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail'%>
+         <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
          <h5><%= current_user.name %></h5>
        <% end %>
       </div>

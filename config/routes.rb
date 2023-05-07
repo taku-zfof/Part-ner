@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :users,only:[:show, :edit, :update]
   get "jobs/search" => "jobs#search", as: "job_search"
   resources :jobs
-  
+  resources :bookmarks, only:[:create,:destroy,:index]
 
 end
