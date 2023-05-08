@@ -1,8 +1,10 @@
+<%= render "/offers/offer_modal" %><!--オファー作成モーダル-->
+
 <div class="container">
   <div class="row">
-    <!--サイドバー-->
-    <%= render "layouts/sidebar", active: false%>
-    <!--サイドバー-->
+
+    <%= render "layouts/sidebar", active: false%><!--サイドバー-->
+
      <div class="col-8 offset-1">
       <div class="card job_card my-5 h-75">
         <%= image_tag @job.get_image(500,500), class: "card-img-top img-thumbnail" %>
@@ -28,8 +30,7 @@
             <div class="row px-5 my-4 map_and_addresses_and_actions">
 
               <div class="col-lg-6 col-md-12 order-lg-2">
-                <!--マップ呼び出し-->
-                <%= render "/jobs/map", job: @job%>
+                <%= render "/jobs/map", job: @job%><!--マップ呼び出し-->
               </div>
 
               <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-md-5">
@@ -43,9 +44,9 @@
                      <i class="fa fa-pen-nib fa-2x"></i>
                     <% end %>
                   <% else %>
-                    <%= link_to "#",class: "btn btn-info btn-rounded" do%>
+                   <button class= "btn btn-info btn-rounded" data-toggle="modal" data-target="#offermodal">
                      <i class="fa fa-paper-plane fa-2x"></i>
-                    <% end %>
+                   </button>
                   <% end %>
 
                   <!--共通で表示。非同期-->

@@ -4,8 +4,11 @@ class Job < ApplicationRecord
 
     belongs_to :user
     has_many :bookmarks, dependent: :destroy
+    has_many :offers, dependent: :destroy
 
     has_one_attached :image
+
+
 
   def get_image(width,height)
     unless image.attached?
@@ -14,9 +17,14 @@ class Job < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
+  # current_userにブックマークされているか確認するメソッド
   def keeped_by?(user)
     bookmarks.exists?(user_id: user.id)
+  end
+
+  def offerd_by?(user)
+    offers.exist?(user_id: user.id)
   end
 
    enum job_type: {

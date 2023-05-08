@@ -2,14 +2,13 @@ class BookmarksController < ApplicationController
   def create
     @bookmark=Bookmark.new(user_id: current_user.id,job_id: params[:job_id])
     @bookmark.save
-    @job = Job.find(params[:job_id])
+    @job = Job.find(params[:job_id]) # 非同期書処理のため追加
   end
 
   def destroy
     bookmark=Bookmark.find_by(user_id: current_user.id,job_id: params[:job_id])
     bookmark.destroy
-    
-    @job = Job.find(params[:job_id])
+    @job = Job.find(params[:job_id]) # 非同期書処理のため追加
   end
 
   def index
