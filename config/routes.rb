@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'chatrooms/index'
+  get 'chatrooms/show'
   devise_for :users,skip: [:passwords]
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
@@ -9,12 +11,14 @@ Rails.application.routes.draw do
   resources :users,only:[:show, :edit, :update]
   get "jobs/search" => "jobs#search", as: "job_search"
   resources :jobs
- 
+
   resource :bookmarks, only:[:create,:destroy]
   get "bookmarks/index" => "bookmarks#index", as: "bookmark_index"
-  #resourceだとindexアクションが生成されないため自作。"bookmarks"を使おうとするとエラーになる。
+  #resourceだとindexアクションが生成されないため自作。"bookmarks_path"を使おうとするとエラーになるため名前も自作。
 
   resource :offers, only:[:create,:destroy]
   get "offers/index" => "offers#index", as: "offers_index"
-  #resourceだとindexアクションが生成されないため自作。"bookmarks"を使おうとするとエラーになる。
+  #resourceだとindexアクションが生成されないため自作。"offers_paths"を使おうとするとエラーになるため名前も自作。
+  
+  resources :chatrooms, only:[:index, :show, :create, :destroy]
 end

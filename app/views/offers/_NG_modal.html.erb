@@ -7,6 +7,7 @@
       </div>
 
       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">削除しない</button>
         <%= link_to "削除する", offers_path(offer_id: offer.id), method: :delete, class: "btn btn-danger btn-rounded"%>
       </div>
     </div>

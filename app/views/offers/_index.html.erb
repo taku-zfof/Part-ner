@@ -10,7 +10,9 @@
     <div class="row content">
 
       <div class="col-2 m-auto d-flex justify-content-end">
-        <%= image_tag offer.user.get_image(100,100)%>
+        <%= link_to user_path(offer.user) do%>
+          <%= image_tag offer.user.get_image(100,100)%>
+        <% end %>
       </div>
 
       <div class="col-6">

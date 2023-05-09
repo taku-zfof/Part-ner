@@ -6,13 +6,13 @@
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
      <div class="col-8 offset-1">
-      <div class="card job_card my-5 h-lg-75 h-md-100">
-        <%= image_tag @job.get_image(500,500), class: "card-img-top img-thumbnail" %>
+      <div class="card job_card my-5">
+        <%= image_tag @job.get_image(10000,10000), class: "card-img-top img-thumbnail" %>
         <div class="card_body my-auto">
-           <h2 class="text-center"><%= @job.tytle %></h2>
+           <h2 class="text-center mt-3"><strong><%= @job.tytle %></strong></h2>
 
             <div class="hourly_wage_and_job_type text-center">
-              <h4>時給：<%= @job.hourly_wage %> 円 / <%= @job.job_type %>系</h4>
+              <h4>時給：<%= @job.hourly_wage %> 円 / <%= @job.job_type %></h4>
             </div>
 
             <div class="row px-5 py-3 user_and_introduction">

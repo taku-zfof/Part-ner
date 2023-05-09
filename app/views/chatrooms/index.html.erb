@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+
+    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
+
+      <div class="col-8 offset-1">
+        
+        <h3 class="mt-5 mb-3"><strong>DM一覧</strong></h3>
+
+        <% @chatrooms.each do |chatroom| %>
+          <%= link_to "#{chatroom.user.name}", chatroom_path(chatroom) %>
+        <% end %>
+
+      </div>
+
+  </div>
+</div>
+

@@ -7,7 +7,9 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">後で</button>
+        
+        <%= link_to "始める", chatrooms_path(offer_id: offer.id, offerer_id: offer.user.id, job_id: offer.job.id), method: :post, class: "btn btn-info btn-rounded"%>
       </div>
 
     </div>

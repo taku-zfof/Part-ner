@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+
+    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
+
+      <div class="col-8 offset-1">
+        <h3 class="mt-5 mb-3"><strong>
+          <% if @chatroom.user == current_user %>
+            <%= @chatroom.job.user.name %>
+          <% else %>
+            <%= @chatroom.user.name %>
+          <% end %>とのメッセージ
+        </strong></h3>
+          
+        <div class="shadow-inner h-75 bg-light">
+
+        
+        </div>
+        <div class="input-group w-100">
+          <input type="text"class="form-control"/>
+          <button class="btn btn-info" type="button"  data-mdb-ripple-color="dark">
+            Button
+          </button>
+        </div>
+          
+      </div>
+
+  </div>
+</div>

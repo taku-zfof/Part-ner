@@ -9,8 +9,8 @@
       <%= form_with model: Offer.new ,url: offers_path, method: :post do |f| %> <!--以下はフォーム-->
         <div class="modal-body">
           <%= f.label :content, "コメント"%>
-        　<%= f.text_area :content, class: "form-control" %>
-        　<%= f.hidden_field :job_id, :value =>@job.id %>
+          <%= f.text_area :content, class: "form-control" %>
+          <%= f.hidden_field :job_id, :value =>@job.id %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">閉じる</button>
