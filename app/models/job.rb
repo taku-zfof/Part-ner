@@ -9,7 +9,7 @@ class Job < ApplicationRecord
     has_one_attached :image
 
 
-
+  #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage_job.png')
@@ -18,14 +18,16 @@ class Job < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  # current_userにブックマークされているか確認するメソッド
+  # current_userにブックマークされているか確認するメソッド。ビューの表示分岐で使う
   def keeped_by?(user)
     bookmarks.exists?(user_id: user.id)
   end
-
+  
+  # current_userが送ったオファーが存在するか確認するメソッド。ビューの表示分岐で使う
   def offerd_by?(user)
     offers.exist?(user_id: user.id)
   end
+
 
    enum job_type: {
     飲食:0,軽作業:1,その他:2

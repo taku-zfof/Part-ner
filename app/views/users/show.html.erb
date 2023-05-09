@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <!--サイドバー@userが自分の時のみサイドバーのプロフ部をアクティブに-->
-    <%= render "layouts/sidebar",active: @user.id == current_user.id %>
+    <%= render "layouts/sidebar",current: @user.id == current_user.id %>
     <!--サイドバー-->
     <!--プロフィールカード-->
     <div class="col-8 offset-1">

@@ -26,6 +26,7 @@ class User < ApplicationRecord
     男性:1,女性:2,その他:3
   }
 
+  #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.png')

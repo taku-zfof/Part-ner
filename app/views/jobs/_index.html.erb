@@ -1,7 +1,7 @@
 <% jobs.each do |job|%>
 
   <%= link_to job_path(job) do%>
-    <div class="card job_index_card mb-5 text-body bg-light">
+    <div class="card index_card mb-5 text-body bg-light">
       <div class="row g-0"> <!--ここからカード横向きのための記述-->
         <div class="col-4">
           <%= image_tag job.get_image(10000,10000), class: "img-fluid rounded-start h-100 img-thumbnail" %>

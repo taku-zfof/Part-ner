@@ -3,10 +3,10 @@
 <div class="container">
   <div class="row">
 
-    <%= render "layouts/sidebar", active: false%><!--サイドバー-->
+    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
      <div class="col-8 offset-1">
-      <div class="card job_card my-5 h-75">
+      <div class="card job_card my-5 h-lg-75 h-md-100">
         <%= image_tag @job.get_image(500,500), class: "card-img-top img-thumbnail" %>
         <div class="card_body my-auto">
            <h2 class="text-center"><%= @job.tytle %></h2>
@@ -40,13 +40,18 @@
                 <div class="mt-5 d-flex justify-content-around">
                   <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
                   <% if @job.user == current_user %>
-                    <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
-                     <i class="fa fa-pen-nib fa-2x"></i>
-                    <% end %>
+                  
+                      <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
+                       <i class="fa fa-pen-nib fa-2x"></i>
+                      <% end %>
+                    
                   <% else %>
-                   <button class= "btn btn-info btn-rounded" data-toggle="modal" data-target="#offermodal">
-                     <i class="fa fa-paper-plane fa-2x"></i>
-                   </button>
+                  
+                    <!--オファーモーダルを開く-->
+                     <button class= "btn btn-info btn-rounded" data-toggle="modal" data-target="#offermodal">
+                       <i class="fa fa-paper-plane fa-2x"></i>
+                     </button>
+                   
                   <% end %>
 
                   <!--共通で表示。非同期-->

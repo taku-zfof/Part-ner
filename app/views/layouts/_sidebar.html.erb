@@ -10,7 +10,7 @@
      <!--プロフィール画像-->
      <!--リンクリスト-->
       <div class="list-group list-group-light mt-3">
-        <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active ? 'active' : ''}" %>
+        <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{current ? 'active' : ''}" %>
         <%= link_to "メッセージ", "#",class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('chat_rooms')}" %>
         <%= link_to "ブックマーク", bookmark_index_path,class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('bookmarks')}" %>
         <%= link_to "オファー", offers_index_path, class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('offers')}" %>

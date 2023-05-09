@@ -7,7 +7,9 @@ class OffersController < ApplicationController
   end
   
   def destroy
-    
+    offer = Offer.find(params[:offer_id])
+    offer.destroy
+    redirect_to request.referrer
   end
   
   # もらったオファー一覧

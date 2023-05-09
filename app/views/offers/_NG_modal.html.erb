@@ -1,0 +1,14 @@
+<div class="modal fade" id="NGmodal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="pt-4">
+        <h5 class="text-center"><strong>オファーを削除してよろしいですか？</strong></h5>
+      </div>
+
+      <div class="modal-footer">
+        <%= link_to "削除する", offers_path(offer_id: offer.id), method: :delete, class: "btn btn-danger btn-rounded"%>
+      </div>
+    </div>
+  </div>
+</div>
