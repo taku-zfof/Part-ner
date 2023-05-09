@@ -3,7 +3,7 @@
 
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
-    <div class="col-8 offset-1">
+    <div class="col-lg-8 offset-lg-1 col-md-12">
 
       <!--タイトル-->
       <h3 class="mt-5 mb-3"><strong>
@@ -15,25 +15,25 @@
       </strong></h3>
 
       <!--チャットボックス-->
-      <div class="shadow-inner h-75 bg-light py-4">
+      <div class="shadow-inner h-50 bg-light overflow-auto p-4" id="area">
         <% @messages.each do |message| %>
           <div class = "row mb-3">
             <% if message.user == current_user %>
+              <!--自分のメッセージは右寄せ-->
               <div class = "col-5 offset-5 text-end"><p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></div>
               <div class = "col-2 text-start"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
             <% else %>
+              <!--相手のメッセージは左寄せ-->
               <div class = "col-2 text-end"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
               <div class = "col-5 px-auto"><p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></div>
             <% end %>
           </div>
-
-
         <% end %>
       </div>
 
       <!--入力フォーム-->
       <%= form_with model: @message, class: "input-group rounded-5" do |f| %>
-        <%= f.text_field :content, class: "form-control rounded-start", placeholder: "メッセージを入力" %>
+        <%= f.text_field :content, class: "form-control rounded-start", placeholder: "メッセージを入力", autofocus: true %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :chatroom_id, :value => @chatroom.id %>
         <%= f.submit "送信", class: "btn btn-lg btn-info" %>
@@ -44,3 +44,18 @@
 
   </div>
 </div>
+
+<script>
+//チャットボックスの最下部を表示するスクリプト。ここでしか使わないためパーシャル化しない。
+  window.onload = function() {
+//ロードされた時にアクションを実行するように設定
+ 
+    var scrollPosition = document.getElementById("area").scrollTop;
+    // area要素のスクロールされた時の最も高い場所を取得
+    var scrollHeight = document.getElementById("area").scrollHeight;
+    // area要素自体の最も高い場所を取得
+    document.getElementById("area").scrollTop = scrollHeight;
+    // area要素のスクロールされた時の最も高い場所をarea要素自体の最も高い場所として指定
+  
+}
+</script>
