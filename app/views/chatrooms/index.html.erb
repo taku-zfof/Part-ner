@@ -9,7 +9,8 @@
 
         <% @chatrooms.each do |chatroom| %>
           <%= link_to chatroom_path(chatroom) do %>
-            <% chatroom.job.tytle %>
+            <%= chatroom.job.tytle %>
+            <%= chatroom.messages.where.not(user_id: current_user.id).where(read_status: false).count %>
           <% end%>
         <% end %>
 
