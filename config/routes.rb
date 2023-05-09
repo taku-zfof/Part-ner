@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   #resourceだとindexアクションが生成されないため自作。"offers_paths"を使おうとするとエラーになるため名前も自作。
   
   resources :chatrooms, only:[:index, :show, :create, :destroy]
+  resources :messages,only:[:create]
 end

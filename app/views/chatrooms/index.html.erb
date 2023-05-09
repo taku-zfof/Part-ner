@@ -8,7 +8,9 @@
         <h3 class="mt-5 mb-3"><strong>DM一覧</strong></h3>
 
         <% @chatrooms.each do |chatroom| %>
-          <%= link_to "#{chatroom.user.name}", chatroom_path(chatroom) %>
+          <%= link_to chatroom_path(chatroom) do %>
+            <% chatroom.job.tytle %>
+          <% end%>
         <% end %>
 
       </div>

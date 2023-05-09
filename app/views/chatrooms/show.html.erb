@@ -3,27 +3,44 @@
 
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
-      <div class="col-8 offset-1">
-        <h3 class="mt-5 mb-3"><strong>
-          <% if @chatroom.user == current_user %>
-            <%= @chatroom.job.user.name %>
-          <% else %>
-            <%= @chatroom.user.name %>
-          <% end %>とのメッセージ
-        </strong></h3>
-          
-        <div class="shadow-inner h-75 bg-light">
+    <div class="col-8 offset-1">
 
-        
-        </div>
-        <div class="input-group w-100">
-          <input type="text"class="form-control"/>
-          <button class="btn btn-info" type="button"  data-mdb-ripple-color="dark">
-            Button
-          </button>
-        </div>
-          
+      <!--タイトル-->
+      <h3 class="mt-5 mb-3"><strong>
+        <% if @chatroom.user == current_user %>
+          <%= @chatroom.job.user.name %>
+        <% else %>
+          <%= @chatroom.user.name %>
+        <% end %>とのメッセージ
+      </strong></h3>
+
+      <!--チャットボックス-->
+      <div class="shadow-inner h-75 bg-light py-4">
+        <% @messages.each do |message| %>
+          <div class = "row mb-3">
+            <% if message.user == current_user %>
+              <div class = "col-5 offset-5 text-end"><p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></div>
+              <div class = "col-2 text-start"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
+            <% else %>
+              <div class = "col-2 text-end"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
+              <div class = "col-5 px-auto"><p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></div>
+            <% end %>
+          </div>
+
+
+        <% end %>
       </div>
+
+      <!--入力フォーム-->
+      <%= form_with model: @message, class: "input-group rounded-5" do |f| %>
+        <%= f.text_field :content, class: "form-control rounded-start", placeholder: "メッセージを入力" %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :chatroom_id, :value => @chatroom.id %>
+        <%= f.submit "送信", class: "btn btn-lg btn-info" %>
+      <% end %>
+
+
+    </div>
 
   </div>
 </div>

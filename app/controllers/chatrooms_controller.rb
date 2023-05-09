@@ -8,6 +8,8 @@ class ChatroomsController < ApplicationController
 
   def show
     @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
+    @messages = Message.where(chatroom_id: @chatroom.id)
   end
 
   def create
