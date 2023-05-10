@@ -15,7 +15,7 @@
       </strong></h3>
 
       <!--チャットボックス-->
-      <div class="shadow-inner h-50 bg-light overflow-auto p-4" id="area">
+      <div class="shadow-inner bg-light overflow-auto p-3" id="area">
         <% @messages.each do |message| %>
           <div class = "row mb-3">
             <% if message.user == current_user %>

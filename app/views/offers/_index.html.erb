@@ -11,7 +11,7 @@
 
       <div class="col-2 m-auto d-flex justify-content-end">
         <%= link_to user_path(offer.user) do%>
-          <%= image_tag offer.user.get_image(100,100)%>
+          <%= image_tag offer.user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
         <% end %>
       </div>
 
