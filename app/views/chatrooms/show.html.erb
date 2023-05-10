@@ -15,12 +15,12 @@
       </strong></h3>
 
       <!--チャットボックス-->
-      <div class="shadow-inner bg-light overflow-auto p-3" id="area">
+      <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
         <% @messages.each do |message| %>
           <div class = "row mb-3">
             <% if message.user == current_user %>
               <!--自分のメッセージは右寄せ,左から空欄５，メッセージ５、画像２。text-breakで折り返させる-->
-              <div class = "col-5 offset-5 text-end"><p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></div>
+              <div class = "col-5 offset-5 text-end"><p class="border rounded-9 d-inline-block p-3 text-break bg-info text-white"><%= message.content %></p></div>
               <div class = "col-2 text-start"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
             <% else %>
               <!--相手のメッセージは左寄せ,左から画像２、メッセージ５-->
@@ -44,15 +44,4 @@
 
   </div>
 </div>
-
-<script>
-//チャットボックスの最下部を表示するスクリプト。ここでしか使わないためパーシャル化しない。
-  window.onload = function() {
-    var scrollPosition = document.getElementById("area").scrollTop;
-    // area要素のスクロールされた時の最も高い場所を取得
-    var scrollHeight = document.getElementById("area").scrollHeight;
-    // area要素自体の最も高い場所を取得
-    document.getElementById("area").scrollTop = scrollHeight;
-    // area要素のスクロールされた時の最も高い場所をarea要素自体の最も高い場所として指定
-}
-</script>
+<%= render "chatrooms/chatscroll" %> <!--チャットを自動スクロールして最下部を表示するスクリプト-->

@@ -7,14 +7,38 @@
             <h5><%= current_user.name %></h5>
         <% end %>
     </div>
-    
+
     <!--リンクリスト-->
     <div class="list-group list-group-light mt-3">
-        <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{current ? 'active' : ''}" %>
-        <%= link_to "メッセージ", chatrooms_path, class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('chatrooms')}" %>
-        <%= link_to "オファー", offers_index_path, class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('offers')}" %>
-        <%= link_to "ブックマーク", bookmark_index_path,class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('bookmarks')}" %>
+        <h6><strong><%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{current ? 'active' : ''}" %> </strong></h6>
+        <h6><strong>
+            <%= link_to chatrooms_path, class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('chatrooms')}" do%>
+                メッセージ
+                <!--通知バッジの処理-->
+                <% if Message.unread_by(current_user).exists? %>
+                    <span class="badge badge-danger rounded-pill">
+                       <%= Message.unread_by(current_user).count %>
+                    </span>
+                <% end %>
+            <% end %>
+        </strong></h6>
+
+        <h6><strong>
+            <%= link_to offers_index_path, class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('offers')}" do%>
+            オファー
+                <!--通知バッジの処理-->
+                <% if Offer.where(job_id: current_user.jobs.ids).exists? %>
+                    <span class="badge badge-danger rounded-pill">
+                        <%= Offer.where(job_id: current_user.jobs.ids).count %>
+                    </span>
+                <% end %>
+            <% end %>
+        </strong></h6>
+
+        <h6><strong>
+            <%= link_to "ブックマーク", bookmark_index_path,class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('bookmarks')}" %>
+        </strong></h6>
     </div>
-    
+
    </div>
 </div>

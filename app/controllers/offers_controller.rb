@@ -14,7 +14,7 @@ class OffersController < ApplicationController
   
   # もらったオファー一覧
   def index
-    myjobs_ids =Job.where(user_id: current_user.id).pluck(:id)
+    myjobs_ids = Job.where(user_id: current_user.id).pluck(:id)
     @offers = Offer.where(job_id: myjobs_ids) 
   end
   
