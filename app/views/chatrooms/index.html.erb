@@ -31,6 +31,9 @@
                     <% end %>
                    （<%= chatroom.job.tytle %>）
                 </h4>
+                <p><% if Message.where(chatroom_id: chatroom.id).exists? %>
+                   <%= Message.where(chatroom_id: chatroom.id).last.content %>
+                   <% end %></p>
               </div>
 
               <!--未読バッジ２カラム 未読ある時のみ表示-->

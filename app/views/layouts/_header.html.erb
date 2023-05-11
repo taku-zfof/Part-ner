@@ -8,7 +8,9 @@
         <ul class="navbar-nav ml-auto ms-auto">
         <% if user_signed_in? %>
           <li class="nav-item ms-auto">
-            <%= link_to "バイトを探す",jobs_path, class: 'nav-link text-dark' %> 
+            <button class= "btn btn-secondary btn-rounded" data-toggle="modal" data-target="#searchModal">
+              <p>バイトを探す</p>
+            </button>
           </li>
           <li class="nav-item ms-auto">
             <%= link_to "パートナーを探す",new_job_path, class: 'nav-link text-dark',data: {"turbolinks" => false} %> <!--turbolinksを切らないとjpostalが発火しないため-->
@@ -35,3 +37,4 @@
     </div>
   </nav>
 </header>
+<%= render "layouts/search_modal" %>
