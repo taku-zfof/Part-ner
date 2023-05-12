@@ -1,4 +1,5 @@
 .container
+  = render "/layouts/flash"
   .row
     = render "layouts/sidebar",current: @user.id == current_user.id
     .col-8.offset-1

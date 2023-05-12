@@ -3,11 +3,11 @@
     <div class="modal-content">
 
       <div class="pt-4">
-        <h2 class="text-center"><strong>どんなバイトがしたい？</strong></h2>
+        <h3 class="text-center"><strong>どんなバイトがしたい？</strong></h3>
       </div>
       
       <%= form_with url: job_search_path, method: :get do |f| %>
-        <div class="modal-body">
+        <div class="modal-body px-5">
           <%= f.label :job_type ,"ジャンル"%>
           <%= f.select :job_type, Job.job_types.keys, { include_blank: '指定しない'}, { class: 'form-control mb-4' } %>
   

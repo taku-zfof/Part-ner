@@ -31,6 +31,7 @@
                     <% end %>
                    （<%= chatroom.job.tytle %>）
                 </h4>
+                <!--そのチャットルームの最新のメッセージを表示する-->
                 <p><% if Message.where(chatroom_id: chatroom.id).exists? %>
                    <%= Message.where(chatroom_id: chatroom.id).last.content %>
                    <% end %></p>

@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
-    <!--サイドバー@userが自分の時のみサイドバーのプロフ部をアクティブに-->
-    <%= render "layouts/sidebar",current: @user.id == current_user.id %>
-    <!--サイドバー-->
+    <%= render "layouts/sidebar",current: @user.id == current_user.id %><!--サイドバー@userが自分の時のみサイドバーのプロフ部をアクティブに-->
+    
     <!--プロフィールカード-->
     <div class="col-8 offset-1">
       <div class="card my-5 pt-5">
@@ -18,9 +17,8 @@
             <% end %>
           </div>
         </div>
-          
       </div>
-      <!--プロフィールカード-->
+      
       <!--ユーザーの投稿一覧-->
       <h3 class="text-center"><strong><%= @user.name %>がパートナーを探しているバイト</strong></h3>
       <%= render "/jobs/index", jobs: @user.jobs %>
