@@ -7,13 +7,12 @@
 body{
   background-color: #eaf4ff;
 }
-header{
-  background-color: #eaf4ff;
-}
 
 .card-img-top {
-    height: 45%;
+    min-height: 45%;
+    max-height: 45vh;
     flex-shrink:0;
+    object-fit:cover;
  }
 
 .list-group {
@@ -26,20 +25,30 @@ header{
     box-shadow:0 6px 14px rgba(0, 0, 0, 0.5);
     transform:translate(0, -2px);
  }
- 
+
  .card{
     box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.2), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
  }
 
- .job_card{
-   min-height: 120vh;
- }
 
- .job_index_card {
+ .index_card {
     transition:box-shadow 0.3s, transform 0.3s;
 }
 
-.job_index_card:hover {
+.index_card:hover {
     box-shadow:0 6px 14px rgba(0, 0, 0, 0.5);
     transform:translate(0, -2px);
+}
+
+.index_card_image{
+    min-height: 100%;
+    object-fit:cover;
+}
+
+.shadow-inner {
+    box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+#area{
+  height: 70vh;
 }

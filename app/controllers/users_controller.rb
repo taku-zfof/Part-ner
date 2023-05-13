@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+   before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user=User.find(params[:id])
@@ -10,9 +11,11 @@ class UsersController < ApplicationController
   def update
     user=current_user
     if user.update(user_params)
-     redirect_to user_path(current_user)
+      redirect_to user_path(current_user),flash: {notice: '編集を保存しました。'}
     else
-     render :edit
+      @user = current_user
+      flash.now[:error] = '登録に失敗しました'
+      render :edit 
     end
   end
 
@@ -24,7 +27,7 @@ class UsersController < ApplicationController
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.name == "guestuser"
-      redirect_to current_user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to user_path(current_user), flash: {error: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'}
     end
   end  
 end

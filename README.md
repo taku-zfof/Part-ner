@@ -1,24 +1,44 @@
-# README
+# Part-ner
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+バイトは「誰と」で選びたい。バイトを探しを通じて人と人とをつなげるマッチングサービス。
 
-Things you may want to cover:
 
-* Ruby version
+### テーマを選んだ理由
+自分がこれまで単発のアルバイトや単調な作業アルバイトなどを経験する中で、「友達がいたらもっと働きやすいのに」「誰かと一緒なら応募したいのに」といった事を考える機会が多くありました。<br>
+基本的にバイト探しは条件や仕事内容を見て企業に応募するもので、働く仲間は後から見つけるものでした。仕事内容だけでなく、一緒に働く人も選べるプラットフォームがあればよかったのに、という思いからテーマを設定しました。
 
-* System dependencies
+### 基本的な使い方
+* 【応募ユーザー】アルバイトを探せる。企業に応募するのではなく、募集をしているのは将来のバイト仲間。
+* 【募集ユーザー】バイトの詳細を投稿することで、自分のバイト先に紹介する仲間を探せる。
+* 応募ユーザーは投稿されたバイト情報と募集ユーザーを見て、気に入った場合は募集ユーザーに対してチャットのオファーを送る。
+* 募集ユーザーはチャットを通じて気に入った場合、応募ユーザーをバイト仲間として紹介できる。
 
-* Configuration
+### ターゲットユーザ
+* バイト探しに、人間関係面の不安がある人
+* バイトを探しているものの、応募に踏み切れない人
+* 自分のバイト先でバイト仲間を作りたい人
 
-* Database creation
+### 主な利用シーン
+* バイトを探すとき
+* バイト仲間が欲しいとき
+* バイト先へ友達紹介をしたいとき
 
-* Database initialization
+## 設計書
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
+- Docker/Docker-compose
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails, MDBootstrap5
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Deployment instructions
-
-* ...
+## 本番環境
+- AWS (EC2,RDS)
+- Docker/Docker-compose(可能なら)
+- MySQL2
+- Nginx、 Puma
+- Github ActionsによるCI/CD

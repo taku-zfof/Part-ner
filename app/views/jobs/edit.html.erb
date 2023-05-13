@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <!--サイドバー-->
-    <%= render "layouts/sidebar", active: false%>
+    <%= render "layouts/sidebar", current: false%>
     <!--サイドバー-->
 
     <div class="col-8 offset-1">
@@ -10,6 +10,7 @@
           <div class="col-8 offset-2">
             <h3 class="mt-4 text-center">仕事情報を編集</h3>
               <%= form_with model: @job do|f|%>
+                  <%= render 'layouts/error_messages', model: f.object %>
 
                   <%= image_tag @job.get_image(250,250), class: 'avatar  d-inline mb-4 img-thumbnail'%></br>
                   <%= f.label :image,"紹介画像"%></br>

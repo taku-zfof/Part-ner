@@ -1,16 +1,19 @@
+<%= render "/offers/offer_modal" %><!--オファー作成モーダル-->
+<%= render "/offers/offer_exist_modal" %><!--オファーが既に存在する場合のモーダル-->
+
 <div class="container">
   <div class="row">
-    <!--サイドバー-->
-    <%= render "layouts/sidebar", active: false%>
-    <!--サイドバー-->
+
+    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
+
      <div class="col-8 offset-1">
-      <div class="card job_card my-5 h-75">
-        <%= image_tag @job.get_image(500,500), class: "card-img-top img-thumbnail" %>
+      <div class="card job_card my-5">
+        <%= image_tag @job.get_image(10000,10000), class: "card-img-top img-thumbnail" %>
         <div class="card_body my-auto">
-           <h2 class="text-center"><%= @job.tytle %></h2>
+           <h2 class="text-center mt-3"><strong><%= @job.tytle %></strong></h2>
 
             <div class="hourly_wage_and_job_type text-center">
-              <h4>時給：<%= @job.hourly_wage %> 円 / <%= @job.job_type %>系</h4>
+              <h4>時給：<%= @job.hourly_wage %> 円 / <%= @job.job_type %></h4>
             </div>
 
             <div class="row px-5 py-3 user_and_introduction">
@@ -28,8 +31,7 @@
             <div class="row px-5 my-4 map_and_addresses_and_actions">
 
               <div class="col-lg-6 col-md-12 order-lg-2">
-                <!--マップ呼び出し-->
-                <%= render "/jobs/map", job: @job%>
+                <%= render "/jobs/map", job: @job%><!--マップ呼び出し-->
               </div>
 
               <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-md-5">
@@ -39,12 +41,19 @@
                 <div class="mt-5 d-flex justify-content-around">
                   <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
                   <% if @job.user == current_user %>
-                    <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
-                     <i class="fa fa-pen-nib fa-2x"></i>
-                    <% end %>
+                      <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
+                       <i class="fa fa-pen-nib fa-2x"></i>
+                      <% end %>
                   <% else %>
-                    <%= link_to "#",class: "btn btn-info btn-rounded" do%>
-                     <i class="fa fa-paper-plane fa-2x"></i>
+                    <!--オファーモーダルを開く。既にオファー済みの時はアナウンスされる。-->
+                    <% if @job.offers.where(user_id: current_user.id).exists? %>
+                     <button class= "btn btn-secondary btn-rounded" data-toggle="modal" data-target="#offerExistModal">
+                       <i class="fa fa-paper-plane fa-2x"></i>
+                     </button>
+                    <% else %>
+                     <button class= "btn btn-info btn-rounded" data-toggle="modal" data-target="#offermodal">
+                       <i class="fa fa-paper-plane fa-2x"></i>
+                     </button>
                     <% end %>
                   <% end %>
 

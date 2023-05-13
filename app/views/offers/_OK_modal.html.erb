@@ -1,0 +1,17 @@
+<div class="modal fade" id="OKmodal" aria-hidden="}">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="pt-4">
+        <h5 class="text-center"><strong>承認してDMを始めますか？</strong></h5>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">後で</button>
+        
+        <%= link_to "始める", chatrooms_path(offer_id: offer.id, offerer_id: offer.user.id, job_id: offer.job.id), method: :post, class: "btn btn-info btn-rounded"%>
+      </div>
+
+    </div>
+  </div>
+</div>

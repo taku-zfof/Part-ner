@@ -1,20 +1,44 @@
-<div class="col-3 sidebar", style="min-height: 100vh;">
+<div class="col-3 sidebar">
   <div style="position: sticky; top: 130px;">
     <!--プロフィール画像-->
-      <div class="card my-5">
-       <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
-         <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
-         <h5><%= current_user.name %></h5>
-       <% end %>
-      </div>
-     <!--プロフィール画像-->
-     <!--リンクリスト-->
-      <div class="list-group list-group-light mt-3">
-        <%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active ? 'active' : ''}" %>
-        <%= link_to "DM", "#",class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('chat_rooms')}" %>
-        <%= link_to "ブックマーク", bookmark_index_path,class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('bookmarks')}" %>
-        <%= link_to "オファー","#", class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('offers')}" %>
-      </div>
-     <!--リンクリスト-->
+    <div class="card rounded-9 my-5">
+        <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
+            <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
+            <h5><%= current_user.name %></h5>
+        <% end %>
+    </div>
+
+    <!--リンクリスト-->
+    <div class="list-group list-group-light mt-3">
+        <h6><strong><%= link_to "プロフィール",user_path(current_user), class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{current ? 'active' : ''}" %> </strong></h6>
+        <h6><strong>
+            <%= link_to chatrooms_path, class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('chatrooms')}" do%>
+                メッセージ
+                <!--通知バッジの処理-->
+                <% if Message.unread_by(current_user).exists? %>
+                    <span class="badge badge-danger rounded-pill">
+                       <%= Message.unread_by(current_user).count %>
+                    </span>
+                <% end %>
+            <% end %>
+        </strong></h6>
+
+        <h6><strong>
+            <%= link_to offers_index_path, class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('offers')}" do%>
+            オファー
+                <!--通知バッジの処理-->
+                <% if Offer.where(job_id: current_user.jobs.ids).exists? %>
+                    <span class="badge badge-danger rounded-pill">
+                        <%= Offer.where(job_id: current_user.jobs.ids).count %>
+                    </span>
+                <% end %>
+            <% end %>
+        </strong></h6>
+
+        <h6><strong>
+            <%= link_to "ブックマーク", bookmark_index_path,class: "list-group-item list-group-item-action px-3 mb-3 rounded-pill #{active_if('bookmarks')}" %>
+        </strong></h6>
+    </div>
+
    </div>
 </div>

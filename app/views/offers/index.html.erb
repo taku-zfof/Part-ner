@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+
+    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
+
+      <div class="col-8 offset-1">
+
+        <h3 class="mt-5 mb-3"><strong><%= @offers.count %>件のオファーが届いています</strong></h3>
+        <%= render "/offers/index", offers: @offers%>
+
+      </div>
+
+  </div>
+</div>
+
