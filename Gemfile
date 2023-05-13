@@ -67,7 +67,6 @@ gem 'jp_prefecture' #県名取得
 gem 'geocoder' #住所から緯度経度取得
 gem 'slim-rails' #slim記法
 gem 'html2slim' #slim記法
-gem 'pry-byebug' #デバッグ
 
 #デプロイ用
 gem "net-smtp"
