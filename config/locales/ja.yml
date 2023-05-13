@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        sex: 性別
+        age: 年齢
+        prefecture: 都道府県
+        introduction: 自己紹介
+      job:
+        tytle: タイトル
+        introduction: 紹介文
+        postal_code: 郵便番号
+        prefecture_code: 都道府県
+        other_address: 都道府県以降の住所
+        near_station: 最寄り駅
+        near_station_line: 最寄り駅の路線
+        hourly_wage: 時給
+        latitude: 緯度
+        longitude: 経度
+        job_type: 職種
+  

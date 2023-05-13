@@ -20,6 +20,7 @@ class JobsController < ApplicationController
       redirect_to job_path(job)
     else
       @job=job
+      flash.now[:error] = '作成できませんでした'
       render :new
     end
 

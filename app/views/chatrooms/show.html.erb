@@ -33,7 +33,7 @@
 
       <!--入力フォーム-->
       <%= form_with model: @message, class: "input-group rounded-5" do |f| %>
-        <%= f.text_field :content, class: "form-control rounded-start", placeholder: "メッセージを入力", autofocus: true %>
+        <%= f.text_field :content, class: "form-control rounded-start", placeholder: "メッセージを入力", autofocus: true, required: true%>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :chatroom_id, :value => @chatroom.id %>
         <%= f.submit "送信", class: "btn btn-lg btn-info" %>

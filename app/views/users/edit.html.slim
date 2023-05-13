@@ -1,5 +1,4 @@
 .container
-  = render "/layouts/flash"
   .row
     = render "layouts/sidebar",current: @user.id == current_user.id
     .col-8.offset-1
@@ -9,6 +8,7 @@
             | プロフィール編集
           p.card-text.mb-5
             = form_with model: @user do |f|
+              = render 'layouts/error_messages', model: f.object
               = f.label :image do
                 = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle img-thumbnail', size:"100x100")
                 = f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75'
