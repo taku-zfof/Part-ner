@@ -56,6 +56,7 @@ production:
   encoding: utf8mb4
   charset: utf8mb4
   collation: utf8mb4_general_ci
+  socket: /var/lib/mysql/mysql.sock
   username: <%=ENV['DB_USERNAME']%>
   password: <%=ENV['DB_PASSWORD']%>
   host: <%=ENV['DB_HOST']%>
