@@ -21,7 +21,7 @@
       
       <!--ユーザーの投稿一覧-->
       <h3 class="text-center"><strong><%= @user.name %>がパートナーを探しているバイト</strong></h3>
-      <%= render "/jobs/index", jobs: @user.jobs %>
+      <%= render "/jobs/index", jobs: @user.jobs.where(released: true) %>
 
     </div>
   </div>

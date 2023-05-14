@@ -8,9 +8,8 @@ class JobsController < ApplicationController
     job.user = current_user
     job.near_station_line = ""
     job.near_station = "" # 一度保存しないとgeocoderが動かないため最寄り駅空欄でいったん保存
-    
-    # 投稿する場合
-    if params[:post]
+
+    if params[:post] # 投稿する場合
       if job.save(context: :release)
         # 最寄り駅情報を取得して代入
         uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{job.longitude}&y=#{job.latitude}")
@@ -20,24 +19,23 @@ class JobsController < ApplicationController
         job.near_station_line = result["response"]["station"][0]["line"]
         # 再度保存
         job.save
-        redirect_to job_path(job),flash: {notice: '募集を作成しました！'}
+        redirect_to job_path(job),flash: {notice: '募集を作成しました'}
       else
         @job=job
         flash.now[:error] = '作成に失敗しました'
         render :new
       end
-      
-    # 下書きの場合
-    else
+
+    else  # 下書きの場合
       if job.update(released: false)
-        redirect_to request.referer, notice: "募集を下書き保存しました！"
+        redirect_to job_draft_index_path, flash: {notice: "募集を下書き保存しました！"}
       else
         @job=job
-        flash.now[:error] = '作成に失敗しました'
+        flash.now[:error] = '下書き保存に失敗しました'
         render :new
       end
     end
-    
+
   end
 
   def show
@@ -47,30 +45,45 @@ class JobsController < ApplicationController
   def edit
     @job=Job.find(params[:id])
   end
-  
+
   def update
     job=Job.find(params[:id])
-    if job.update(job_params)
-      # 最寄り駅情報を取得して代入
-      uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{job.longitude}&y=#{job.latitude}")
-      response = Net::HTTP.get_response(uri)
-      result = JSON.parse(response.body)
-      job.near_station = result["response"]["station"][0]["name"]
-      job.near_station_line = result["response"]["station"][0]["line"]
-      job.save
-      redirect_to job_path(job),flash: {notice: '編集を保存しました'}
-    else
-      @job=job
-      flash.now[:error] = '保存できませんでした'
-      render :edit
+    if params[:post] #投稿する場合
+        job.attributes = job_params #updateにcontextが適用できないため。
+        job.released = true
+        if job.save(context: :release)
+          # 最寄り駅情報を取得して代入
+          uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{job.longitude}&y=#{job.latitude}")
+          response = Net::HTTP.get_response(uri)
+          result = JSON.parse(response.body)
+          job.near_station = result["response"]["station"][0]["name"]
+          job.near_station_line = result["response"]["station"][0]["line"]
+          job.save
+          redirect_to job_path(job),flash: {notice: '募集を公開しました'}
+        else
+          @job=job
+          flash.now[:error] = '公開できませんでした'
+          render :edit
+        end
+    else #下書きにする場合
+        job.released = false
+        if job.update(job_params)
+          redirect_to job_draft_index_path, flash: {notice: "募集を下書き保存しました"}
+        else
+          @job=job
+          flash.now[:error] = '下書き保存に失敗しました'
+          render :edit
+        end
     end
+      
   end
-  
+
   def destroy
     job=Job.find(params[:id])
     if job.destroy
-      redirect_to jobs_path
+      redirect_to jobs_path, flash: {alert: '募集を削除しました'}
     else
+      flash.now[:error] = '削除できませんでした'
       render :edit
     end
   end
@@ -78,13 +91,13 @@ class JobsController < ApplicationController
   def index
     @jobs=Job.where(released: true).all
   end
-  
+
   def draft_index
     @jobs = current_user.jobs.where(released: false).all
   end
-  
+
   def search
-    @jobs = Job.all 
+    @jobs = Job.all
     @jobs = @jobs.where(prefecture_code: params[:prefecture_code]) if params[:prefecture_code].present?
     @jobs = @jobs.where(job_type: params[:job_type]) if params[:job_type].present?
     @jobs = @jobs.where('tytle LIKE(?) or introduction LIKE(?)',"%#{params[:key_word]}%","%#{params[:key_word]}%") if params[:key_word].present?

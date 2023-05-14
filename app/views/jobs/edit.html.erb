@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
-    <!--サイドバー-->
-    <%= render "layouts/sidebar", current: false%>
-    <!--サイドバー-->
+
+    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
     <div class="col-8 offset-1">
       <div class="card my-5 py-4">
@@ -20,10 +19,10 @@
                   <%= f.text_field :tytle, class: "form-control mb-4 w-100 mx-auto", placeholder: "募集タイトル" %>
 
                   <%= f.label :job_type ,"職種"%>
-                  <%= f.select :job_type, Job.job_types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4 w-50' , required: true } %>
+                  <%= f.select :job_type, Job.job_types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4 w-50'  } %>
 
                   <%= f.label :introduction,"紹介文"%>
-                  <%= f.text_area :introduction, class: "form-control mb-4 w-100 mx-auto", placeholder: "仕事の詳細やアピールポイントなど" %>
+                  <%= f.text_area :introduction, class: "form-control mb-4 w-100 mx-auto", placeholder: "仕事の詳細やアピールポイントなど", size: "10x5" %>
 
                   <%= f.label :hourly_wage,"時給"%><br>
                   <%= f.text_field :hourly_wage, class: "form-control mb-4 w-50 d-inline", placeholder: "半角数字"%>円<br>
@@ -32,13 +31,13 @@
                   <%= f.text_field :postal_code, class: "postal_code form-control mb-4 w-50", placeholder: "半角数字" %>
 
                   <%= f.label :prefecture_code, "所在地（都道府県）"%><br>
-                  <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '都道府県を選択'}, { class: 'prefecture_code form-control mb-4 w-50 d-inline' , required: true }%><br>
+                  <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '都道府県を選択'}, { class: 'prefecture_code form-control mb-4 w-50 d-inline'  }%><br>
 
                   <%= f.label :other_address, "市区町村以降の住所" %>
                   <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
 
                   <% if @job.user == current_user%>
-                    <p class="text-center"><%= f.submit "編集を保存", class: "btn btn-info btn-rounded"%>　<%= link_to "削除する", job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" %></p>
+                    <p class="text-center"><%= f.submit "編集を保存", :name => 'post', class: "btn btn-info btn-rounded"%> <%= f.submit "下書き保存", :name => 'draft', class: "btn btn-warning btn-rounded"%> <%= link_to "削除する", job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" %></p>
                   <% end %>
 
               <%end%>
@@ -50,4 +49,4 @@
   </div>
 </div>
 <!--jpostal読み込み-->
-<%= render "/jobs/jpostal" %> 
+<%= render "/jobs/jpostal" %>
