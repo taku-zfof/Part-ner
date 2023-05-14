@@ -7,12 +7,12 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto ms-auto">
         <% if user_signed_in? %>
-          <li class="nav-item ms-auto">
-            <%= link_to "バイトを探す",jobs_path, class: 'nav-link text-dark' %> 
+          <li class="nav-item ms-auto mx-2">
+            <%= link_to "バイトを探す",jobs_path, class: 'btn btn-secondary rounded-pill' %> 
           </li>
           
           
-          <div class="dropdown nav-item ms-auto">
+          <div class="dropdown nav-item ms-auto mx-2">
             <button
               class="btn btn-secondary rounded-pill dropdown-toggle"
               type="button"
@@ -29,8 +29,8 @@
           </div>
           
           
-          <li class="nav-item ms-auto">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+          <li class="nav-item ms-auto mx-2">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-secondary rounded-pill' %>
           </li>
         <% else %>
           <li class="nav-item ms-auto">

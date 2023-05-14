@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "homes#about"
 
-  resources :users,only:[:show, :edit, :update]
+  resources :users, only:[:show, :edit, :update], param: :account_name
   
   get "jobs/search" => "jobs#search", as: "job_search"
   get "jobs/draft_index" => "jobs#draft_index", as: "job_draft_index"

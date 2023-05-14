@@ -17,6 +17,7 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :prefecture, presence: true
   validates :introduction, length: {maximum: 500}
+  validates :account_name, uniqueness: true
   
   #都道府県コード→都道府県名
   enum prefecture: {
@@ -44,12 +45,23 @@ class User < ApplicationRecord
   end
 
 
+  before_create :set_account_name #ユーザー作成時に以下のアクション
+  # アカウント名が空か、同じアカウント名のユーザーが存在する時にランダムな文字列を代入する
+    def set_account_name
+      while self.account_name.blank? || User.find_by(account_name: self.account_name).present? do
+        self.account_name = SecureRandom.base36
+      end
+    end
+    def to_param
+       account_name
+    end
+    
   #ゲストユーザーの設定
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
-      user.age = 27
+      user.age = 25
       user.sex = 3
       user.prefecture = 13
       user.introduction = "ゲストユーザーです！よろしくお願いします！"

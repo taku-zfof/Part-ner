@@ -46,7 +46,7 @@
                       <% end %>
                   <% else %>
                     <!--オファーモーダルを開く。既にオファー済みの時はアナウンスされる。-->
-                    <% if @job.offers.where(user_id: current_user.id).exists? %>
+                    <% if @job.offers.where(user_id: current_user.id).exists? or @job.chatrooms.where(user_id: current_user.id).exists? %>
                      <button class= "btn btn-secondary btn-rounded" data-toggle="modal" data-target="#offerExistModal">
                        <i class="fa fa-paper-plane fa-2x"></i>
                      </button>
