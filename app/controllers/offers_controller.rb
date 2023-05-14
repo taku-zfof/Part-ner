@@ -18,6 +18,11 @@ class OffersController < ApplicationController
     @offers = Offer.where(job_id: myjobs_ids) 
   end
   
+  #送ったオファー一覧
+  def send_index
+    @offers = current_user.offers.all
+  end
+  
   private
   
   def offer_params

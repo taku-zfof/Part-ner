@@ -7,18 +7,15 @@ class Job < ApplicationRecord
     has_many :offers, dependent: :destroy
 
     has_one_attached :image
-    
+
     validates :tytle, presence: true
     validates :job_type, presence: true
     validates :introduction, presence: true
     validates :postal_code, presence: true, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/} #半角数字７桁のみ。ハイフン有り無しok
     validates :prefecture_code, presence: true
     validates :other_address, presence: true
-    validates :near_station, presence: true
-    validates :near_station_line, presence: true
     validates :hourly_wage, presence: true ,format:{with: /\A[0-9]+\z/}#半角数字のみ
-    validates :latitude, presence: true
-    validates :longitude, presence: true
+
 
 
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
@@ -34,7 +31,7 @@ class Job < ApplicationRecord
   def keeped_by?(user)
     bookmarks.exists?(user_id: user.id)
   end
-  
+
   # current_userが送ったオファーが存在するか確認するメソッド。ビューの表示分岐で使う
   def offerd_by?(user)
     offers.exist?(user_id: user.id)
