@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   root to: "homes#about"
 
   resources :users,only:[:show, :edit, :update]
+  
   get "jobs/search" => "jobs#search", as: "job_search"
+  get "jobs/draft_index" => "jobs#draft_index", as: "job_draft_index"
   resources :jobs
 
   resource :bookmarks, only:[:create,:destroy]

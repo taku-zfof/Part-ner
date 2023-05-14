@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+
+    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
+
+      <div class="col-8 offset-1">
+
+        <h2 class="mt-5 mb-3"><strong>下書き一覧</strong></h2>
+        <%= render "/jobs/index", jobs: @jobs%><!--募集一覧-->
+
+      </div>
+
+  </div>
+</div>

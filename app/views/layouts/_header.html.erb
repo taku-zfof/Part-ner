@@ -10,9 +10,25 @@
           <li class="nav-item ms-auto">
             <%= link_to "バイトを探す",jobs_path, class: 'nav-link text-dark' %> 
           </li>
-          <li class="nav-item ms-auto">
-            <%= link_to "パートナーを探す",new_job_path, class: 'nav-link text-dark',data: {"turbolinks" => false} %> <!--turbolinksを切らないとjpostalが発火しないため-->
-          </li>
+          
+          
+          <div class="dropdown nav-item ms-auto">
+            <button
+              class="btn btn-secondary rounded-pill dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              パートナー募集
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><%= link_to "新規募集",new_job_path, class: 'dropdown-item',data: {"turbolinks" => false} %> <!--turbolinksを切らないとjpostalが発火しないため--></li>
+              <li><%= link_to "下書き一覧",job_draft_index_path, class: 'dropdown-item'%></li>
+            </ul>
+          </div>
+          
+          
           <li class="nav-item ms-auto">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
           </li>
