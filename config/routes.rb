@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get 'chatrooms/index'
-  get 'chatrooms/show'
-  devise_for :users,skip: [:passwords]
+  root to: "homes#about"
+  
+  devise_for :users,skip: [:passwords, :registrations] #いらないルーティングを作らない。sessionとregistration新規のみ。
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    get "users/sign_up" => "devise/registrations#new", as: "new_user_registration"
+   post "users" => "devise/registrations#create", as: "user_registration"
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: "homes#about"
-
+  
   resources :users, only:[:show, :edit, :update], param: :account_name
   
   get "jobs/search" => "jobs#search", as: "job_search"

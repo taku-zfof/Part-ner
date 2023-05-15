@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :prefecture, presence: true
   validates :introduction, length: {maximum: 500}
   validates :account_name, uniqueness: true
-  
+
   #都道府県コード→都道府県名
   enum prefecture: {
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -39,7 +39,7 @@ class User < ApplicationRecord
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.png')
-      image.attach(io: File.open(file_path), filename: 'noimage.jpg', content_type: 'image/png')
+      image.attach(io: File.open(file_path), filename: 'noimage.png', content_type: 'image/png')
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
@@ -55,7 +55,7 @@ class User < ApplicationRecord
     def to_param
        account_name
     end
-    
+
   #ゲストユーザーの設定
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
