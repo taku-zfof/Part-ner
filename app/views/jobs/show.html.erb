@@ -39,10 +39,15 @@
                 <h6 class="fw-bold text-center">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
 
                 <div class="mt-5 d-flex justify-content-around">
-                  <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
+                  <!--自分の仕事の場合はオファーを非表示して編集ボタンにする-->
                   <% if @job.user == current_user %>
+                      <!--編集ボタン-->
                       <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
-                       <i class="fa fa-pen-nib fa-2x"></i>
+                        <i class ="fa fa-edit fa-2x"></i>
+                      <% end %>
+                      <!--teitterで共有ボタン-->
+                      <%= link_to "https://twitter.com/share?url=#{request.url}/&text=【Part-ner】で#{@job.tytle}のバイト仲間募集中です！&hashtags=Part_ner", class: "btn btn-info btn-rounded",title: 'Twitter', target: '_blank' do%>
+                        <i class ="fab fa-twitter fa-2x"></i>
                       <% end %>
                   <% else %>
                     <!--オファーモーダルを開く。既にオファー済みの時はアナウンスされる。-->

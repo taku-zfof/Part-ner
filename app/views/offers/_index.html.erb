@@ -45,15 +45,15 @@
           
           <% if offer.user == current_user %>
             <button class= "btn btn-danger btn-rounded" data-toggle="modal" data-target="#NGmodal">
-              <i class="fa fa-trash fa-2x"></i>
+              <i class="far fa-trash-alt fa-2x"></i>
             </button>
             
           <% else %>
             <button class= "btn btn-info btn-rounded" data-toggle="modal" data-target="#OKmodal">
-              <i class="fa fa-thumbs-up fa-2x"></i>
+              <i class="fas fa-check fa-2x"></i>
             </button>
             <button class= "btn btn-danger btn-rounded" data-toggle="modal" data-target="#NGmodal">
-              <i class="fa fa-thumbs-down fa-2x"></i>
+              <i class="fas fa-times fa-2x"></i>
             </button>
             
           <% end %>

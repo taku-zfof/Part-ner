@@ -31,9 +31,9 @@
                     <% end %>
                    （<%= chatroom.job.tytle %>）
                 </h4>
-                <!--そのチャットルームの最新のメッセージを表示する-->
+                <!--そのチャットルームの最新のメッセージを表示する。５０文字まで-->
                 <p><% if Message.where(chatroom_id: chatroom.id).exists? %>
-                   <%= Message.where(chatroom_id: chatroom.id).last.content %>
+                   <%= Message.where(chatroom_id: chatroom.id).last.content.truncate(50) %>
                    <% end %></p>
               </div>
 

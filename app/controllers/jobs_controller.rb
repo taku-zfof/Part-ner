@@ -90,10 +90,12 @@ class JobsController < ApplicationController
 
   def index
     @jobs=Job.where(released: true).all
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール）
   end
 
   def draft_index
     @jobs = current_user.jobs.where(released: false).all
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール）
   end
 
   def search

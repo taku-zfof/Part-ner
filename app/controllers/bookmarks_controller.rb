@@ -13,6 +13,6 @@ class BookmarksController < ApplicationController
 
   def index
     job_ids=Bookmark.where(user_id: current_user.id).pluck(:job_id)
-    @jobs=Job.where(id: job_ids)
+    @jobs=Job.where(id: job_ids).page(params[:page]).per(5) #ページネーション（無限スクロール）
   end
 end
