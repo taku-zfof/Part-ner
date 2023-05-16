@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
   resource :offers, only:[:create,:destroy]
   get "offers/index" => "offers#index", as: "offers_index"
-  get "offers/send_index" => "offers#send_index", as: "offers_send_index"
   #resourceだとindexアクションが生成されないため自作。"offers_paths"を使おうとするとエラーになるため名前も自作。
   
   resources :chatrooms, only:[:index, :show, :create, :destroy], param: :rondom_id #ランダム文字列をidの代わりに使用

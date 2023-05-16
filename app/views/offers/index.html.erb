@@ -4,12 +4,7 @@
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
       <div class="col-8 offset-1">
-        <div class="d-flex justify-content-between">
-          <h3 class="mt-5 mb-3 d-inline-block"><strong><%= @offers.count %>件のオファーが届いています</strong></h3>
-          <%= link_to "送ったオファーを見る", offers_send_index_path, class: "btn btn-info d-inline-block mt-5 mb-3 rounded-pill"%>
-        </div>
-        
-        <%= render "/offers/index", offers: @offers%>
+        <%= render "/offers/index", receive_offers: @receive_offers, send_offers: @send_offers%>
       </div>
 
   </div>
