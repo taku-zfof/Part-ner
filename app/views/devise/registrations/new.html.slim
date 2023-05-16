@@ -9,7 +9,7 @@
             = form_with model: @user,url: user_registration_path do |f|
               = render 'layouts/error_messages', model: f.object
               = f.label :image, class: "mb-4" do
-                = image_tag('noimage.png', class: 'avatar rounded-circle d-inline img-thumbnail',size: "100x100")
+                = image_tag('noimage.png', class: 'avatar rounded-circle d-inline img-thumbnail',style: "height: 100px; width: 100px; object-fit: cover;")
                 = f.file_field :image, class: 'uploader d-inline form-control w-100'
                 
               = f.text_field :name, class: "form-control mb-4 w-75 mx-auto", placeholder: "アカウント名", required: true

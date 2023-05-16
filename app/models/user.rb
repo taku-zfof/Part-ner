@@ -40,7 +40,8 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/noimage.png')
       image.attach(io: File.open(file_path), filename: 'noimage.png', content_type: 'image/png')
     end
-    image.variant(resize_to_limit: [width, height]).processed
+    #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
+    image.variant(resize: "#{width}x#{height}^", gravity: :center, crop: "#{width}x#{height}+0+0").processed
   end
 
 

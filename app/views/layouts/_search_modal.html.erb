@@ -15,7 +15,7 @@
           <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '指定しない'}, { class: 'form-control mb-4' } %>
   
           <%= f.label :key_word,"キーワード"%>
-          <%= f.text_field :key_word,  class: "form-control mb-5"%>
+          <%= f.text_field :key_word,  class: "form-control mb-5", placeholder: "キーワードを入力"%>
         </div>
         
         <div class="modal-footer">

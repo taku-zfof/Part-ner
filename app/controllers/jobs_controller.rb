@@ -81,7 +81,7 @@ class JobsController < ApplicationController
   def destroy
     job=Job.find_by(rondom_id: params[:rondom_id])
     if job.destroy
-      redirect_to jobs_path, flash: {alert: '募集を削除しました'}
+      redirect_to user_path(current_user), flash: {alert: '募集を削除しました'}
     else
       flash.now[:error] = '削除できませんでした'
       render :edit

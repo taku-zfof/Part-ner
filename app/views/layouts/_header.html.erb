@@ -2,17 +2,17 @@
   <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
       <a class="navbar-brand p-3" href="/">Part-ner</a>
-      
+
       <!--メニュー-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto ms-auto">
         <% if user_signed_in? %>
-          
-          <button class= "btn btn-secondary btn-rounded nav-item ms-auto mx-2" data-toggle="modal" data-target="#searchModal">
+
+          <button class= "btn btn-secondary btn-rounded nav-item ms-auto m-2" data-toggle="modal" data-target="#searchModal">
               バイトを探す
           </button>
-          
-          <div class="dropdown nav-item ms-auto mx-2">
+
+          <div class="dropdown nav-item ms-auto m-2">
             <button class="btn btn-secondary rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
               パートナー募集
             </button>
@@ -21,9 +21,9 @@
               <li><%= link_to "下書き一覧",job_draft_index_path, class: 'dropdown-item'%></li>
             </ul>
           </div>
-        
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-secondary rounded-pill nav-item ms-auto mx-2' %>
-        
+
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-secondary rounded-pill nav-item ms-auto m-2' %>
+
         <% else %>
           <li class="nav-item ms-auto">
             <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
@@ -34,12 +34,12 @@
         <% end %>
         </ul>
       </div>
-      
+
       <!--ハンバーガーメニュー-->
       <button class="navbar-toggler ms-auto" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
-      
+
     </div>
   </nav>
 </header>

@@ -37,7 +37,7 @@
                   <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
 
                   <% if @job.user == current_user%>
-                    <p class="text-center"><%= f.submit "編集を保存", :name => 'post', class: "btn btn-info btn-rounded"%> <%= f.submit "下書き保存", :name => 'draft', class: "btn btn-warning btn-rounded"%> <%= link_to "削除する", job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" %></p>
+                    <p class="text-center"><%= f.submit "保存して公開", :name => 'post', class: "btn btn-info btn-rounded"%> <%= f.submit "下書き保存", :name => 'draft', class: "btn btn-warning btn-rounded"%> <%= link_to "削除する", job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" %></p>
                   <% end %>
 
               <%end%>
