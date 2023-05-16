@@ -25,7 +25,8 @@ class Job < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/noimage_job.png')
       image.attach(io: File.open(file_path), filename: 'noimage_job.jpg', content_type: 'image/png')
     end
-    image.variant(resize_to_limit: [width, height]).processed
+   #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
+    image.variant(resize: "#{width}x#{height}^", gravity: :center, crop: "#{width}x#{height}+0+0").processed
   end
 
   # current_userにブックマークされているか確認するメソッド。ビューの表示分岐で使う
