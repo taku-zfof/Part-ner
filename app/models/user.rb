@@ -17,7 +17,6 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :prefecture, presence: true
   validates :introduction, length: {maximum: 500}
-  validates :account_name, uniqueness: true
 
   #都道府県コード→都道府県名
   enum prefecture: {

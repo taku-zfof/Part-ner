@@ -18,8 +18,6 @@ class Job < ApplicationRecord
         validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,
         validates :hourly_wage, format:{with: /\A[0-9]+\z/}#半角数字のみ
     end
-    
-
 
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
@@ -39,6 +37,17 @@ class Job < ApplicationRecord
   def offerd_by?(user)
     offers.exist?(user_id: user.id)
   end
+  
+  before_create :set_rondom_id #ユーザー作成時に以下のアクション
+  # rondom_idが空か、同じrondom_idのユーザーが存在する時にランダムな文字列を代入する
+    def set_rondom_id
+      while self.rondom_id.blank? || Job.find_by(rondom_id: self.rondom_id).present? do
+        self.rondom_id = SecureRandom.base36
+      end
+    end
+    def to_param
+       rondom_id
+    end
 
 
    enum job_type: {

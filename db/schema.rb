@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_14_190318) do
+ActiveRecord::Schema.define(version: 2023_05_16_104212) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2023_05_14_190318) do
     t.integer "job_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rondom_id"
   end
 
   create_table "jobs", charset: "utf8mb4", force: :cascade do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 2023_05_14_190318) do
     t.integer "job_type"
     t.integer "prefecture_code"
     t.boolean "released", default: true, null: false
+    t.string "rondom_id"
   end
 
   create_table "meesages", charset: "utf8mb4", force: :cascade do |t|

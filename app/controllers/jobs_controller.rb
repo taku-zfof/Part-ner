@@ -39,17 +39,17 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job=Job.find(params[:id])
+    @job=Job.find_by(rondom_id: params[:rondom_id])
   end
 
   def edit
-    @job=Job.find(params[:id])
+    @job=Job.find_by(rondom_id: params[:rondom_id])
   end
 
   def update
-    job=Job.find(params[:id])
+    job=Job.find_by(rondom_id: params[:rondom_id])
     if params[:post] #投稿する場合
-        job.attributes = job_params #updateにcontextが適用できないため。
+        job.attributes = job_params #updateにcontextが適用できないためattributeで代入してからsave
         job.released = true
         if job.save(context: :release)
           # 最寄り駅情報を取得して代入
@@ -75,11 +75,11 @@ class JobsController < ApplicationController
           render :edit
         end
     end
-      
+
   end
 
   def destroy
-    job=Job.find(params[:id])
+    job=Job.find_by(rondom_id: params[:rondom_id])
     if job.destroy
       redirect_to jobs_path, flash: {alert: '募集を削除しました'}
     else
@@ -88,27 +88,23 @@ class JobsController < ApplicationController
     end
   end
 
-  def index
-    @jobs=Job.where(released: true).all
-    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール）
-  end
-
   def draft_index
     @jobs = current_user.jobs.where(released: false).all
-    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール）
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール用）
   end
 
   def search
     @jobs = Job.where(released: true).all
+    #条件が存在する場合のみ絞り込む
     @jobs = @jobs.where(prefecture_code: params[:prefecture_code]) if params[:prefecture_code].present?
     @jobs = @jobs.where(job_type: params[:job_type]) if params[:job_type].present?
     @jobs = @jobs.where('tytle LIKE(?) or introduction LIKE(?)',"%#{params[:key_word]}%","%#{params[:key_word]}%") if params[:key_word].present?
-    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール）
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール用）
     render :index
   end
 
 private
   def job_params
-    params.require(:job).permit(:tytle, :job_type, :image, :introduction, :hourly_wage, :postal_code, :prefecture_code, :other_address ,:near_station, :near_station_line)
+    params.require(:job).permit(:rondom_id, :tytle, :job_type, :image, :introduction, :hourly_wage, :postal_code, :prefecture_code, :other_address ,:near_station, :near_station_line)
   end
 end

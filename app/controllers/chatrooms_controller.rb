@@ -4,7 +4,7 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.find(params[:id])
+    @chatroom = Chatroom.find_by(rondom_id: params[:rondom_id])
     @message = Message.new
     @messages = Message.where(chatroom_id: @chatroom.id)
 

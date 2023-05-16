@@ -22,7 +22,7 @@
       <!--ユーザーの投稿一覧-->
       <h3 class="text-center"><strong><%= @user.name %>がパートナーを探しているバイト</strong></h3>
       <%= render "/jobs/index", jobs: @user.jobs.where(released: true).page(params[:page]).per(5) %>
-
+      <%= render "layouts/top_btn" %><!--topに戻るボタン-->
     </div>
   </div>
 </div>
