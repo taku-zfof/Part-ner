@@ -2,8 +2,7 @@ class UsersController < ApplicationController
    before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @user=User.find_by(account_name: params[:account_name])
-    # @user=current_user
+    @user = User.find_by(account_name: params[:account_name])
   end
   def edit
     @user=User.find_by(account_name: params[:account_name])

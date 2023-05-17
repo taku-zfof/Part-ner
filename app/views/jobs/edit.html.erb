@@ -11,7 +11,7 @@
               <%= form_with model: @job do|f|%>
                   <%= render 'layouts/error_messages', model: f.object %>
 
-                  <%= image_tag @job.get_image(3000,5000), class: 'avatar  d-inline mb-4 img-thumbnail'%></br>
+                  <%= image_tag @job.get_image(5000,3000), class: 'avatar  d-inline mb-4 img-thumbnail'%></br>
                   <%= f.label :image,"紹介画像"%></br>
                   <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75' %></br>
 

@@ -20,5 +20,5 @@
               = f.select :prefecture, User.prefectures.keys, { include_blank: '地域を選択'}, { class: 'form-control mb-4 w-75 mx-auto' , required: true }
               = f.select :age,  options_for_select((18..85).to_a), { include_blank: '年齢'}, { class: 'form-control mb-4 w-75 mx-auto' , required: true }
               = f.hidden_field :introduction,:value => ""
-              = f.submit "作成する", class: "btn btn-secondary w-75 mb-4"
+              = f.submit "作成する", class: "btn btn-secondary btn-block mb-4"
             = render "devise/shared/links"
