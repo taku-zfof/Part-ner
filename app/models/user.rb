@@ -8,19 +8,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[google_oauth2] #googleログイン用の記述
+         :omniauthable, omniauth_providers: [:twitter, :google_oauth2] #googleログイン用の記述
 
-#googleログイン用の記述
+#googleログイン用の記述。uidとproviderでユーザーを新規なら作成、既存なら取得
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.name = auth.info.name
-      user.account_name = Devise.friendly_token[0,20]
-      user.introduction = ""
-      user.sex = 3
-      user.age = 18
-      user.prefecture = 13
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name #認証情報からもらう
+      user.account_name = Devise.friendly_token[0,20] #ランダム生成
+      user.introduction = "" #auth.infoでもらえないので手動
+      user.sex = 3 #もらえないので手動
+      user.age = 18 #もらえないので手動
+      user.prefecture = 13 #もらえない値なので手動
+      user.email = auth.info.email #認証情報からもらう
+      user.password = Devise.friendly_token[0,20] #ランダム生成
     end
   end
 

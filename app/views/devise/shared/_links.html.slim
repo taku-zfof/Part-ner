@@ -11,6 +11,6 @@
   = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
   br
 - if devise_mapping.omniauthable?
-  = button_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path
-  = button_to 'Twitterでログイン', user_twitter_omniauth_authorize_path
+  = button_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post
+  = button_to 'Twitterでログイン', user_twitter_omniauth_authorize_path, method: :post
 

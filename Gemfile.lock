@@ -160,6 +160,12 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
+    oauth (1.1.0)
+      oauth-tty (~> 1.0, >= 1.0.1)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    oauth-tty (1.0.5)
+      version_gem (~> 1.1, >= 1.1.1)
     oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
@@ -174,9 +180,15 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.1)
       omniauth-oauth2 (>= 1.6)
+    omniauth-oauth (1.2.0)
+      oauth
+      omniauth (>= 1.0, < 3)
     omniauth-oauth2 (1.7.3)
       oauth2 (>= 1.4, < 3)
       omniauth (>= 1.9, < 3)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     orm_adapter (0.5.0)
     public_suffix (5.0.1)
     puma (3.12.6)
@@ -252,6 +264,9 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 6.0, != 5.0.0)
+    snaky_hash (2.0.1)
+      hashie
+      version_gem (~> 1.1, >= 1.1.1)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -269,6 +284,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    version_gem (1.1.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -316,6 +332,7 @@ DEPENDENCIES
   net-smtp
   omniauth (= 1.9.1)
   omniauth-google-oauth2
+  omniauth-twitter
   puma (~> 3.11)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.3)
