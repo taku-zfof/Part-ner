@@ -35,3 +35,5 @@
 yarn-debug.log*
 .yarn-integrity
 /.env
+log/development.log
+core.1
