@@ -6,8 +6,8 @@
     <div class="col-8 offset-1">
       <div class="card my-5 pt-5">
         <%= image_tag @user.get_image(170,170), class: 'rounded-circle mx-auto img-thumbnail img-fluid'%>
-        <h2 class="mx-auto"><%= @user.name %></h2>
-        <h5 class="mx-auto"><%= @user.age %>歳 / <%= @user.sex %> / <%= @user.prefecture %></h5>
+        <h2 class="mx-auto"><strong><%= @user.name %></strong></h2>
+        <h5 class="mx-auto"><strong><%= @user.age %>歳 / <%= @user.sex %> / <%= @user.prefecture %></strong></h5>
         <div class="row">
           <div class="col-8 offset-2 my-4 text-center">
             <h5><%= @user.introduction %></h5>

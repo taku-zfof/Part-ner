@@ -16,9 +16,9 @@
 
       <!--チャットボックス-->
       <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
-        <div id="messages" data-chatroom_id=<%= @chatroom.id %> >
+        <div id="messages" class="container" data-chatroom_id=<%= @chatroom.id %> >
           <% @messages.each do |message| %>
-            <%= render "/chatrooms/message2", message: message %>
+            <%= render "/chatrooms/message", message: message %>
           <% end %>
         </div>
       </div>

@@ -1,17 +1,34 @@
-<div class = "row mb-3" id = "messages">
-  <% if message.user == current_user %>
-    <!--自分のメッセージは右寄せ,左から空欄５，メッセージ５、画像２。text-breakで折り返させる-->
-    <div class = "col-5 offset-5 text-end">
-      <p class="border rounded-9 d-inline-block p-3 text-break bg-info text-white"><%= message.content %></p></br>
-      <small><%= message.created_at.strftime('%m/%d %H:%M') %></small>
-    </div>
-    <div class = "col-2 text-start"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
-  <% else %>
-    <!--相手のメッセージは左寄せ,左から画像２、メッセージ５-->
-    <div class = "col-2 text-end"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
-    <div class = "col-5 px-auto">
+<div class="row mb-3 messages_<%= message.user_id %>">
+    <!--メッセージと日時。text-breakで折り返させる-->
+    <div class = "col-5">
       <p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></br>
       <small><%= message.created_at.strftime('%m/%d %H:%M') %></small>
     </div>
-  <% end %>
+    <div class = "col-1 px-0">
+      <%= image_tag rails_blob_path(message.user.image), class: "rounded-circle img-thumbnail img-fluid", size: "70x70" %>
+    </div>
 </div>
+<!--表示しない。current_user情報をjavascriptで取得する用-->
+<div id="current_user_id" data-current_user_id=<%= current_user.id %>></div>
+
+<script>
+  	//そのメッセージのユーザーIDを取得
+	var message_user_id = <%= message.user_id %>;
+	
+	// 非表示divからcurrent_user_idをもらう
+	var current_user_id = $('#current_user_id').data('current_user_id') ;
+	
+	// 一致する場合
+	if(message_user_id == current_user_id){
+	  $('div.messages_' + <%= message.user_id %>).css('justify-content', 'flex-end'); //全体を右寄せに
+	  $('div.messages_' + <%= message.user_id %>).css('text-align', 'end'); //フキダシを一番右に
+	  $('div.messages_' + <%= message.user_id %> + '> div:first-child' + '>p').addClass("bg-info text-white text-start"); //フキダシにクラス追加
+	
+	// 一致しない場合
+	}else{
+	  $('div.messages_' + <%= message.user_id %>).css('justify-content', 'flex-start'); //全体を左寄せに
+
+	  $('div.messages_' + <%= message.user_id %> + '> div:first-child').css('order', '2'); //並び順2番目に
+	  $('div.messages_' + <%= message.user_id %> + '> div:last-child').css('order', '1'); //並び順１番目に
+	}
+</script>

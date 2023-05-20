@@ -8,7 +8,7 @@
         <h3 class="mt-5 mb-3"><strong>DM一覧</strong></h3>
 
         <% @chatrooms.each do |chatroom| %>
-          <%= link_to chatroom_path(chatroom) do %>
+          <%= link_to chatroom_path(chatroom) ,data: {"turbolinks" => false} do %>
 
           <div class="card index_card mb-4 py-3 text-body bg-light">
             <div class="row">

@@ -1,6 +1,6 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-  #channelでcurrent_userが使えるようにする
+  #以下全てchannelでcurrent_userが使えるようにする記述
   identified_by :current_user
 
     def connect

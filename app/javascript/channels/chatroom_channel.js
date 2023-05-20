@@ -10,10 +10,12 @@ import consumer from "./consumer"
     disconnected() {
     },
 
-  　//処理の最後に送られてくる”message”（messageパーシャルが入っている)をchatrooms/showの#messagesに追加する。
-  　//下の３行で一番下にスクロール
+  　
     received: function(data) {
+    //処理の最後に送られてくる”message”（messageパーシャルが入っている)をchatrooms/showの#messagesに追加する。
      $('#messages').append(data['message']);
+     
+     //下の３行で一番下にスクロール
      var scrollPosition = document.getElementById("area").scrollTop;
      var scrollHeight = document.getElementById("area").scrollHeight;
      document.getElementById("area").scrollTop = scrollHeight;
@@ -35,7 +37,7 @@ import consumer from "./consumer"
       return event.preventDefault();
     }
   });
-   // エンターキー押下で発火
+   // ボタンクリックでも発火
   $('#message_button').click(function(event) {
       const target = $('[data-behavior~=chatroom_speaker]');
       chatChannel.speak(target.val());
