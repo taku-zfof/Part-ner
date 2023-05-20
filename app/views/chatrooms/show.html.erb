@@ -6,14 +6,9 @@
     <div class="col-lg-8 offset-lg-1 col-md-12">
 
       <!--タイトル-->
-      <h3 class="mt-5 mb-3"><strong>
-        <% if @chatroom.user == current_user %>
-          <%= @chatroom.job.user.name %>
-        <% else %>
-          <%= @chatroom.user.name %>
-        <% end %>とのメッセージ
-      </strong></h3>
-
+      <h3 class="mt-5 mb-3"><strong><%= @partner.name %>とのメッセージ </strong></h3>
+      <%= link_to "プロフィールを確認", user_path(@partner) %>
+      
       <!--チャットボックス-->
       <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
         <div id="messages" class="container" data-chatroom_id=<%= @chatroom.id %> >

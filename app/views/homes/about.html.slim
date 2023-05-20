@@ -1,2 +1,5 @@
 h1 Homes#about
 p Find me in app/views/homes/about.html.slim
+
+- if user_signed_in?
+  = link_to 'マイページへ', user_path(current_user), class: "btn btn-info btn-sm  mb-3"

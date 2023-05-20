@@ -1,7 +1,9 @@
 <header class="shadow-sm sticky-top bg-info">
   <nav class="navbar navbar-expand-md navbar-light">
-    <div class="container-fluid">
-      <a class="navbar-brand p-3" href="/">Part-ner</a>
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <%= image_tag 'Part-ner.png', size: "70x70"%>
+      </a>
 
       <!--メニュー-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -25,12 +27,9 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-secondary rounded-pill nav-item ms-auto m-2' %>
 
         <% else %>
-          <li class="nav-item ms-auto">
-            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item ms-auto">
-            <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-          </li>
+          <%= link_to "新規登録", new_user_registration_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2' %>
+          <%= link_to "ログイン", new_user_session_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2' %>
+          
         <% end %>
         </ul>
       </div>
