@@ -37,3 +37,6 @@ yarn-debug.log*
 /.env
 log/development.log
 core.1
+log/development.log
+core.1
+core.20

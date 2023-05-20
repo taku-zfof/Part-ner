@@ -1,0 +1,35 @@
+<div class="row mb-3 messages_<%= message.user_id %>">
+
+    <!--メッセージと日時text-breakで折り返させる-->
+    <div class = "col-5">
+      <p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></br>
+      <small><%= message.created_at.strftime('%m/%d %H:%M') %></small>
+    </div>
+    <div class = "col-2">
+      <%= image_tag rails_blob_path(message.user.image), class: "rounded-circle img-thumbnail img-fluid", size: "70x70" %>
+    </div>
+</div>
+
+<script>
+  //そのメッセージのユーザーIDを取得
+	var message_user_id = <%= message.user_id %>;
+	//サイドバーから
+	var current_user_id = $('#login_user').data('user_id') ;
+    //dm_userがログインユーザーであれば右に表示する
+	if(message_user_id == current_user_id){
+	  $('div.messages_' + <%= message.user_id %>).css('justify-content', 'flex-end');
+	  $('div.messages_' + <%= message.user_id %>).css('text-align', 'end');
+	  
+	  $('div.messages_' + <%= message.user_id %> + '> div:first-child' + '>p').addClass("bg-info text-white");
+	  $('div.messages_' + <%= message.user_id %> + '> div:last-child').css('text-align', 'start');
+	  
+	}else{
+	  $('div.messages_' + <%= message.user_id %>).css('justify-content', 'flex-start');
+	  
+	  $('div.messages_' + <%= message.user_id %> + '> div:first-child').css('order', '2');
+	  $('div.messages_' + <%= message.user_id %> + '> div:first-child').css('text-align', 'start');
+	  
+	  $('div.messages_' + <%= message.user_id %> + '> div:last-child').css('order', '1');
+	  $('div.messages_' + <%= message.user_id %> + '> div:last-child').css('text-align', 'end');
+	}
+</script>

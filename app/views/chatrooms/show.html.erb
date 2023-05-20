@@ -18,20 +18,17 @@
       <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
         <div id="messages" data-chatroom_id=<%= @chatroom.id %> >
           <% @messages.each do |message| %>
-            <%= render "/chatrooms/message", message: message %>
+            <%= render "/chatrooms/message2", message: message %>
           <% end %>
         </div>
-        
       </div>
 
       <!--入力フォーム-->
-     
-        <%= text_field_tag :content, nil, data: { behavior: 'chatroom_speaker' } %>
-        <%= hidden_field :user_id, :value => current_user.id ,id: "current_user_id"%>
-        <%= hidden_field :chatroom_id, :value => @chatroom.id, id: "chatroom_id"%>
-        
-
-
+      <div class="input-group">
+        <%= text_field_tag :content, nil, data: { behavior: 'chatroom_speaker' } , class: "form-control"%>
+        <button id="message_button" class="btn btn-info">送信</button>
+      </div>
+  
     </div>
 
   </div>

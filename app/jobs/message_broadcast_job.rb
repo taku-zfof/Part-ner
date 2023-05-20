@@ -6,9 +6,9 @@ class MessageBroadcastJob < ApplicationJob
   end
 
   private
-    
+
     #ここでapplication_controllerで作成してあるrender_with_signed_in_userを呼び、messageパーシャルを取得。
     def render_message(message)
-      ApplicationController.render_with_signed_in_user(message.user, {partial: 'chatrooms/message', locals: { message: message }})
+      ApplicationController.render_with_signed_in_user(message.user, {partial: 'chatrooms/message2', locals: { message: message }})
     end
 end
