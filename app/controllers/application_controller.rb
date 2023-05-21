@@ -19,10 +19,15 @@ class ApplicationController < ActionController::Base
     renderer.render(*args)
   end
 
+  rescue_from Exception do |exception|
+    redirect_back fallback_location: user_path(current_user), flash: {error: 'エラーが発生しました。'}
+  end
+
+
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sex, :age, :prefecture, :introduction, :image, :account_name, :uid, :provider])
-  end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sex, :age, :prefecture, :introduction, :image, :account_name, :uid, :provider])
+    end
 end

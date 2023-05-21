@@ -43,10 +43,10 @@
    </div>
 </div>
 
-<footer class="bottomber d-md-block d-lg-none order-md-2 fixed-bottom p-0">
+<div class="bottomber d-md-block d-lg-none order-md-2 fixed-bottom p-0">
     <div class="list-group list-group-light d-flex flex-row justify-content-evenly bg-secondary">
         <h6><%= link_to user_path(current_user), class: "list-group-item list-group-item-action px-3 my-3 rounded-9 #{current ? 'active' : ''}"  do%>
-         <i class="far fa-user-circle fa-lg"></i>
+         <i class="far fa-user fa-lg"></i>
         <% end %></h6>
         <h6><strong>
             <%= link_to chatrooms_path, class: "list-group-item list-group-item-action px-3 my-3 rounded-9 #{active_if('chatrooms')}" do%>
@@ -78,9 +78,10 @@
             <% end %>
         </strong></h6>
     </div>
-</footer>
+</div>
 
 <script>
+//ボトムバー表示した際にコンテンツが隠れないようにするスクリプト
 $(function(){
   let height = $(".bottomber").height();
   $("#contents").css("padding-bottom", `${height+ 15}px`);

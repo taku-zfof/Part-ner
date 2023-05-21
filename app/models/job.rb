@@ -12,7 +12,7 @@ class Job < ApplicationRecord
     with_options presence: true, on: :release do
         validates :tytle
         validates :job_type
-        validates :introduction
+        validates :introduction, length: { minimum: 0, maximum: 3000}
         validates :prefecture_code
         validates :other_address
         validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,

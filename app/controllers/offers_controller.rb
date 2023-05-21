@@ -3,13 +3,13 @@ class OffersController < ApplicationController
     offer=Offer.new(offer_params)
     offer.user = current_user
     offer.save
-    redirect_to request.referrer
+    redirect_to request.referrer,flash: {notice: 'オファーを送りました！'}
   end
 
   def destroy
     offer = Offer.find(params[:offer_id])
     offer.destroy
-    redirect_to request.referrer
+    redirect_to request.referrer,flash: {error: 'オファーを送りました！'}
   end
 
   # もらったオファー一覧
