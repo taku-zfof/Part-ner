@@ -8,7 +8,12 @@
       <!--タイトル-->
       <h3 class="mt-5 mb-3"><strong><%= @partner.name %>とのメッセージ </strong></h3>
       <%= link_to "プロフィールを確認", user_path(@partner) %>
-      <%= link_to "メッセージを非表示", chatroom_hide_path(@chatroom) %>
+
+      <% if @chatroom.hidden == false%>
+        <%= link_to "メッセージを非表示", chatroom_change_hide_path(@chatroom) %>
+      <% else %>
+        <%= link_to "メッセージを表示", chatroom_change_hide_path(@chatroom) %>
+      <% end %>
 
       <!--チャットボックス-->
       <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">

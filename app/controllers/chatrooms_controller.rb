@@ -33,9 +33,9 @@ class ChatroomsController < ApplicationController
     redirect_to chatroom_path(chatroom)
   end
 
-  def hide
+  def change_hide
     chatroom = Chatroom.find_by(rondom_id: params[:chatroom_rondom_id])
-    chatroom.update(hidden: true)
+    chatroom.hidden ? chatroom.update(hidden: false) : chatroom.update(hidden: true)
     redirect_to chatrooms_path
   end
 end
