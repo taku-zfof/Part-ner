@@ -19,7 +19,7 @@
             <div class="row px-5 py-3 user_and_introduction">
               <div class="col-lg-2 col-md-12 text-center">
                 <%= link_to user_path(@job.user) do %>
-                  <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2'%>
+                  <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2 img-fluid'%>
                   <%= @job.user.name %>
                 <%end%>
               </div>
