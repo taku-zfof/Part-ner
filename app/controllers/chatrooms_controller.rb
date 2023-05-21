@@ -30,4 +30,10 @@ class ChatroomsController < ApplicationController
 
     redirect_to chatroom_path(chatroom)
   end
+  
+  def hidden
+    @chatroom = Chatroom.find_by(rondom_id: params[:rondom_id])
+    @chatroom.update(hidden: true)
+    redirect_to request.referer
+  end
 end

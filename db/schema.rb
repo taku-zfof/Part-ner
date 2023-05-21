@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_17_103245) do
+ActiveRecord::Schema.define(version: 2023_05_21_141003) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -48,11 +48,12 @@ ActiveRecord::Schema.define(version: 2023_05_17_103245) do
   end
 
   create_table "chatrooms", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "job_id"
+    t.integer "user_id", null: false
+    t.integer "job_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "rondom_id"
+    t.string "rondom_id", null: false
+    t.boolean "hidden", default: false, null: false
   end
 
   create_table "jobs", charset: "utf8mb4", force: :cascade do |t|
@@ -64,38 +65,29 @@ ActiveRecord::Schema.define(version: 2023_05_17_103245) do
     t.string "near_station_line", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "hourly_wage"
     t.float "latitude", limit: 53
     t.float "longitude", limit: 53
     t.integer "job_type"
     t.integer "prefecture_code"
     t.boolean "released", default: true, null: false
-    t.string "rondom_id"
-  end
-
-  create_table "meesages", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "chatroom_id"
-    t.integer "user_id"
-    t.text "content"
-    t.boolean "read_status", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "rondom_id", null: false
   end
 
   create_table "messages", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "chatroom_id"
-    t.integer "user_id"
-    t.text "content"
+    t.integer "chatroom_id", null: false
+    t.integer "user_id", null: false
+    t.text "content", null: false
     t.boolean "read_status", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "offers", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "job_id"
-    t.integer "user_id"
-    t.text "content"
+    t.integer "job_id", null: false
+    t.integer "user_id", null: false
+    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -110,10 +102,10 @@ ActiveRecord::Schema.define(version: 2023_05_17_103245) do
     t.integer "sex", null: false
     t.integer "age", null: false
     t.integer "prefecture", null: false
-    t.text "introduction", null: false
+    t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "account_name"
+    t.string "account_name", null: false
     t.string "provider"
     t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
