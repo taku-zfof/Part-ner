@@ -1,6 +1,6 @@
 class Job < ApplicationRecord
     geocoded_by :other_address
-    after_validation :geocode, if: :other_address_changed? #住所が入ったら緯度経度を入れる
+    after_validation :geocode, if: :other_address_changed? #住所が入って保存されたら緯度経度を入れる
 
     belongs_to :user
     has_many :bookmarks, dependent: :destroy
@@ -16,7 +16,7 @@ class Job < ApplicationRecord
         validates :prefecture_code
         validates :other_address
         validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,
-        validates :hourly_wage, format:{with: /\A[0-9]+\z/}#半角数字のみ
+        validates :hourly_wage, numericality:{ only_integer: true }, format:{with: /\A[0-9]+\z/}#半角数字のみ
     end
 
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
@@ -38,7 +38,7 @@ class Job < ApplicationRecord
   def offerd_by?(user)
     offers.exist?(user_id: user.id)
   end
-  
+
   before_create :set_rondom_id #ユーザー作成時に以下のアクション
   # rondom_idが空か、同じrondom_idのユーザーが存在する時にランダムな文字列を代入する
     def set_rondom_id

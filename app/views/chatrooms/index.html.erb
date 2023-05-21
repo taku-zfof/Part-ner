@@ -3,7 +3,7 @@
 
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
     <div class="col-8 offset-1">
-      <%= render "chatrooms/index", chatrooms: @chatrooms%>
+      <%= render "chatrooms/index", show_chatrooms: @show_chatrooms, hide_chatrooms: @hide_chatrooms %>
     </div>
 
   </div>

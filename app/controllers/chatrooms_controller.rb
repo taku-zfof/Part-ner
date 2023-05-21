@@ -1,6 +1,8 @@
 class ChatroomsController < ApplicationController
   def index
-    @chatrooms = Chatroom.selfchat(current_user)
+    chatrooms = Chatroom.selfchat(current_user)
+    @show_chatrooms = chatrooms.where(hidden: false)
+    @hide_chatrooms = chatrooms.where(hidden: true)
   end
 
   def show
@@ -30,10 +32,10 @@ class ChatroomsController < ApplicationController
 
     redirect_to chatroom_path(chatroom)
   end
-  
-  def hidden
-    @chatroom = Chatroom.find_by(rondom_id: params[:rondom_id])
-    @chatroom.update(hidden: true)
-    redirect_to request.referer
+
+  def hide
+    chatroom = Chatroom.find_by(rondom_id: params[:chatroom_rondom_id])
+    chatroom.update(hidden: true)
+    redirect_to chatrooms_path
   end
 end

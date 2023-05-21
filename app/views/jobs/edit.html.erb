@@ -24,8 +24,8 @@
                   <%= f.label :introduction,"紹介文"%>
                   <%= f.text_area :introduction, class: "form-control mb-4 w-100 mx-auto", placeholder: "仕事の詳細やアピールポイントなど", size: "10x5" %>
 
-                  <%= f.label :hourly_wage,"時給"%><br>
-                  <%= f.text_field :hourly_wage, class: "form-control mb-4 w-50 d-inline", placeholder: "半角数字"%>円<br>
+                  <%= f.label :hourly_wage,"時給（円）"%>
+                  <%= f.text_field :hourly_wage, class: "form-control mb-4 w-50", placeholder: "半角数字"%>
 
                   <%= f.label :postal_code, "郵便番号"%>
                   <%= f.text_field :postal_code, class: "postal_code form-control mb-4 w-50", placeholder: "半角数字" %>

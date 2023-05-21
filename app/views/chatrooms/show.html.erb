@@ -8,7 +8,8 @@
       <!--タイトル-->
       <h3 class="mt-5 mb-3"><strong><%= @partner.name %>とのメッセージ </strong></h3>
       <%= link_to "プロフィールを確認", user_path(@partner) %>
-      
+      <%= link_to "メッセージを非表示", chatroom_hide_path(@chatroom) %>
+
       <!--チャットボックス-->
       <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
         <div id="messages" class="container" data-chatroom_id=<%= @chatroom.id %> >
@@ -23,7 +24,7 @@
         <%= text_field_tag :content, nil, data: { behavior: 'chatroom_speaker' } , class: "form-control"%>
         <button id="message_button" class="btn btn-info">送信</button>
       </div>
-  
+
     </div>
 
   </div>
