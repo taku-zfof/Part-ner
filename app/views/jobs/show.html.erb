@@ -8,7 +8,7 @@
 
      <div class="col-8 offset-1">
       <div class="card job_card my-5">
-        <%= image_tag @job.get_image(10000,10000), class: "card-img-top img-thumbnail" %>
+        <%= image_tag @job.get_image(2000,1200), class: "card-img-top img-thumbnail" %>
         <div class="card_body my-auto">
            <h2 class="text-center mt-3"><strong><%= @job.tytle %></strong></h2>
 
@@ -39,14 +39,19 @@
                 <h6 class="fw-bold text-center">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
 
                 <div class="mt-5 d-flex justify-content-around">
-                  <!--自分の仕事の場合はオファーを非表示して編集ボタンに-->
+                  <!--自分の仕事の場合はオファーを非表示して編集・共有ボタンを表示-->
                   <% if @job.user == current_user %>
+                      <!--編集ボタン-->
                       <%= link_to edit_job_path,class: "btn btn-info btn-rounded",data: {"turbolinks" => false} do%>
-                       <i class="fa fa-pen-nib fa-2x"></i>
+                        <i class ="fa fa-edit fa-2x"></i>
+                      <% end %>
+                      <!--teitterで共有ボタン-->
+                      <%= link_to "https://twitter.com/share?url=#{request.url}/&text=【Part-ner】で#{@job.tytle}のバイト仲間募集中です！&hashtags=Part_ner", class: "btn btn-info btn-rounded",title: 'Twitter', target: '_blank' do%>
+                        <i class ="fab fa-twitter fa-2x"></i>
                       <% end %>
                   <% else %>
                     <!--オファーモーダルを開く。既にオファー済みの時はアナウンスされる。-->
-                    <% if @job.offers.where(user_id: current_user.id).exists? %>
+                    <% if @job.offers.where(user_id: current_user.id).exists? or @job.chatrooms.where(user_id: current_user.id).exists? %>
                      <button class= "btn btn-secondary btn-rounded" data-toggle="modal" data-target="#offerExistModal">
                        <i class="fa fa-paper-plane fa-2x"></i>
                      </button>

@@ -5,21 +5,19 @@ class Job < ApplicationRecord
     belongs_to :user
     has_many :bookmarks, dependent: :destroy
     has_many :offers, dependent: :destroy
+    has_many :chatrooms, dependent: :destroy
 
     has_one_attached :image
-    
-    validates :tytle, presence: true
-    validates :job_type, presence: true
-    validates :introduction, presence: true
-    validates :postal_code, presence: true, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/} #半角数字７桁のみ。ハイフン有り無しok
-    validates :prefecture_code, presence: true
-    validates :other_address, presence: true
-    validates :near_station, presence: true
-    validates :near_station_line, presence: true
-    validates :hourly_wage, presence: true ,format:{with: /\A[0-9]+\z/}#半角数字のみ
-    validates :latitude, presence: true
-    validates :longitude, presence: true
 
+    with_options presence: true, on: :release do
+        validates :tytle
+        validates :job_type
+        validates :introduction
+        validates :prefecture_code
+        validates :other_address
+        validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,
+        validates :hourly_wage, format:{with: /\A[0-9]+\z/}#半角数字のみ
+    end
 
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
@@ -27,18 +25,30 @@ class Job < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/noimage_job.png')
       image.attach(io: File.open(file_path), filename: 'noimage_job.jpg', content_type: 'image/png')
     end
-    image.variant(resize_to_limit: [width, height]).processed
+   #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
+    image.variant(resize: "#{width}x#{height}^", gravity: :center, crop: "#{width}x#{height}+0+0").processed
   end
 
   # current_userにブックマークされているか確認するメソッド。ビューの表示分岐で使う
   def keeped_by?(user)
     bookmarks.exists?(user_id: user.id)
   end
-  
+
   # current_userが送ったオファーが存在するか確認するメソッド。ビューの表示分岐で使う
   def offerd_by?(user)
     offers.exist?(user_id: user.id)
   end
+  
+  before_create :set_rondom_id #ユーザー作成時に以下のアクション
+  # rondom_idが空か、同じrondom_idのユーザーが存在する時にランダムな文字列を代入する
+    def set_rondom_id
+      while self.rondom_id.blank? || Job.find_by(rondom_id: self.rondom_id).present? do
+        self.rondom_id = SecureRandom.base36
+      end
+    end
+    def to_param
+       rondom_id
+    end
 
 
    enum job_type: {

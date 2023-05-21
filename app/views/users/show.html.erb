@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <%= render "layouts/sidebar",current: @user.id == current_user.id %><!--サイドバー@userが自分の時のみサイドバーのプロフ部をアクティブに-->
-    
+    <%= render "layouts/sidebar",current: @user == current_user %><!--サイドバー@userが自分の時のみサイドバーのプロフ部をアクティブに-->
+
     <!--プロフィールカード-->
     <div class="col-8 offset-1">
       <div class="card my-5 pt-5">
-        <%= image_tag @user.image, class: 'rounded-circle mx-auto img-thumbnail img-fluid',size: "170x170"%>
-        <h2 class="mx-auto"><%= @user.name %></h2>
-        <h5 class="mx-auto"><%= @user.age %>歳 / <%= @user.sex %> / <%= @user.prefecture %></h5>
+        <%= image_tag @user.get_image(170,170), class: 'rounded-circle mx-auto img-thumbnail img-fluid'%>
+        <h2 class="mx-auto"><strong><%= @user.name %></strong></h2>
+        <h5 class="mx-auto"><strong><%= @user.age %>歳 / <%= @user.sex %> / <%= @user.prefecture %></strong></h5>
         <div class="row">
           <div class="col-8 offset-2 my-4 text-center">
             <h5><%= @user.introduction %></h5>
@@ -18,11 +18,11 @@
           </div>
         </div>
       </div>
-      
+
       <!--ユーザーの投稿一覧-->
       <h3 class="text-center"><strong><%= @user.name %>がパートナーを探しているバイト</strong></h3>
-      <%= render "/jobs/index", jobs: @user.jobs %>
-
+      <%= render "/jobs/index", jobs: @user.jobs.where(released: true).page(params[:page]).per(5) %>
+      <%= render "layouts/top_btn" %><!--topに戻るボタン-->
     </div>
   </div>
 </div>

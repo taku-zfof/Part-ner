@@ -1,9 +1,12 @@
 class Message < ApplicationRecord
+  #メッセージ作成してからmessage_broadcast_jobを動かすための記述
+  after_create_commit { MessageBroadcastJob.perform_later self }
+
   belongs_to :user
   belongs_to :chatroom
-  
+
   validates :content, presence: true
-  
+
   # 未読メッセージをすべて返すメソッド。
   def self.unread_by(user)
     myjob_ids = Job.where(user_id: user.id).pluck(:id)

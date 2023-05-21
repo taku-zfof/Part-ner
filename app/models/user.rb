@@ -7,7 +7,22 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:twitter, :google_oauth2] #googleログイン用の記述
+
+#googleログイン用の記述。uidとproviderでユーザーを新規なら作成、既存なら取得
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.name = auth.info.name #認証情報からもらう
+      user.account_name = Devise.friendly_token[0,20] #ランダム生成
+      user.introduction = "" #auth.infoでもらえないので手動
+      user.sex = 3 #もらえないので手動
+      user.age = 18 #もらえないので手動
+      user.prefecture = 13 #もらえない値なので手動
+      user.email = auth.info.email #認証情報からもらう
+      user.password = Devise.friendly_token[0,20] #ランダム生成
+    end
+  end
 
   has_one_attached :image
 
@@ -17,7 +32,7 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :prefecture, presence: true
   validates :introduction, length: {maximum: 500}
-  
+
   #都道府県コード→都道府県名
   enum prefecture: {
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -38,18 +53,30 @@ class User < ApplicationRecord
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.png')
-      image.attach(io: File.open(file_path), filename: 'noimage.jpg', content_type: 'image/png')
+      image.attach(io: File.open(file_path), filename: 'noimage.png', content_type: 'image/png')
     end
-    image.variant(resize_to_limit: [width, height]).processed
+    #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
+    image.variant(resize: "#{width}x#{height}^", gravity: :center, crop: "#{width}x#{height}+0+0").processed
   end
 
+
+  before_create :set_account_name #ユーザー作成時に以下のアクション
+  # アカウント名が空か、同じアカウント名のユーザーが存在する時にランダムな文字列を代入する
+    def set_account_name
+      while self.account_name.blank? || User.find_by(account_name: self.account_name).present? do
+        self.account_name = SecureRandom.base36
+      end
+    end
+    def to_param
+       account_name
+    end
 
   #ゲストユーザーの設定
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
-      user.age = 27
+      user.age = 25
       user.sex = 3
       user.prefecture = 13
       user.introduction = "ゲストユーザーです！よろしくお願いします！"

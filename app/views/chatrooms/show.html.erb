@@ -6,40 +6,24 @@
     <div class="col-lg-8 offset-lg-1 col-md-12">
 
       <!--タイトル-->
-      <h3 class="mt-5 mb-3"><strong>
-        <% if @chatroom.user == current_user %>
-          <%= @chatroom.job.user.name %>
-        <% else %>
-          <%= @chatroom.user.name %>
-        <% end %>とのメッセージ
-      </strong></h3>
-
+      <h3 class="mt-5 mb-3"><strong><%= @partner.name %>とのメッセージ </strong></h3>
+      <%= link_to "プロフィールを確認", user_path(@partner) %>
+      
       <!--チャットボックス-->
       <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
-        <% @messages.each do |message| %>
-          <div class = "row mb-3">
-            <% if message.user == current_user %>
-              <!--自分のメッセージは右寄せ,左から空欄５，メッセージ５、画像２。text-breakで折り返させる-->
-              <div class = "col-5 offset-5 text-end"><p class="border rounded-9 d-inline-block p-3 text-break bg-info text-white"><%= message.content %></p></div>
-              <div class = "col-2 text-start"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
-            <% else %>
-              <!--相手のメッセージは左寄せ,左から画像２、メッセージ５-->
-              <div class = "col-2 text-end"><%= image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"%></div>
-              <div class = "col-5 px-auto"><p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></div>
-            <% end %>
-          </div>
-        <% end %>
+        <div id="messages" class="container" data-chatroom_id=<%= @chatroom.id %> >
+          <% @messages.each do |message| %>
+            <%= render "/chatrooms/message", message: message %>
+          <% end %>
+        </div>
       </div>
 
       <!--入力フォーム-->
-      <%= form_with model: @message, class: "input-group rounded-5" do |f| %>
-        <%= f.text_field :content, class: "form-control rounded-start", placeholder: "メッセージを入力", autofocus: true, required: true%>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.hidden_field :chatroom_id, :value => @chatroom.id %>
-        <%= f.submit "送信", class: "btn btn-lg btn-info" %>
-      <% end %>
-
-
+      <div class="input-group">
+        <%= text_field_tag :content, nil, data: { behavior: 'chatroom_speaker' } , class: "form-control"%>
+        <button id="message_button" class="btn btn-info">送信</button>
+      </div>
+  
     </div>
 
   </div>

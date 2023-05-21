@@ -8,13 +8,6 @@ body{
   background-color: #eaf4ff;
 }
 
-.card-img-top {
-    min-height: 45%;
-    max-height: 45vh;
-    flex-shrink:0;
-    object-fit:cover;
- }
-
 .list-group {
     --mdb-list-group-item-transition-time: 0.2s;
 }
@@ -38,11 +31,6 @@ body{
 .index_card:hover {
     box-shadow:0 6px 14px rgba(0, 0, 0, 0.5);
     transform:translate(0, -2px);
-}
-
-.index_card_image{
-    min-height: 100%;
-    object-fit:cover;
 }
 
 .shadow-inner {

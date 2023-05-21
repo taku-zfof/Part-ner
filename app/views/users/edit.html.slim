@@ -10,7 +10,7 @@
             = form_with model: @user do |f|
               = render 'layouts/error_messages', model: f.object
               = f.label :image do
-                = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle img-thumbnail', size:"100x100")
+                = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle img-thumbnail', style: "height: 100px; width: 100px; object-fit: cover;")
                 = f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75'
               = f.text_field :name, class: "form-control my-4 w-75 mx-auto", placeholder: "アカウント名"
               = f.select :sex, User.sexes.keys, { include_blank: '性別を選択'}, { class: 'form-control mb-4 w-25 mx-auto d-inline' , required: true }
