@@ -17,13 +17,13 @@
             </div>
 
             <div class="row px-5 py-3 user_and_introduction">
-              <div class="col-lg-2 col-md-12 text-center">
+              <div class="col-lg-2 col-3 text-center">
                 <%= link_to user_path(@job.user) do %>
-                  <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2 img-fluid'%>
+                  <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2 i-fluid'%>
                   <%= @job.user.name %>
                 <%end%>
               </div>
-              <div class="col-lg-10 col-md-12 border rounded-8 bg-light py-3">
+              <div class="col-lg-10 col-9 border rounded-8 bg-light py-3">
                 <%= @job.introduction %>
               </div>
             </div>
@@ -34,11 +34,11 @@
                 <%= render "/jobs/map", job: @job%><!--マップ呼び出し-->
               </div>
 
-              <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-md-5">
+              <div class="col-lg-6 col-md-12 my-auto order-lg-1 mt-3 mt-lg-5">
                 <h6 class="fw-bold text-center">所在地： <%= @job.prefecture_code %> <%= @job.other_address %></h6>
                 <h6 class="fw-bold text-center">最寄り駅： <%=@job.near_station_line%>線 / <%=@job.near_station%>駅</h6>
 
-                <div class="mt-5 d-flex justify-content-around">
+                <div class="mt-3 mt-lg-5 mb-3 d-flex justify-content-around">
                   <!--自分の仕事の場合はオファーを非表示して編集・共有ボタンを表示-->
                   <% if @job.user == current_user %>
                       <!--編集ボタン-->
