@@ -3,7 +3,7 @@
 
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
-      <div class="col-8 offset-1">
+      <div class="col-lg-8 offset-lg-1 col-md-12">
 
         <h2 class="mt-5 mb-3"><strong>下書き一覧</strong></h2>
         <%= render "/jobs/index", jobs: @jobs%><!--募集一覧-->

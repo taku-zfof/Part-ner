@@ -1,5 +1,5 @@
-<div class="col-3 sidebar">
-  <div style="position: sticky; top: 130px;">
+<div class="col-lg-3 d-lg-block d-none sidebar">
+  <div style="position: sticky; top: 150px;">
     <!--プロフィール画像-->
     <div class="card rounded-9 my-5">
         <%= link_to user_path(current_user),class: "mx-auto text-center" do%>
@@ -42,3 +42,45 @@
 
    </div>
 </div>
+
+<footer class="bottomber d-md-block d-lg-none order-md-2 fixed-bottom p-0">
+    <div class="list-group list-group-light d-flex flex-row justify-content-evenly bg-secondary">
+        <h6><%= link_to user_path(current_user), class: "list-group-item list-group-item-action px-3 my-3 rounded-pill #{current ? 'active' : ''}"  do%> 
+         <i class="fas fa-user-alt fa-lg"></i>
+        <% end %></h6>
+        <h6><strong>
+            <%= link_to chatrooms_path, class: "list-group-item list-group-item-action px-3 my-3 rounded-pill #{active_if('chatrooms')}" do%>
+                メ
+                <!--通知バッジの処理-->
+                <% if Message.unread_by(current_user).exists? %>
+                    <span class="badge badge-danger rounded-pill">
+                       <%= Message.unread_by(current_user).count %>
+                    </span>
+                <% end %>
+            <% end %>
+        </strong></h6>
+
+        <h6><strong>
+            <%= link_to offers_index_path, class: "list-group-item list-group-item-action px-3 my-3 rounded-pill #{active_if('offers')}" do%>
+            オ
+                <!--通知バッジの処理-->
+                <% if Offer.where(job_id: current_user.jobs.ids).exists? %>
+                    <span class="badge badge-danger rounded-pill">
+                        <%= Offer.where(job_id: current_user.jobs.ids).count %>
+                    </span>
+                <% end %>
+            <% end %>
+        </strong></h6>
+
+        <h6><strong>
+            <%= link_to "ブ", bookmark_index_path,class: "list-group-item list-group-item-action px-3 my-3 rounded-pill #{active_if('bookmarks')}" %>
+        </strong></h6>
+    </div>
+</footer>
+
+<script>
+$(function(){
+  let height = $(".bottomber").height();
+  $("#contents").css("padding-bottom", `${height+ 15}px`);
+});
+</script>

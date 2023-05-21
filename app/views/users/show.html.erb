@@ -3,7 +3,7 @@
     <%= render "layouts/sidebar",current: @user == current_user %><!--サイドバー@userが自分の時のみサイドバーのプロフ部をアクティブに-->
 
     <!--プロフィールカード-->
-    <div class="col-8 offset-1">
+    <div class="col-lg-8 offset-lg-1 col-md-12">
       <div class="card my-5 pt-5">
         <%= image_tag @user.get_image(170,170), class: 'rounded-circle mx-auto img-thumbnail img-fluid'%>
         <h2 class="mx-auto"><strong><%= @user.name %></strong></h2>

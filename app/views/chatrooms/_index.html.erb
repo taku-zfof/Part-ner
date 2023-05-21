@@ -1,7 +1,7 @@
 <!--タイトルとタブメニュー-->
-<div class = "d-flex justify-content-between mt-5 mb-3">
-  <h3><strong>メッセージ一覧</strong></h3>
-  <ul class="nav nav-tabs nav-justified">
+<div class = "row mt-lg-5 mt-3 mb-3">
+  <h3 class="col-12 col-lg-6"><strong>メッセージ一覧</strong></h3>
+  <ul class="nav nav-tabs nav-justified col-12 col-lg-6">
     <li class="nav-item">
       <a
         class="nav-link active"
@@ -9,7 +9,7 @@
         data-mdb-toggle="tab"
         href="#show_chatrooms_index"
         aria-selected="true"
-        ><strong>　表示　</strong></a
+        ><strong>表示</strong></a
       >
     </li>
     <li class="nav-item" role="presentation">
@@ -54,7 +54,7 @@
               </strong></h4>
               <!--そのチャットルームの最新のメッセージを表示する。５０文字まで-->
               <p class="text-break"><% if Message.where(chatroom_id: chatroom.id).exists? %>
-                 <%= Message.where(chatroom_id: chatroom.id).last.content.truncate(100) %>
+                 <%= Message.where(chatroom_id: chatroom.id).last.content.truncate(50) %>
                  <% end %></p>
             </div>
     

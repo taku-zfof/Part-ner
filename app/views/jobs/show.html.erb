@@ -6,7 +6,7 @@
 
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
-     <div class="col-8 offset-1">
+     <div class="col-lg-8 offset-lg-1 col-md-12">
       <div class="card job_card my-5">
         <%= image_tag @job.get_image(2000,1200), class: "card-img-top img-thumbnail" %>
         <div class="card_body my-auto">

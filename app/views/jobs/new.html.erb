@@ -4,17 +4,17 @@
     <%= render "layouts/sidebar", current: false%>
     <!--サイドバー-->
 
-    <div class="col-8 offset-1">
+    <div class="col-lg-8 offset-lg-1 col-md-12">
       <div class="card my-5 py-4">
-        
+
         <div class="row">
           <div class="col-8 offset-2">
             <h3 class="mt-4 text-center"><strong>パートナーを募集しよう</strong></h3>
-            
+
             <div>
               <%= form_with model: @job do|f|%>
                   <%= render 'layouts/error_messages', model: f.object %>
-                  
+
                   <%= image_tag 'noimage_job.png', class: 'avatar d-inline my-4 img-thumbnail',size: "300x300" %></br>
                   <%= f.label :image,"紹介画像"%></br>
                   <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75' %></br>
@@ -45,7 +45,7 @@
 
               <%end%>
             </div>
-              
+
             </div>
           </div>
       </div>
