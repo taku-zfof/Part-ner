@@ -37,7 +37,7 @@
 - IDE：Cloud9
 
 ## テスト
-
+- RSpec
 
 ## 本番環境
 - AWS (EC2,RDS)
