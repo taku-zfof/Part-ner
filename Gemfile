@@ -63,13 +63,13 @@ gem 'kaminari' #ページネーション
 gem 'dotenv-rails' #環境変数
 gem 'rails-i18n' #日本語化
 gem 'enum_help' #enumの利用
-gem 'jp_prefecture' #県名取得
 gem 'geocoder' #住所から緯度経度取得
 gem 'slim-rails' #slim記法
 gem 'html2slim' #slim記法
 gem 'omniauth', '1.9.1' #SNSログイン機能
 gem 'omniauth-google-oauth2' #google認証
 gem 'omniauth-twitter' #Twitter認証
+gem 'whenever', require: false
 
 #デプロイ用
 gem "net-smtp"
