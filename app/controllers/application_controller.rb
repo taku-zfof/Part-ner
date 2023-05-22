@@ -20,10 +20,10 @@ class ApplicationController < ActionController::Base
   end
   
 
-  # 不明なエラーが発生したときにフラッシュ
-  rescue_from Exception do |exception|
-    redirect_back fallback_location: user_path(current_user), flash: {error: 'エラーが発生しました。'}
-  end
+  # # 不明なエラーが発生したときにフラッシュ
+  # rescue_from Exception do |exception|
+  #   redirect_back fallback_location: user_path(current_user), flash: {error: 'エラーが発生しました。'}
+  # end
 
   # ルーティングエラー時のフラッシュ。不具合があるためコメントアウト
   def routing_error
@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   protected
     
-    # deviseの
+    # deviseログイン時に入力可能なパラメータ
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sex, :age, :prefecture, :introduction, :image, :account_name, :uid, :provider])
     end

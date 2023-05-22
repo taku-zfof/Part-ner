@@ -73,13 +73,13 @@ class User < ApplicationRecord
 
   #ゲストユーザーの設定
   def self.guest
-    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: 'バイト太郎' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "バイト太郎"
       user.age = 25
       user.sex = 3
       user.prefecture = 13
       user.introduction = "ゲストユーザーです。情報の編集はできません。"
+      user.account_name = SecureRandom.base36
     end
   end
 
