@@ -1,6 +1,6 @@
 class ChatroomsController < ApplicationController
   before_action :ensure_user, only:[:show, :change_hide]
-  
+
   def index
     chatrooms = Chatroom.selfchat(current_user)
     @show_chatrooms = chatrooms.where(hidden: false)
@@ -30,6 +30,12 @@ class ChatroomsController < ApplicationController
       #チャットルーム作成したらオファー削除
       offer = Offer.find(params[:offer_id])
       offer.destroy
+
+      #応募ユーザーにメール送信
+      @mail_to = chatroom.user
+      @job = chatroom.job
+      OfferOkMailer.send_mail(@mail_to, @job).deliver
+
       redirect_to chatroom_path(chatroom),flash: {notice: 'メッセージを送ってみましょう！'}
     else
       myjobs_ids = Job.where(user_id: current_user.id).pluck(:id)
@@ -45,7 +51,7 @@ class ChatroomsController < ApplicationController
     chatroom.hidden ? chatroom.update(hidden: false) : chatroom.update(hidden: true)
     redirect_to chatrooms_path
   end
-  
+
   private
     def ensure_user
       chatroom = Chatroom.find_by(rondom_id: params[:rondom_id])
@@ -53,5 +59,5 @@ class ChatroomsController < ApplicationController
         redirect_back fallback_location: user_path(current_user), flash: {error: '権限がありません。'}
       end
     end
-  
+
 end

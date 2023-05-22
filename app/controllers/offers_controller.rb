@@ -5,12 +5,13 @@ class OffersController < ApplicationController
     offer=Offer.new(offer_params)
     offer.user = current_user
     offer.save
-
+    
+    #メールを作成
     @from = offer.user
     @job = offer.job
     @content = offer.content
     OfferReceiveMailer.send_mail(@from, @job, @content).deliver
-
+    
     redirect_to request.referrer,flash: {notice: 'オファーを送りました！'}
   end
 
