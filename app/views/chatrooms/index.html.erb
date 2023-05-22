@@ -1,11 +1,47 @@
-<div class="container">
-  <div class="row">
-
-    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
-    <div class="col-8 offset-1">
-      <%= render "chatrooms/index", chatrooms: @chatrooms%>
-    </div>
-
-  </div>
+<!--タイトルとタブメニュー-->
+<div class = "row mt-lg-5 mt-3 mb-3">
+  <h3 class="col-12 col-lg-6"><strong>メッセージ一覧</strong></h3>
+  <ul class="nav nav-tabs nav-justified col-12 col-lg-6">
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="show_button"
+        data-mdb-toggle="tab"
+        href="#show_chatrooms_index"
+        aria-selected="true"
+        ><strong>表示</strong></a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="hide_button"
+        data-mdb-toggle="tab"
+        href="#hide_chatrooms_index"
+        aria-selected="false"
+        ><strong>非表示</strong></a
+      >
+    </li>
+  </ul>
 </div>
 
+<div class="chatrooms_indexes">
+
+  <%= render "/chatrooms/show_index", show_chatrooms: @show_chatrooms %>
+  <%= render "/chatrooms/hide_index", hide_chatrooms: @hide_chatrooms %>
+  
+</div>
+
+<!--タブ切り替え時にもう片方の中身を非表示、再表示するスクリプト-->
+<script>
+$(function() {
+  $('#show_button').on('click',function(event){
+    $('#hide_chatrooms_index').addClass("d-none");
+    $('#show_chatrooms_index').removeClass("d-none");
+  });
+  $('#hide_button').on('click',function(event){
+    $('#show_chatrooms_index').addClass("d-none");
+    $('#hide_chatrooms_index').removeClass("d-none");
+  });
+});
+</script>

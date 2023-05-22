@@ -1,6 +1,10 @@
 class ChatroomsController < ApplicationController
+  before_action :ensure_user, only:[:show, :change_hide]
+
   def index
-    @chatrooms = Chatroom.selfchat(current_user)
+    chatrooms = Chatroom.selfchat(current_user)
+    @show_chatrooms = chatrooms.where(hidden: false)
+    @hide_chatrooms = chatrooms.where(hidden: true)
   end
 
   def show
@@ -22,12 +26,38 @@ class ChatroomsController < ApplicationController
     chatroom = Chatroom.new
     chatroom.user = User.find(params[:offerer_id])
     chatroom.job = Job.find(params[:job_id])
-    chatroom.save
+    if chatroom.save
+      #チャットルーム作成したらオファー削除
+      offer = Offer.find(params[:offer_id])
+      offer.destroy
 
-    #チャットルーム作成したらオファー削除
-    offer = Offer.find(params[:offer_id])
-    offer.destroy
+      #応募ユーザーにメール送信
+      @mail_to = chatroom.user
+      @job = chatroom.job
+      OfferOkMailer.send_mail(@mail_to, @job).deliver
 
-    redirect_to chatroom_path(chatroom)
+      redirect_to chatroom_path(chatroom),flash: {notice: 'メッセージを送ってみましょう！'}
+    else
+      myjobs_ids = Job.where(user_id: current_user.id).pluck(:id)
+      @receive_offers = Offer.where(job_id: myjobs_ids)
+      @send_offers = current_user.offers.all
+      flash.now[:error] = '承認に失敗しました'
+      render "offers/index"
+    end
   end
+
+  def change_hide
+    chatroom = Chatroom.find_by(rondom_id: params[:chatroom_rondom_id])
+    chatroom.hidden ? chatroom.update(hidden: false) : chatroom.update(hidden: true)
+    redirect_to chatrooms_path
+  end
+
+  private
+    def ensure_user
+      chatroom = Chatroom.find_by(rondom_id: params[:rondom_id])
+      unless chatroom.user == current_user or chatroom.job.user == current_user
+        redirect_back fallback_location: user_path(current_user), flash: {error: '権限がありません。'}
+      end
+    end
+
 end

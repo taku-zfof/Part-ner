@@ -1,31 +1,27 @@
-<div class="container">
-  <div class="row">
+<!--タイトル-->
+<h3 class="mt-lg-5 mt-3 mb-3"><strong><%= @partner.name %>とのメッセージ </strong></h3>
+<%= link_to "プロフィールを確認", user_path(@partner) %>
 
-    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
+<% if @chatroom.hidden == false%>
+  <%= link_to "メッセージを非表示", chatroom_change_hide_path(@chatroom) %>
+<% else %>
+  <%= link_to "メッセージを再表示", chatroom_change_hide_path(@chatroom) %>
+<% end %>
 
-    <div class="col-lg-8 offset-lg-1 col-md-12">
-
-      <!--タイトル-->
-      <h3 class="mt-5 mb-3"><strong><%= @partner.name %>とのメッセージ </strong></h3>
-      <%= link_to "プロフィールを確認", user_path(@partner) %>
-      
-      <!--チャットボックス-->
-      <div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
-        <div id="messages" class="container" data-chatroom_id=<%= @chatroom.id %> >
-          <% @messages.each do |message| %>
-            <%= render "/chatrooms/message", message: message %>
-          <% end %>
-        </div>
-      </div>
-
-      <!--入力フォーム-->
-      <div class="input-group">
-        <%= text_field_tag :content, nil, data: { behavior: 'chatroom_speaker' } , class: "form-control"%>
-        <button id="message_button" class="btn btn-info">送信</button>
-      </div>
-  
-    </div>
-
+<!--チャットボックス-->
+<div class="shadow-inner bg-light overflow-auto rounded-top p-3" id="area">
+  <div id="messages" class="container" data-chatroom_id=<%= @chatroom.id %> >
+    
+    <% @messages.each do |message| %>
+      <%= render "/chatrooms/message", message: message %>
+    <% end %>
   </div>
 </div>
+
+<!--入力フォーム-->
+<div class="input-group">
+  <%= text_field_tag :content, nil, data: { behavior: 'chatroom_speaker' } , class: "form-control"%>
+  <button id="message_button" class="btn btn-info">送信</button>
+</div>
+
 <%= render "chatrooms/chatscroll" %> <!--チャットを自動スクロールして最下部を表示するスクリプト-->

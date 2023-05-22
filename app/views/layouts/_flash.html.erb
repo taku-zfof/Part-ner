@@ -1,10 +1,7 @@
 <% flash.each do |key, message| %>
-<div>
-    <div class="alert alert-<%= bootstrap_alert(key) %> text-center" style="display: none; z-index: 2; position: absolute; right:0; left:0; ">
-　　  <%= message %>
-　　</div>
-</div>
-　　
+    <div class="alert alert-<%= bootstrap_alert(key) %> text-center" style="display: none; z-index: 5; position: absolute; right:0; left:0; ">
+        <%= message %>
+    </div>
 <% end %>
 
 <script>

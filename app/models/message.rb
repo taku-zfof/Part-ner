@@ -10,7 +10,7 @@ class Message < ApplicationRecord
   # 未読メッセージをすべて返すメソッド。
   def self.unread_by(user)
     myjob_ids = Job.where(user_id: user.id).pluck(:id)
-    chatrooms = Chatroom.where(job_id: myjob_ids).or(Chatroom.where(user_id: user.id))
+    chatrooms = Chatroom.where(job_id: myjob_ids).or(Chatroom.where(user_id: user.id)).where(hidden: false) #自分のjobか自分がオファーしたもの、且つ非表示でないものを取得
     return Message.where(chatroom_id: chatrooms.ids).where.not(user_id: user.id).where(read_status: false)
   end
 end

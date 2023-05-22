@@ -1,1 +1,2 @@
 $(".bookmark").html("<%= escape_javascript(render 'bookmarks/bookmark',job: @job) %>");
+$('#flash').html("<%= j(render "layouts/flash") %>")

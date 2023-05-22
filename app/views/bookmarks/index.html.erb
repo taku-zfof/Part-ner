@@ -1,14 +1,3 @@
-<div class="container">
-  <div class="row">
-    
-    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
-    
-      <div class="col-8 offset-1">
-        
-        <h3 class="mt-5 mb-3"><strong>ブックマーク一覧</strong></h3>
-        <%= render "/jobs/index", jobs: @jobs%><!--募集一覧。ブックマークしたもののみ表示される-->
-        <%= render "layouts/top_btn" %><!--topに戻るボタン-->
-      </div>
-
-  </div>
-</div>
+<h3 class="mt-5 mb-3"><strong>ブックマーク一覧</strong></h3>
+<%= render "/jobs/index", jobs: @jobs%><!--募集一覧。ブックマークしたもののみ表示される-->
+<%= render "layouts/top_btn" %><!--topに戻るボタン-->

@@ -1,15 +1,4 @@
-<div class="container">
-  <div class="row">
+<h2 class="mt-lg-5 mt-3 mb-1"><strong>パートナー募集中のバイト</strong></h2>
+<%= render "/jobs/index", jobs: @jobs%><!--募集一覧-->
 
-    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
-
-      <div class="col-8 offset-1">
-
-        <h2 class="mt-5 mb-3"><strong>パートナー募集中のバイト</strong></h2>
-        <%= render "/jobs/index", jobs: @jobs%><!--募集一覧-->
-    
-        <%= render "layouts/top_btn" %><!--topに戻るボタン-->
-      </div>
-
-  </div>
-</div>
+<%= render "layouts/top_btn" %><!--topに戻るボタン-->

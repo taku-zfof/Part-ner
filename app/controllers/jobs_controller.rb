@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  before_action :ensure_user, only:[:edit, :update, :destroy, :draft_index]
+
   def new
     @job=Job.new
   end
@@ -106,5 +108,12 @@ class JobsController < ApplicationController
 private
   def job_params
     params.require(:job).permit(:rondom_id, :tytle, :job_type, :image, :introduction, :hourly_wage, :postal_code, :prefecture_code, :other_address ,:near_station, :near_station_line)
+  end
+
+  def ensure_user
+    job=Job.find_by(rondom_id: params[:rondom_id])
+    unless job.user == current_user
+      redirect_back fallback_location: user_path(current_user), flash: {error: '権限がありません。'}
+    end
   end
 end

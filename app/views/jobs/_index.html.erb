@@ -1,21 +1,21 @@
 <div class='job-index jscroll'>
     <% jobs.each do |job|%>
-    
+
     　<!--公開中の一覧の場合は仕事詳細へ-->
       <% if job.released == true %>
         <%= link_to job_path(job), data: {"turbolinks" => false}  do%>
-          <div class="card index_card my-2 text-body bg-light">
-            <div class="row g-0"> <!--ここからカード横向きのための記述-->
-              <div class="col-4">
-                <%= image_tag job.get_image(600,1000), class: "img-fluid rounded-start img-thumbnail index_card_image" %>
+          <div class="card index_card text-body">
+            <div class="row"> <!--ここからカード横向きのための記述-->
+              <div class="col-12 col-lg-5">
+                <%= image_tag job.get_image(1000,800), class: "img-fluid rounded-start img-thumbnail index_card_image h-100 w-100" %>
               </div>
-              <div class="col-8 my-4 mx-auto my-auto py-5">
-                <div class="row">
+              <div class="col-12 col-lg-7 my-4 mx-auto my-auto py-5">
+                <div class="row justify-content-center">
                   <h3 class="text-center"><strong><%= job.tytle %></strong></h3>
                   <small class="text-center"><%= job.near_station %>駅 / <%= job.job_type %> / 時給：<%= job.hourly_wage %>円</small>
-                  <h6 class="text-center mt-3 p-5"><%= job.introduction.truncate(70) %></h6>
+                  <h6 class="text-center mt-3 p-5 border rounded-8 bg-light col-9"><%= job.introduction.truncate(70) %></h6>
                 </div>
-        
+
                 <div class="row">
                   <div class="col-2 offset-1">
                     <%= image_tag job.user.get_image(70,70), class: 'rounded-circle img-thumbnail'%>
@@ -25,33 +25,34 @@
                     <%= job.user.age %>歳　<%= job.user.sex %>　<%= job.user.prefecture %>
                   </small>
                 </div>
-        
+
               </div>
             </div>
           </div>
         <% end %>
         
+
       <!--下書き一覧の場合は編集画面に直リンク-->
       <% else %>
         <%= link_to edit_job_path(job), data: {"turbolinks" => false}  do%>
-          <div class="card index_card my-2 text-body bg-light">
-            <div class="row g-0"> <!--ここからカード横向きのための記述-->
-              <div class="col-4">
-                <%= image_tag job.get_image(500,500), class: "img-fluid rounded-start img-thumbnail index_card_image" %>
+          <div class="card index_card text-body bg-light">
+            <div class="row"> <!--ここからカード横向きのための記述-->
+              <div class="col-12 col-lg-5">
+                <%= image_tag job.get_image(500,300), class: "img-fluid rounded-start img-thumbnail index_card_image h-100 w-100" %>
               </div>
-              <div class="col-8 my-4 mx-auto my-auto py-5">
+              <div class="col-12 col-lg-7 my-4 mx-auto my-auto py-5">
                 <div class="row">
                   <h3 class="text-center"><strong><%= job.tytle %></strong></h3>
                   <small class="text-center"><%= job.near_station %>駅 / <%= job.job_type %> / 時給：<%= job.hourly_wage %>円</small>
                   <h6 class="text-center mt-3 p-5"><%= job.introduction.truncate(70) %></h6>
                 </div>
-        
+
               </div>
             </div>
           </div>
         <% end %>
       <% end %>
-      
+
     <% end %>
     <!--ページネーション。無限スクロールのため非表示-->
     <div class="d-none"><%= paginate jobs %></div>

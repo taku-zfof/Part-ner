@@ -1,5 +1,5 @@
 <header class="shadow-sm sticky-top bg-info">
-  <nav class="navbar navbar-expand-md navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand" href="/">
         <%= image_tag 'Part-ner.png', size: "70x70"%>
@@ -9,7 +9,6 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto ms-auto">
         <% if user_signed_in? %>
-
           <button class= "btn btn-secondary btn-rounded nav-item ms-auto m-2" data-toggle="modal" data-target="#searchModal">
               バイトを探す
           </button>
@@ -29,18 +28,24 @@
         <% else %>
           <%= link_to "新規登録", new_user_registration_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2' %>
           <%= link_to "ログイン", new_user_session_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2' %>
-          
+
         <% end %>
         </ul>
       </div>
 
       <!--ハンバーガーメニュー-->
       <button class="navbar-toggler ms-auto" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars fa-lg"></i>
       </button>
 
     </div>
   </nav>
+
+  <!--フラッシュメッセージをヘッダー直下に出すためheaderタグ内に記述-->
+  <div class="container" id="flash">
+    <%= render "/layouts/flash"%>
+  </div>
+
 </header>
 
 <%= render "layouts/search_modal"%>
