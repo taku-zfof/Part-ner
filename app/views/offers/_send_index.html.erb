@@ -1,0 +1,40 @@
+<!--送ったオファー-->
+  <div class="tab-pane fade" id="send_offer_index">
+      <% send_offers.each do |offer| %>
+        <%= render "/offers/NG_modal", offer: offer%><!--オファー削除モーダル-->
+        <div class="card index_card my-3 py-3 text-body bg-light">
+
+          <!--タイトル-->
+          <div class="row tytle">
+            <h5 class="text-center"><strong><%= offer.job.tytle %></strong></h5>
+          </div>
+          <!--タイトル-->
+
+          <!--内容-->
+          <div class="row content">
+              <!--オファー先の募集者画像表示-->
+              <div class="col-2 m-auto d-flex justify-content-end">
+                  <%= link_to user_path(offer.job.user) do%>
+                    <%= image_tag offer.job.user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
+                  <% end %>
+              </div>
+              <!--オファーの内容表示-->
+              <div class="col-6">
+                  <h4><strong><%= offer.job.user.name %>へのオファー</strong></h4>
+                  <p class=" border rounded-8 bg-light p-3"><%= offer.content %></p>
+                  <small><%= offer.created_at.strftime('%Y/%m/%d %H:%M') %></small>
+              </div>
+
+              <!--オファー削除モーダルを開けるボタン-->
+              <div class="col-4 d-flex align-items-center justify-content-evenly">
+                  <button class= "btn btn-danger btn-rounded" data-toggle="modal" data-target="#NGmodal">
+                    <i class="far fa-trash-alt fa-2x"></i>
+                  </button>
+              </div>
+          </div>
+          <!--内容-->
+
+        </div>
+      <% end %>
+    </div>
+    <!--送ったオファー-->

@@ -30,4 +30,9 @@ Rails.application.routes.draw do
     get "change_hide" => "chatrooms#change_hide", as: "change_hide"
   end#ランダム文字列をidの代わりに使用
   resources :messages,only:[:create]
+
+  get '*unmatched_route', to: 'application#routing_error', format: false, constraints: lambda { |r|
+    # 'rails/active_storage'が含まれているパスはリダイレクト対象外にする
+    r.path.exclude? 'rails/active_storage'
+  }
 end

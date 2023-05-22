@@ -18,18 +18,21 @@ class ApplicationController < ActionController::Base
     renderer = self.renderer.new('warden' => proxy)
     renderer.render(*args)
   end
+  
 
-  # rescue_from Exception do |exception|
-  #   redirect_back fallback_location: user_path(current_user), flash: {error: 'エラーが発生しました。'}
-  # end
+  # 不明なエラーが発生したときにフラッシュ
+  rescue_from Exception do |exception|
+    redirect_back fallback_location: user_path(current_user), flash: {error: 'エラーが発生しました。'}
+  end
 
-  #ルーティングエラー時の処理。不具合があるためコメントアウト
-  # def routing_error
-  #   redirect_back fallback_location: user_path(current_user), flash: {error: 'ページが存在しません。'}
-  # end
+  # ルーティングエラー時のフラッシュ。不具合があるためコメントアウト
+  def routing_error
+    redirect_back fallback_location: user_path(current_user), flash: {error: 'ページが存在しません。'}
+  end
 
   protected
-
+    
+    # deviseの
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sex, :age, :prefecture, :introduction, :image, :account_name, :uid, :provider])
     end

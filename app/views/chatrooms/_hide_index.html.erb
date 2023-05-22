@@ -1,0 +1,46 @@
+ <div class="tab-pane fade" id="hide_chatrooms_index">
+    <% hide_chatrooms.each do |chatroom| %>
+      <%= link_to chatroom_path(chatroom) ,data: {"turbolinks" => false} do %> <!--turbolinksを切らないとactioncableが発火しないため-->
+
+        <div class="card index_card mb-4 py-3 text-body bg-light">
+          <div class="row">
+
+            <!--画像2カラム-->
+            <div class="col-2 m-auto d-flex justify-content-end">
+              <% if chatroom.user == current_user %>
+                <%= image_tag chatroom.job.user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
+              <% else %>
+                <%= image_tag chatroom.user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
+              <% end %>
+            </div>
+
+            <!--タイトルと本文７カラム-->
+            <div class="col-7 d-flex flex-column justify-content-center">
+              <h4><strong><% if chatroom.user == current_user %>
+                    <%= chatroom.job.user.name %>
+                  <% else %>
+                    <%= chatroom.user.name %>
+                  <% end %>
+                 （<%= chatroom.job.tytle %>）
+              </strong></h4>
+              <!--そのチャットルームの最新のメッセージを表示する。５０文字まで-->
+              <p class="text-break"><% if Message.where(chatroom_id: chatroom.id).exists? %>
+                 <%= Message.where(chatroom_id: chatroom.id).last.content.truncate(100) %>
+                 <% end %></p>
+            </div>
+
+            <!--未読バッジ３カラム 未読ある時のみ表示-->
+            <div class="col-3 d-flex align-items-center justify-content-evenly">
+              <% if chatroom.unread_messages(current_user).exists? %>
+                <h3><span class="badge badge-danger rounded-pill">
+                  <%= chatroom.unread_messages(current_user).count %>
+                </span></h3>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+
+      <% end%>
+    <% end %>
+  </div>

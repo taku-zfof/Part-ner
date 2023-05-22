@@ -1,54 +1,45 @@
-<div class="container">
+
+<div class="card my-5 py-5">
   <div class="row">
+    <div class="col-8 offset-2">
+      <h3 class="text-center">仕事情報を編集</h3>
+        <%= form_with model: @job do|f|%>
+            <%= render 'layouts/error_messages', model: f.object %>
 
-    <%= render "layouts/sidebar", current: false%><!--サイドバー-->
+            <%= image_tag @job.get_image(5000,3000), class: 'avatar  d-inline mb-4 img-thumbnail'%></br>
+            <%= f.label :image,"紹介画像"%></br>
+            <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75' %></br>
 
-    <div class="col-lg-9 offset-lg-1 col-md-12">
-      <div class="card my-5 py-5">
-        <div class="row">
-          <div class="col-8 offset-2">
-            <h3 class="text-center">仕事情報を編集</h3>
-              <%= form_with model: @job do|f|%>
-                  <%= render 'layouts/error_messages', model: f.object %>
+            <%= f.label :tytle ,"タイトル"%>
+            <%= f.text_field :tytle, class: "form-control mb-4 w-100 mx-auto", placeholder: "募集タイトル" %>
 
-                  <%= image_tag @job.get_image(5000,3000), class: 'avatar  d-inline mb-4 img-thumbnail'%></br>
-                  <%= f.label :image,"紹介画像"%></br>
-                  <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75' %></br>
+            <%= f.label :job_type ,"職種"%>
+            <%= f.select :job_type, Job.job_types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4 w-50'  } %>
 
-                  <%= f.label :tytle ,"タイトル"%>
-                  <%= f.text_field :tytle, class: "form-control mb-4 w-100 mx-auto", placeholder: "募集タイトル" %>
+            <%= f.label :introduction,"紹介文"%>
+            <%= f.text_area :introduction, class: "form-control mb-4 w-100 mx-auto", placeholder: "仕事の詳細やアピールポイントなど", size: "10x5" %>
 
-                  <%= f.label :job_type ,"職種"%>
-                  <%= f.select :job_type, Job.job_types.keys, { include_blank: '職種を選択'}, { class: 'form-control mb-4 w-50'  } %>
+            <%= f.label :hourly_wage,"時給（円）"%>
+            <%= f.text_field :hourly_wage, class: "form-control mb-4 w-50", placeholder: "半角数字"%>
 
-                  <%= f.label :introduction,"紹介文"%>
-                  <%= f.text_area :introduction, class: "form-control mb-4 w-100 mx-auto", placeholder: "仕事の詳細やアピールポイントなど", size: "10x5" %>
+            <%= f.label :postal_code, "郵便番号"%>
+            <%= f.text_field :postal_code, class: "postal_code form-control mb-4 w-50", placeholder: "半角数字" %>
 
-                  <%= f.label :hourly_wage,"時給（円）"%>
-                  <%= f.text_field :hourly_wage, class: "form-control mb-4 w-50", placeholder: "半角数字"%>
+            <%= f.label :prefecture_code, "所在地（都道府県）"%><br>
+            <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '都道府県を選択'}, { class: 'prefecture_code form-control mb-4 w-50 d-inline'  }%><br>
 
-                  <%= f.label :postal_code, "郵便番号"%>
-                  <%= f.text_field :postal_code, class: "postal_code form-control mb-4 w-50", placeholder: "半角数字" %>
+            <%= f.label :other_address, "市区町村以降の住所" %>
+            <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
 
-                  <%= f.label :prefecture_code, "所在地（都道府県）"%><br>
-                  <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '都道府県を選択'}, { class: 'prefecture_code form-control mb-4 w-50 d-inline'  }%><br>
-
-                  <%= f.label :other_address, "市区町村以降の住所" %>
-                  <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
-
-                  <div class="d-flex justify-content-around">
-                    <%= f.submit "保存して公開", :name => 'post', class: "btn btn-info btn-rounded"%>
-                    <%= f.submit "下書き保存", :name => 'draft', class: "btn btn-warning btn-rounded"%>
-                    <%= link_to "削除する", job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" %>
-                  </div>
-
-              <%end%>
+            <div class="d-flex justify-content-around">
+              <%= f.submit "保存して公開", :name => 'post', class: "btn btn-info btn-rounded"%>
+              <%= f.submit "下書き保存", :name => 'draft', class: "btn btn-warning btn-rounded"%>
+              <%= link_to "削除する", job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" %>
             </div>
-          </div>
-      </div>
 
-     </div>
-  </div>
+        <%end%>
+      </div>
+    </div>
 </div>
 <!--jpostal読み込み-->
 <%= render "/jobs/jpostal" %>

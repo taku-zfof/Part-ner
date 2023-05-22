@@ -8,13 +8,23 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script><!--無限スクロール-->
   </head>
 
   <body>
     <%= render "layouts/header"%>
-    <div id="contents">
-       <%= yield %>
+    <div class="container">
+      <div class="row">
+        
+        <% if user_signed_in?%>    
+          <%= render "layouts/sidebar", current: false %>
+        <% end %>
+        
+        <div id="contents" class="col-lg-9 offset-lg-1 col-md-12">
+           <%= yield %>
+        </div>
+        
+      </div>
     </div>
   </body>
 </html>
