@@ -5,7 +5,7 @@
     <li class="nav-item">
       <a
         class="nav-link active"
-        id="ex3-tab-1"
+        id="show_button"
         data-mdb-toggle="tab"
         href="#show_chatrooms_index"
         aria-selected="true"
@@ -15,7 +15,7 @@
     <li class="nav-item" role="presentation">
       <a
         class="nav-link"
-        id="ex3-tab-2"
+        id="hide_button"
         data-mdb-toggle="tab"
         href="#hide_chatrooms_index"
         aria-selected="false"
@@ -44,7 +44,7 @@
             </div>
     
             <!--タイトルと本文７カラム-->
-            <div class="col-7">
+            <div class="col-7 d-flex flex-column justify-content-center">
               <h4><strong><% if chatroom.user == current_user %>
                     <%= chatroom.job.user.name %>
                   <% else %>
@@ -91,7 +91,7 @@
             </div>
     
             <!--タイトルと本文７カラム-->
-            <div class="col-7">
+            <div class="col-7 d-flex flex-column justify-content-center">
               <h4><strong><% if chatroom.user == current_user %>
                     <%= chatroom.job.user.name %>
                   <% else %>
@@ -123,4 +123,16 @@
   
 </div>
 
-
+<!--タブ切り替え時にもう片方の中身を非表示、再表示するスクリプト-->
+<script>
+$(function() {
+  $('#show_button').on('click',function(event){
+    $('#hide_chatrooms_index').addClass("d-none");
+    $('#show_chatrooms_index').removeClass("d-none");
+  });
+  $('#hide_button').on('click',function(event){
+    $('#show_chatrooms_index').addClass("d-none");
+    $('#hide_chatrooms_index').removeClass("d-none");
+  });
+});
+</script>
