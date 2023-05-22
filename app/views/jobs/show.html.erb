@@ -6,7 +6,7 @@
 
     <%= render "layouts/sidebar", current: false%><!--サイドバー-->
 
-     <div class="col-lg-8 offset-lg-1 col-md-12">
+     <div class="col-lg-9 offset-lg-1 col-md-12">
       <div class="card job_card my-5">
         <%= image_tag @job.get_image(2000,1200), class: "card-img-top img-thumbnail" %>
         <div class="card_body my-auto">
@@ -28,7 +28,7 @@
               </div>
             </div>
 
-            <div class="row px-5 my-4 map_and_addresses_and_actions">
+            <div class="row p-3 p-lg-5 map_and_addresses_and_actions">
 
               <div class="col-lg-6 col-md-12 order-lg-2">
                 <%= render "/jobs/map", job: @job%><!--マップ呼び出し-->

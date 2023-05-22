@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    bookmark=Bookmark.find_by(user_id: current_user.id,job_id: params[:job_id])
+    bookmark = Bookmark.find_by(user_id: current_user.id, job_id: params[:job_id])
     bookmark.destroy
     @job = Job.find(params[:job_id]) # 非同期書処理のため追加
     flash.now[:alert] = 'ブックマークを解除しました'

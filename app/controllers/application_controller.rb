@@ -19,15 +19,14 @@ class ApplicationController < ActionController::Base
     renderer.render(*args)
   end
 
-  rescue_from Exception do |exception|
-    redirect_back fallback_location: user_path(current_user), flash: {error: '不明なエラーが発生しました。'}
-  end
-  
+  # rescue_from Exception do |exception|
+  #   redirect_back fallback_location: user_path(current_user), flash: {error: 'エラーが発生しました。'}
+  # end
+
   #ルーティングエラー時の処理。不具合があるためコメントアウト
   # def routing_error
   #   redirect_back fallback_location: user_path(current_user), flash: {error: 'ページが存在しません。'}
   # end
-
 
   protected
 

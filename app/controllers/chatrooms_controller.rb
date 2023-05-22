@@ -1,4 +1,6 @@
 class ChatroomsController < ApplicationController
+  before_action :ensure_user, only:[:show, :change_hide]
+  
   def index
     chatrooms = Chatroom.selfchat(current_user)
     @show_chatrooms = chatrooms.where(hidden: false)
@@ -43,4 +45,13 @@ class ChatroomsController < ApplicationController
     chatroom.hidden ? chatroom.update(hidden: false) : chatroom.update(hidden: true)
     redirect_to chatrooms_path
   end
+  
+  private
+    def ensure_user
+      chatroom = Chatroom.find_by(rondom_id: params[:rondom_id])
+      unless chatroom.user == current_user or chatroom.job.user == current_user
+        redirect_back fallback_location: user_path(current_user), flash: {error: '権限がありません。'}
+      end
+    end
+  
 end

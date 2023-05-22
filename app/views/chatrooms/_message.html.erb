@@ -4,7 +4,7 @@
       <p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></br>
       <small><%= message.created_at.strftime('%m/%d %H:%M') %></small>
     </div>
-    <div class = "col-1 px-0">
+    <div class = "col-2 col-lg-1 px-0">
       <%= image_tag rails_blob_path(message.user.image), class: "rounded-circle img-thumbnail img-fluid", size: "70x70" %>
     </div>
 </div>
@@ -16,21 +16,23 @@
 <script>
   	//そのメッセージのユーザーIDを取得
 	var message_user_id = <%= message.user_id %>;
-	
+
 	// 非表示divからcurrent_user_idをもらう
 	var current_user_id = $('#current_user_id').data('current_user_id') ;
-	
+
 	// 一致する場合
 	if(message_user_id == current_user_id){
 	  $('div.messages_' + <%= message.user_id %>).css('justify-content', 'flex-end'); //全体を右寄せに
 	  $('div.messages_' + <%= message.user_id %>).css('text-align', 'end'); //フキダシを一番右に
 	  $('div.messages_' + <%= message.user_id %> + '> div:first-child' + '>p').addClass("bg-info text-white text-start"); //フキダシにクラス追加
-	
+
 	// 一致しない場合
 	}else{
 	  $('div.messages_' + <%= message.user_id %>).css('justify-content', 'flex-start'); //全体を左寄せに
 
 	  $('div.messages_' + <%= message.user_id %> + '> div:first-child').css('order', '2'); //並び順2番目に
 	  $('div.messages_' + <%= message.user_id %> + '> div:last-child').css('order', '1'); //並び順１番目に
+
+	  $('div.messages_' + <%= message.user_id %> + '> div:first-child' + '>p').addClass("bg-white"); //フキダシにクラス追加
 	}
 </script>
