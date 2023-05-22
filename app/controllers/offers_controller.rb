@@ -9,7 +9,7 @@ class OffersController < ApplicationController
   def destroy
     offer = Offer.find(params[:offer_id])
     offer.destroy
-    redirect_to request.referrer,flash: {error: 'オファーを送りました！'}
+    redirect_to request.referrer,flash: {error: 'オファーを削除しました'}
   end
 
   # もらったオファー一覧

@@ -24,13 +24,18 @@ class ChatroomsController < ApplicationController
     chatroom = Chatroom.new
     chatroom.user = User.find(params[:offerer_id])
     chatroom.job = Job.find(params[:job_id])
-    chatroom.save
-
-    #チャットルーム作成したらオファー削除
-    offer = Offer.find(params[:offer_id])
-    offer.destroy
-
-    redirect_to chatroom_path(chatroom)
+    if chatroom.save
+      #チャットルーム作成したらオファー削除
+      offer = Offer.find(params[:offer_id])
+      offer.destroy
+      redirect_to chatroom_path(chatroom),flash: {notice: 'メッセージを送ってみましょう！'}
+    else
+      myjobs_ids = Job.where(user_id: current_user.id).pluck(:id)
+      @receive_offers = Offer.where(job_id: myjobs_ids)
+      @send_offers = current_user.offers.all
+      flash.now[:error] = '承認に失敗しました'
+      render "offers/index"
+    end
   end
 
   def change_hide

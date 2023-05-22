@@ -29,7 +29,7 @@
         <% else %>
           <%= link_to "新規登録", new_user_registration_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2' %>
           <%= link_to "ログイン", new_user_session_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2' %>
-          
+
         <% end %>
         </ul>
       </div>
@@ -41,6 +41,12 @@
 
     </div>
   </nav>
+  
+  <!--フラッシュメッセージをヘッダー直下に出すためheaderタグ内に記述-->
+  <div class="container" id="flash">
+    <%= render "/layouts/flash"%>
+  </div>
+  
 </header>
 
 <%= render "layouts/search_modal"%>
