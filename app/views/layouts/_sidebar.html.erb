@@ -11,10 +11,10 @@
     <!--リンクリスト-->
     <div class="list-group list-group-light mt-3">
         <h6><strong><%= link_to user_path(current_user), class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{current ? 'active' : ''}" do%>
-        　<i class="far fa-user fa-lg"></i> プロフィール<% end %></strong></h6>
+        <i class="far fa-user fa-lg"></i> プロフィール<% end %></strong></h6>
         <h6><strong>
             <%= link_to chatrooms_path, class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('chatrooms')}" do%>
-                　<i class="far fa-comment-dots fa-lg"></i>
+                <i class="far fa-comment-dots fa-lg"></i>
                 <!--通知バッジの処理-->
                 <% if Message.unread_by(current_user).exists? %>
                     <span class="badge badge-danger rounded-pill">
@@ -26,7 +26,7 @@
 
         <h6><strong>
             <%= link_to offers_index_path, class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('offers')}" do%>
-                　 <i class="far fa-handshake fa-lg"></i>
+                <i class="far fa-handshake fa-lg"></i>
                 <!--通知バッジの処理-->
                 <% if Offer.where(job_id: current_user.jobs.ids).exists? %>
                     <span class="badge badge-danger rounded-pill">
@@ -38,7 +38,7 @@
 
         <h6><strong>
             <%= link_to bookmark_index_path,class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('bookmarks')}" do%>
-            　<i class="far fa-bookmark fa-lg"></i> ブックマーク
+            git<i class="far fa-bookmark fa-lg"></i> ブックマーク
             <% end %>
         </strong></h6>
     </div>
