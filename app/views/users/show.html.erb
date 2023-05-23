@@ -7,7 +7,7 @@
       <div class="col-8 offset-2 my-4 text-center">
           <small><%= @user.introduction %></small>
           <!--編集ボタンはゲストユーザーには非表示-->
-          <% if @user.name != "guestuser" && @user == current_user %>
+          <% if @user.name != "バイト太郎" && @user == current_user %>
              <p class="mt-5"><%= link_to "編集する", edit_user_path(@user), class: "btn btn-info border btn-rounded"%></p>
           <% end %>
       </div>
