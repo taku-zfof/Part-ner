@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-8 offset-2">
-      <% if action_name == 'new' %> <!--新規作成と編集時でビューの一部を分岐-->
+      <% if action_name == 'new' or 'create' %> <!--新規作成と編集時でビューの一部を分岐-->
         <h3 class="text-center"><strong>パートナーを募集しよう</strong></h3>
       <% else %>
         <h3 class="text-center"><strong>仕事情報を編集</strong></h3>
@@ -12,11 +12,11 @@
         <%= form_with model: @job do|f|%>
             <%= render 'layouts/error_messages', model: f.object %>
 
-            <% if action_name == 'new' %><!--新規作成と編集時でビューの一部を分岐-->
+            <% if action_name == 'new' or 'create' %><!--新規作成と編集時でビューの一部を分岐-->
               <%= image_tag 'noimage_job.png', class: 'avatar d-inline my-4 img-thumbnail',size: "300x300" %></br>
             <% else %>
-              <%= image_tag @job.get_image(5000,3000), class: 'avatar  d-inline mb-4 img-thumbnail'%></br>
-            <% end%>
+              <%= image_tag @job.get_image(2500,1500), class: 'avatar  d-inline mb-4 img-thumbnail'%></br>
+            <% end %>
             <%= f.label :image,"紹介画像"%></br>
             <%= f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75' %></br>
 
@@ -43,7 +43,7 @@
             <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100 mx-auto", placeholder: "住所を入力" %>
 
             <div class="d-flex justify-content-around">
-              <% if action_name == 'new' %><!--新規作成と編集時でビューの一部を分岐-->
+              <% if action_name == 'new' or 'create' %><!--新規作成と編集時でビューの一部を分岐-->
                 <%= f.submit "公開する", :name => 'post', class: "btn btn-info btn-rounded"%>
                 <%= f.submit "下書きに保存", :name => 'draft', class: "btn btn-warning btn-rounded"%>
               <% else %>

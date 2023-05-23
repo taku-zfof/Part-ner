@@ -1,8 +1,9 @@
 class JobsController < ApplicationController
-  before_action :ensure_user, only:[:edit, :update, :destroy, :draft_index]
+  before_action :ensure_user, only:[:edit, :update, :destroy]
 
   def new
     @job=Job.new
+    @renderd = "renderd"
   end
 
   def create
@@ -23,7 +24,7 @@ class JobsController < ApplicationController
         job.save
         redirect_to job_path(job),flash: {notice: '募集を作成しました'}
       else
-        @job=job
+        @job = job
         flash.now[:error] = '作成に失敗しました'
         render :new
       end
