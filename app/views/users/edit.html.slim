@@ -1,20 +1,37 @@
-.card.mt-5.pt-3.text-center
-  .card-body
-    h3.card-title
-      | プロフィール編集
-    p.card-text.mb-5
-      = form_with model: @user do |f|
-        = render 'layouts/error_messages', model: f.object
-        = f.label :image do
-          = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle img-thumbnail', style: "height: 100px; width: 100px; object-fit: cover;")
-          = f.file_field :image, class: 'uploader d-inline form-control mb-4 w-75'
-        = f.text_field :name, class: "form-control my-4 w-75 mx-auto", placeholder: "アカウント名"
-        = f.select :sex, User.sexes.keys, { include_blank: '性別を選択'}, { class: 'form-control mb-4 w-25 mx-auto d-inline' , required: true }
-        = f.select :prefecture, User.prefectures.keys, { include_blank: '地域を選択'}, { class: 'form-control mb-4 w-25 mx-auto d-inline' , required: true }
-        = f.select :age,  options_for_select((18..85).to_a, selected: @user.age), { include_blank: '年齢'}, { class: 'form-control mb-4 w-25 mx-auto d-inline' , required: true }
-        = f.text_area :introduction, class: "introduction form-control w-75 mx-auto", placeholder: "自己紹介を追加"
-        small.text-count.text-success.pull-right
-        br
-        = f.submit "変更を保存", class: "btn btn-info btn-rounded border"
+.card.mt-5.pt-5.pb-4
+  .row.justify-content-center
+    .col-12
+      h3.text-center
+        strong
+          | プロフィール編集
 
+    = form_with model: @user do |f|
+      .row.justify-content-center
+        = render 'layouts/error_messages', model: @user
+        .col-12.col-lg-3.text-center
+          = f.label :image do
+            = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle img-thumbnail img-fluid', style: "height: 100px; width: 100px; object-fit: cover;")
+            = f.file_field :image, class: 'uploader d-none form-control'
+            small.d-block
+              |プロフィール画像
+        .col-9.col-lg-6
+          = f.text_field :name, class: "form-control my-4", placeholder: "ニックネーム"
+          .row.mb-4
+            .col-4
+              = f.select :sex, User.sexes.keys, { include_blank: '性別'}, { class: 'form-control'}
+            .col-4
+              = f.select :prefecture, User.prefectures.keys, { include_blank: '地域'}, { class: 'form-control'}
+            .col-4
+              = f.select :age,  options_for_select((18..85).to_a, selected: @user.age), { include_blank: '年齢'}, { class: 'form-control w-75 d-inline'}
+              small
+                |歳
+
+        .col-9.mb-4
+          = f.text_area :introduction, class: "introduction form-control", placeholder: "自己紹介を追加", size: "10x5"
+          small.text-count.text-success.pull-right
+
+        .col-12.text-center
+          = f.submit "変更を保存", class: "btn btn-primary btn-rounded border"
+
+/文字数カウントを呼び出し
 = render "/users/textcounter"

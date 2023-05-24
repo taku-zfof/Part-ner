@@ -11,6 +11,9 @@ $(function (){
   if (count > 1000) {
     $(".text-count").removeClass("text-success");
     $(".text-count").addClass("text-danger");
+  }else if (count < 1000){
+    $(".text-count").removeClass("text-danger");
+    $(".text-count").addClass("text-success");
   }
   //残りの入力できる文字数を表示
   $(".text-count").text( "あと" + now_count + "文字");
@@ -24,6 +27,9 @@ $(function (){
     if (count > 1000) {
       $(".text-count").removeClass("text-success");
       $(".text-count").addClass("text-danger");
+    }else if (count < 1000){
+      $(".text-count").removeClass("text-danger");
+      $(".text-count").addClass("text-success");
     } ;
     $(".text-count").text( "あと" + now_count + "文字");
   });

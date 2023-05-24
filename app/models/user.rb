@@ -27,7 +27,7 @@ class User < ApplicationRecord
   has_one_attached :image
 
   #バリデーション
-  validates :name, length: { minimum: 1, maximum: 30 }
+  validates :name, length: { minimum: 1, maximum: 15 }
   validates :sex, presence: true
   validates :age, presence: true
   validates :prefecture, presence: true
