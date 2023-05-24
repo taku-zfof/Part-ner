@@ -1,21 +1,40 @@
-.card.my-5.pt-3.text-center
-  .card-body
-    h3.card-title
-      | アカウントを作成
-    p.card-text.mb-5
-      = form_with model: @user,url: user_registration_path do |f|
-        = render 'layouts/error_messages', model: f.object
-        = f.label :image, class: "mb-4" do
-          = image_tag('noimage.png', class: 'avatar rounded-circle d-inline img-thumbnail',style: "height: 100px; width: 100px; object-fit: cover;")
-          = f.file_field :image, class: 'uploader d-inline form-control w-100'
-          
-        = f.text_field :name, class: "form-control mb-4 w-75 mx-auto", placeholder: "アカウント名", required: true
-        = f.email_field :email, autocomplete: "email", class: "form-control mb-4 w-75 mx-auto", placeholder: "メールアドレス", required: true
-        = f.password_field :password, autocomplete: "new-password",class: "form-control mb-4 w-75 mx-auto", placeholder: "パスワード（６文字以上）", required: true, minlength:"6"
-        = f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control mb-4 w-75 mx-auto", placeholder: "パスワード（確認用）", required: true,minlength:"6"
-        = f.select :sex, User.sexes.keys, { include_blank: '性別を選択'}, { class: 'form-control mb-4 w-75 mx-auto' , required: true }
-        = f.select :prefecture, User.prefectures.keys, { include_blank: '地域を選択'}, { class: 'form-control mb-4 w-75 mx-auto' , required: true }
-        = f.select :age,  options_for_select((18..85).to_a), { include_blank: '年齢'}, { class: 'form-control mb-4 w-75 mx-auto' , required: true }
-        = f.hidden_field :introduction,:value => ""
-        = f.submit "作成する", class: "btn btn-secondary  mb-4"
-      = render "devise/shared/links"
+.card.mt-5.py-4.col-8.offset-2.col-lg-6.offset-lg-3.align-items-center
+    h3.my-4
+      strong
+        | Sign up
+    .container.px-md-5
+        = form_with model: @user,url: user_registration_path do |f|
+          .row.mb-5
+            = render 'layouts/error_messages', model: f.object
+            .col-12.text-center
+              = f.label :image  do
+                = image_tag('noimage.png', class: 'avatar rounded-circle d-inline img-thumbnail',style: "height: 80px; width: 80px; object-fit: cover;")
+                = f.file_field :image, class: 'uploader d-inline form-control d-none'
+            .col-12.text-center.mb-3
+              small
+                |プロフィール画像
+
+            .col-12
+              = f.text_field :name, class: "form-control mb-4", placeholder: "ニックネーム"
+            .col-12
+              = f.email_field :email, autocomplete: "email", class: "form-control mb-4 ", placeholder: "Eメール"
+
+            .col-4
+              = f.select :age,  options_for_select((18..85).to_a), { include_blank: '年齢'}, { class: 'form-control mb-4 text-muted'  }
+            .col-4
+              = f.select :sex, User.sexes.keys, { include_blank: '性別'}, { class: 'form-control mb-4 text-muted'  }
+            .col-4
+              = f.select :prefecture, User.prefectures.keys, { include_blank: '地域'}, { class: 'form-control mb-4 text-muted'  }
+            .col-12
+              = f.password_field :password, autocomplete: "new-password",class: "form-control mb-4 ", placeholder: "パスワード（６文字以上）", minlength:"6"
+            .col-12
+              = f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control mb-4 ", placeholder: "パスワード（確認用）",minlength:"6"
+              = f.hidden_field :introduction,:value => ""
+            .col-12
+              = f.submit "はじめる", class: "btn btn-primary btn-block rounded-pill"
+
+        p.text-secondary.text-center
+                |―― OR ――
+
+        .row
+          = render "devise/shared/links"

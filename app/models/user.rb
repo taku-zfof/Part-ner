@@ -27,11 +27,11 @@ class User < ApplicationRecord
   has_one_attached :image
 
   #バリデーション
-  validates :name, length: { minimum: 1, maximum: 30 }
+  validates :name, length: { minimum: 1, maximum: 15 }
   validates :sex, presence: true
   validates :age, presence: true
   validates :prefecture, presence: true
-  validates :introduction, length: {maximum: 500}
+  validates :introduction, length: {maximum: 1000}
 
   #都道府県コード→都道府県名
   enum prefecture: {

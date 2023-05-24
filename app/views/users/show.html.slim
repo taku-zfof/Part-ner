@@ -1,0 +1,31 @@
+.card.my-5.py-5
+  .row.justify-content-center
+    .col-3.mb-3.text-center
+      = image_tag @user.get_image(170,170), class: 'rounded-circle mx-auto img-thumbnail img-fluid'
+    .col-12.col-lg-5.d-flex.justify-content-center.flex-column.align-items-center
+      h2.text-nowrap
+        strong
+          = @user.name
+      h5
+        strong
+          = @user.age
+          | 歳 /
+          = @user.sex
+          |  /
+          = @user.prefecture
+
+    .col-8
+      h6.p-3.mb-4.border.rounded-8.bg-light
+        = @user.introduction
+  .row.justify-content-center
+    - if @user.name != "バイト太郎" && @user == current_user
+      .col-12.text-center
+        = link_to "編集する", edit_user_path(@user), class: "btn btn-primary border btn-rounded"
+
+
+
+h2.text-center
+  strong
+    |募集中のバイト
+= render "/jobs/index", jobs: @user.jobs.where(released: true).page(params[:page]).per(5)
+= render "layouts/top_btn"
