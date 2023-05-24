@@ -1,5 +1,5 @@
 class ChatroomsController < ApplicationController
-  before_action :ensure_user, only:[:show, :change_hide]
+  before_action :ensure_user, only:[:show]
 
   def index
     chatrooms = Chatroom.selfchat(current_user)

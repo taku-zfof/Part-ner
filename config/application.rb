@@ -24,5 +24,17 @@ module PartNer
     config.time_zone = 'Tokyo' #タイムゾーンを日本時間に
 
     config.paths.add 'lib', eager_load: true #バッチ処理用の有効化
+
+
+    #バリデーションエラー時にレイアウトが崩れないようにする記述
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      if instance.kind_of?(ActionView::Helpers::Tags::Label)
+        html_tag.html_safe
+      else
+        Nokogiri::HTML.fragment(html_tag).search('input', 'textarea', 'select').add_class('is-error').to_html.html_safe
+      end
+    end
+    #バリデーションエラー時にレイアウトが崩れないようにする記述
+
   end
 end

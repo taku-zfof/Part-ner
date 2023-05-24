@@ -1,11 +1,13 @@
 <div class="row mb-3 messages_<%= message.user_id %>">
     <!--メッセージと日時。text-breakで折り返させる-->
     <div class = "col-5">
-      <p class="border rounded-9 d-inline-block p-3 text-break"><%= message.content %></p></br>
+      <p class="border rounded-9 d-inline-block p-3 text-break mb-0"><%= message.content %></p></br>
       <small><%= message.created_at.strftime('%m/%d %H:%M') %></small>
     </div>
-    <div class = "col-2 col-lg-1 px-0">
-      <%= image_tag rails_blob_path(message.user.image), class: "rounded-circle img-thumbnail img-fluid", size: "70x70" %>
+    <div class = "col-2 col-md-1 px-0">
+    	<%= link_to user_path(message.user) do%>
+      	<%= image_tag rails_blob_path(message.user.image), class: "rounded-circle img-thumbnail img-fluid", size: "70x70" %>
+      <% end %>
     </div>
 </div>
 <!--表示しない。current_user情報をjavascriptで取得する用-->
