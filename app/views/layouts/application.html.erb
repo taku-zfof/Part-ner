@@ -14,16 +14,16 @@
   <body>
     <%= render "layouts/header"%>
     <div class="container">
-      <div class="row">
-        
-        <% if user_signed_in?%>    
+      <div class="row justify-content-evenly">
+
+        <% if user_signed_in?%>
           <%= render "layouts/sidebar", current: false %>
         <% end %>
-        
-        <div id="contents" class="col-lg-9 offset-lg-1 col-md-12">
+
+        <div id="contents" class="col-lg-8 col-md-12">
            <%= yield %>
         </div>
-        
+
       </div>
     </div>
   </body>

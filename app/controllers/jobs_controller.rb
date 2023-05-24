@@ -22,7 +22,7 @@ class JobsController < ApplicationController
         job.near_station_line = result["response"]["station"][0]["line"]
         # 再度保存
         job.save
-        redirect_to job_path(job),flash: {notice: '募集を作成しました'}
+        redirect_to job_path(job),flash: {notice: '募集を公開しました'}
       else
         @job = job
         flash.now[:error] = '作成に失敗しました'

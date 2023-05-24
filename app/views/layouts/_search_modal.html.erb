@@ -1,29 +1,29 @@
 <div class="modal fade" id="searchModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content bg-light">
 
       <div class="pt-4">
         <h3 class="text-center"><strong>どんなバイトがしたい？</strong></h3>
       </div>
-      
+
       <%= form_with url: job_search_path, method: :get do |f| %>
         <div class="modal-body px-5">
           <%= f.label :job_type ,"ジャンル"%>
           <%= f.select :job_type, Job.job_types.keys, { include_blank: '指定しない'}, { class: 'form-control mb-4' } %>
-  
+
           <%= f.label :prefecture_code ,"地域（都道府県）"%>
           <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '指定しない'}, { class: 'form-control mb-4' } %>
-  
+
           <%= f.label :key_word,"キーワード"%>
           <%= f.text_field :key_word,  class: "form-control mb-5", placeholder: "キーワードを入力"%>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">閉じる</button>
-          <%= f.submit "この条件で探す", class: "btn btn-info btn-rounded" %>
+          <%= f.submit "この条件で探す", class: "btn btn-primary btn-rounded" %>
         </div>
       <% end %>
-      
+
     </div>
   </div>
 </div>

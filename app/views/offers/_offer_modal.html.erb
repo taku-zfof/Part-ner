@@ -13,8 +13,8 @@
           <%= f.hidden_field :job_id, :value =>@job.id %>
         </div>
         <div class="modal-footer">
+          <%= f.submit "オファーを送る", class: "btn btn-primary btn-rounded"%>
           <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">閉じる</button>
-          <%= f.submit "オファーを送る", class: "btn btn-info btn-rounded"%>
         </div>
       <%end%>
 
