@@ -15,15 +15,15 @@
 
           <!--オファーしてきた相手の情報と内容表示-->
           <div class="col-9 col-md-7">
-            <h5 class="text-center"><strong><%= offer.job.tytle %></strong></h5>
-            <h4><strong><%= offer.user.name %>からのオファー</strong></h4>
+            <h4 class="text-center"><%= offer.job.tytle %></h4>
+            <h3><%= offer.user.name %>からのオファー</h3>
             <p class=" border rounded-8 bg-light p-3 mb-0"><%= offer.content %></p>
             <small><%= offer.created_at.strftime('%Y/%m/%d %H:%M') %></small>
           </div>
           <!--オファーしてきた相手の情報と内容表示-->
 
           <!--オファー操作モーダルを開けるボタン 削除or承認-->
-          <div class="col-12 col-md-3 d-flex align-items-center justify-content-evenly">
+          <div class="col-12 col-md-3 d-flex align-items-center justify-content-around">
             <button class= "btn btn-primary btn-rounded" data-toggle="modal" data-target="#OKmodal">
               <i class="fas fa-check fa-2x"></i>
             </button>

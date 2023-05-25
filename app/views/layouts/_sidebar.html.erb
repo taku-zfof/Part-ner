@@ -4,8 +4,8 @@
     <!--プロフィール画像-->
     <div class="card rounded-9 my-5" id="user_img" data-turbolinks-permanent>
         <%= link_to user_path(current_user),class: "mx-auto text-center text-body" do%>
-            <%= image_tag current_user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'%>
-            <h5><%= current_user.name.truncate(9) %></h5>
+            <%= image_tag current_user.get_image(70,70), class: 'rounded-circle my-2 img-thumbnail img-fluid'%>
+            <h5><strong><%= current_user.name.truncate(9) %></strong></h5>
         <% end %>
     </div>
 

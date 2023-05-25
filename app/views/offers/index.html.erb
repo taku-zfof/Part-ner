@@ -1,6 +1,6 @@
 <!--タイトルとタブメニュー-->
 <div class = "row mt-lg-5 mt-3 mb-3">
-  <h3 class="col-12 col-lg-6"><strong>オファー一覧</strong></h3>
+  <h2 class="col-12 col-lg-6">オファー一覧</h2>
   <ul class="nav nav-tabs nav-justified col-12 col-lg-6">
     <li class="nav-item">
       <a
@@ -9,8 +9,7 @@
         data-mdb-toggle="tab"
         href="#received_offer_index"
         aria-selected="true"
-        ><strong>届いたオファー</strong></a
-      >
+        ><strong>届いたオファー</strong></a>
     </li>
     <li class="nav-item" role="presentation">
       <a
@@ -27,13 +26,13 @@
 
 <!-- タブで開く内容 -->
 <div class="offer_indexes">
-  
+
   <!--もらったオファー-->
   <%= render "/offers/receive_index", receive_offers: @receive_offers %>
 
   <!--送ったオファー-->
   <%= render "/offers/send_index", send_offers: @send_offers%>
-    
+
 </div>
 
 <!--タブ切り替え時にもう片方の中身を非表示、再表示するスクリプト-->

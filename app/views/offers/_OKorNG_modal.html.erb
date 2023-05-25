@@ -3,12 +3,12 @@
     <div class="modal-content">
 
       <div class="pt-4">
-        <h5 class="text-center"><strong>承認してDMを始めますか？</strong></h5>
+        <h4 class="text-center">承認してDMを始めますか?</h4>
       </div>
 
       <div class="modal-footer">
-        <%= link_to "始める", chatrooms_path(offer_id: offer.id, offerer_id: offer.user.id, job_id: offer.job.id), method: :post, class: "btn btn-primary btn-rounded"%>
-        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">後で</button>
+        <%= link_to "はじめる", chatrooms_path(offer_id: offer.id, offerer_id: offer.user.id, job_id: offer.job.id), method: :post, class: "btn btn-primary btn-rounded"%>
+        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">あとで</button>
       </div>
 
     </div>
@@ -20,12 +20,12 @@
     <div class="modal-content">
 
       <div class="pt-4">
-        <h5 class="text-center"><strong>削除してよろしいですか？</strong></h5>
+        <h4 class="text-center">削除してよろしいですか？</h4>
       </div>
 
       <div class="modal-footer">
         <%= link_to "削除する", offers_path(offer_id: offer.id), method: :delete, class: "btn btn-danger btn-rounded"%>
-        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">削除しない</button>
+        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">あとで</button>
       </div>
     </div>
   </div>
