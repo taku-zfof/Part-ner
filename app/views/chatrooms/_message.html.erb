@@ -1,6 +1,6 @@
 <div class="row mb-3 messages_<%= message.user_id %>">
     <!--メッセージと日時。text-breakで折り返させる-->
-    <div class = "col-5">
+    <div class = "col-6">
       <p class="border rounded-9 d-inline-block p-3 text-break mb-0"><%= message.content %></p></br>
       <small><%= message.created_at.strftime('%m/%d %H:%M') %></small>
     </div>
@@ -27,6 +27,7 @@
 	  $('div.messages_' + <%= message.user_id %>).css('justify-content', 'flex-end'); //全体を右寄せに
 	  $('div.messages_' + <%= message.user_id %>).css('text-align', 'end'); //フキダシを一番右に
 	  $('div.messages_' + <%= message.user_id %> + '> div:first-child' + '>p').addClass("bg-info text-white text-start"); //フキダシにクラス追加
+    $('div.messages_' + <%= message.user_id %> + '> div:last-child').addClass("d-none"); //フキダシにクラス追加
 
 	// 一致しない場合
 	}else{
