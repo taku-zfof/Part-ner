@@ -25,9 +25,6 @@
 * バイト仲間が欲しいとき
 * バイト先へ友達紹介をしたいとき
 
-## 設計書
-
-
 ## 開発環境
 - Docker/Docker-compose
 - OS：Linux(CentOS)
@@ -41,7 +38,13 @@
 
 ## 本番環境
 - AWS (EC2,RDS)
-- Docker/Docker-compose(可能なら)
 - MySQL2
 - Nginx、 Puma
 - Github ActionsによるCI/CD
+
+## 使用技術
+
+## 使用素材
+- フォント：せのびゴシック（http://modi.jpn.org/font_senobi.php）
+- ロゴ・favicon素材作成：Canva（https://www.canva.com/）
+- favicon作成：Favicon ジェネレーター（https://favicon-generator.mintsu-dev.com/）
