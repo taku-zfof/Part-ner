@@ -4,9 +4,9 @@
       <p class="border rounded-9 d-inline-block p-3 text-break mb-0"><%= message.content %></p></br>
       <small><%= message.created_at.strftime('%m/%d %H:%M') %></small>
     </div>
-    <div class = "col-2 col-md-1 px-0">
+    <div class = "col-2 col-md-1 d-flex justify-content-center">
     	<%= link_to user_path(message.user) do%>
-      	<%= image_tag rails_blob_path(message.user.image), class: "rounded-circle img-thumbnail img-fluid", size: "70x70" %>
+      	<%= image_tag rails_blob_path(message.user.image), class: "rounded-circle border object-fit-cover", size: "65x65" %>
       <% end %>
     </div>
 </div>
