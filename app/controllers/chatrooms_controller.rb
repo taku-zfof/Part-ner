@@ -2,7 +2,7 @@ class ChatroomsController < ApplicationController
   before_action :ensure_user, only:[:show]
 
   def index
-    chatrooms = Chatroom.selfchat(current_user)
+    chatrooms = Chatroom.selfchat(current_user).joins(:messages).includes(:messages).order("messages.created_at DESC")
     @show_chatrooms = chatrooms.where(hidden: false)
     @hide_chatrooms = chatrooms.where(hidden: true)
   end
