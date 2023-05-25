@@ -130,4 +130,9 @@ Rails.application.configure do
     authentication:       'login',
     enable_starttls_auto: true
   }
+
+
+  ActionCable.server.config.disable_request_forgery_protection = true
+  config.action_cable.url = "ws://35.76.151.243/cable"
+  config.action_cable.allowed_request_origins = ['http://35.76.151.243']
 end
