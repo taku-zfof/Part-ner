@@ -15,8 +15,8 @@
 
           <!--オファーしてきた相手の情報と内容表示-->
           <div class="col-9 col-md-7">
-            <h4 class="text-center"><%= offer.job.tytle %></h4>
-            <h3><%= offer.user.name %>からのオファー</h3>
+            <h4 class="text-center"><strong><%= offer.job.tytle %></strong></h4>
+            <h3><strong><%= offer.user.name %>からのオファー</strong></h3>
             <p class=" border rounded-8 bg-light p-3 mb-0"><%= offer.content %></p>
             <small><%= offer.created_at.strftime('%Y/%m/%d %H:%M') %></small>
           </div>

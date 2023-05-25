@@ -4,13 +4,13 @@
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 @font-face {
-  font-family: 'せのびゴシックミディアム';
-  src: url('../fonts/Senobi-Gothic-Medium.ttf') format('truetype');
+  font-family: 'せのびゴシック';
+  src: url('../fonts/Senobi-Gothic-Regular.ttf') format('truetype');
 }
 
 body{
   background-color: #e9e5e5;
-  font-family:'せのびゴシックミディアム';
+  font-family:'せのびゴシック';
 }
 
 .list-group {

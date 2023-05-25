@@ -67,12 +67,12 @@
 
             <div class="d-flex justify-content-evenly">
               <% if action_name == 'new' or action_name == 'create' %><!--新規作成と編集時でビューの一部を分岐-->
-                <%= f.button :type => 'submit', :name => 'post', class: "btn btn-primary btn-rounded" do%><i class="fab fa-telegram-plane fa-2x"></i><% end %>
-                <%= f.button :type => 'submit', :name => 'draft', class: "btn btn-primary btn-rounded" do%><i class="fas fa-save fa-2x"></i><% end %>
+                <%= f.button :type => 'submit', :name => 'post', class: "btn btn-primary btn-rounded" do%>公開</i><% end %>
+                <%= f.button :type => 'submit', :name => 'draft', class: "btn btn-primary btn-rounded" do%>下書き<% end %>
               <% else %>
-                <%= f.button :type => 'submit', :name => 'post', class: "btn btn-primary btn-rounded" do%><i class="fab fa-telegram-plane fa-2x"></i><% end %>
-                <%= f.button :type => 'submit', :name => 'draft', class: "btn btn-primary btn-rounded" do%><i class="fas fa-save fa-2x"></i><% end %>
-                <%= link_to job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" do%><i class="far fa-trash-alt fa-2x"></i><% end %>
+                <%= f.button :type => 'submit', :name => 'post', class: "btn btn-primary btn-rounded" do%>公開<% end %>
+                <%= f.button :type => 'submit', :name => 'draft', class: "btn btn-primary btn-rounded" do%>下書き<% end %>
+                <%= link_to job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" do%>削除<% end %>
               <% end %>
             </div>
         <%end%>
