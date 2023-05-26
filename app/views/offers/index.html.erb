@@ -4,22 +4,22 @@
   <ul class="nav nav-tabs nav-justified col-12 col-lg-6">
     <li class="nav-item">
       <a
-        class="nav-link active"
+        class="nav-link active pb-1 px-1"
         id="received_offer_button"
         data-mdb-toggle="tab"
         href="#received_offer_index"
-        aria-selected="true"
-        ><strong>届いたオファー</strong></a
-      >
+        aria-selected="true">
+        <h6><strong>届いたオファー</strong></h6>
+        </a>
     </li>
     <li class="nav-item" role="presentation">
       <a
-        class="nav-link"
+        class="nav-link pb-1 px-1"
         id="send_offer_button"
         data-mdb-toggle="tab"
         href="#send_offer_index"
         aria-selected="false"
-        ><strong>送ったオファー</strong></a
+        ><h6><strong>送ったオファー</strong></h6></a
       >
     </li>
   </ul>
@@ -27,13 +27,13 @@
 
 <!-- タブで開く内容 -->
 <div class="offer_indexes">
-  
+
   <!--もらったオファー-->
   <%= render "/offers/receive_index", receive_offers: @receive_offers %>
 
   <!--送ったオファー-->
   <%= render "/offers/send_index", send_offers: @send_offers%>
-    
+
 </div>
 
 <!--タブ切り替え時にもう片方の中身を非表示、再表示するスクリプト-->

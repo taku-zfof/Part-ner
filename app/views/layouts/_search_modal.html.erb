@@ -3,7 +3,7 @@
     <div class="modal-content bg-light">
 
       <div class="pt-4">
-        <h2 class="text-center">どんなバイトがしたい？</h2>
+        <h2 class="text-center"><strong>どんなバイトがしたい？</strong></h2>
       </div>
 
       <%= form_with url: job_search_path, method: :get do |f| %>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="modal-footer">
-          <%= f.submit "これで探す", class: "btn btn-primary btn-rounded" %>
+          <%= f.submit "この条件でさがす", class: "btn btn-primary btn-rounded" %>
           <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">閉じる</button>
         </div>
       <% end %>

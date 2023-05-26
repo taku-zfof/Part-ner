@@ -23,7 +23,9 @@
             </ul>
           </div>
 
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-secondary rounded-pill nav-item ms-auto m-2' %>
+          <button class= "btn btn-secondary rounded-pill nav-item ms-auto m-2" data-toggle="modal" data-target="#Logoutmodal">
+            ログアウト
+          </button>
 
         <% else %>
           <%= link_to "新規登録", new_user_registration_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2' %>
@@ -48,4 +50,5 @@
 
 </header>
 
-<%= render "layouts/search_modal"%>
+<%= render "layouts/search_modal"%><!--検索モーダル-->
+<%= render "layouts/logout_modal"%><!--ログアウト確認モーダル-->
