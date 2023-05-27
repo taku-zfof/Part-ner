@@ -24,27 +24,29 @@ require 'faker'
     user.image.attach(io: File.open(Rails.root.join("db/images/sample_user (#{num}).jpg")),filename: "sample_user(#{num}).jpg")
     p "#{user.name}が作成できました"
 
-    for jobnum in num..num + 2
+     3.times do |n|
       job = Job.create!(
         user_id: user.id,
         tytle: Faker::Company.name + "のバイト",
         introduction: "【この情報はサンプルです】とてもやりがいのあるバイトです。私たちは、前向きでやる気のある人を探し、教育とトレーニングを通じて、スキルや知識を身につけることができる素晴らしい機会を提供しています。この仕事には短期間のコミュニケーション能力やプレゼンテーション力など、あらゆるスキルが求められますが、それは将来のキャリアにおいて役立つことは言うまでもありません。私たちのアルバイトは、業界でも最高のキャリアアップチャンスを提供し、社会的責任を果たす立派な仕事だと考えています。",
         postal_code: Faker::Address.zip,
         prefecture_code: user.prefecture,
-        other_address: Gimei.unique.address.kanji,
+        other_address: Gimei.unique.address.city.kanji + Gimei.unique.town.kanji,
         near_station: "",
         near_station_line: "",
         hourly_wage: (Faker::Number.between(from: 9, to: 17).to_s + "00").to_i,
         job_type: Faker::Number.between(from: 1, to: 22),
         rondom_id: SecureRandom.base36
         )
+
+        jobnum = Faker::Number.between(from: 1, to: 18)
         p job.latitude
         p job.longitude
+
         job.addStation
       job.image.attach(io: File.open(Rails.root.join("db/images/sample_job (#{jobnum}).jpeg")),filename: "sample_job(#{jobnum}).jpeg")
       p "#{job.tytle}が作成できました"
     end
-
   end
 end
 
@@ -64,7 +66,7 @@ end
     user.image.attach(io: File.open(Rails.root.join("db/images/sample_user (#{num}).jpg")),filename: "sample_user(#{num}).jpg")
     p "#{user.name}が作成できました"
 
-    for jobnum in num..num + 2
+    3.times do |n|
       job = Job.create!(
         user_id: user.id,
         tytle: Faker::Company.name + "のバイト",
@@ -78,6 +80,8 @@ end
         job_type: Faker::Number.between(from: 1, to: 22),
         rondom_id: SecureRandom.base36
         )
+
+        jobnum = Faker::Number.between(from: 1, to: 18)
         p job.latitude
         p job.longitude
 
