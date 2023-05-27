@@ -86,11 +86,13 @@ class JobsController < ApplicationController
   end
 
   def search
-    @jobs = Job.where(released: true).all
+    jobs = Job.where(released: true).all
     #条件が存在する場合のみ絞り込む
-    @jobs = @jobs.where(prefecture_code: params[:prefecture_code]) if params[:prefecture_code].present?
-    @jobs = @jobs.where(job_type: params[:job_type]) if params[:job_type].present?
-    @jobs = @jobs.where('tytle LIKE(?) or introduction LIKE(?)',"%#{params[:key_word]}%","%#{params[:key_word]}%") if params[:key_word].present?
+    jobs = @jobs.where(prefecture_code: params[:prefecture_code]) if params[:prefecture_code].present?
+    jobs = @jobs.where(job_type: params[:job_type]) if params[:job_type].present?
+    jobs = @jobs.where('tytle LIKE(?) or introduction LIKE(?)',"%#{params[:key_word]}%","%#{params[:key_word]}%") if params[:key_word].present?
+    
+    @jobs_hourly_wage = jobs.order
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール用）
     render :index
   end
