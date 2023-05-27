@@ -9,10 +9,10 @@
 require 'faker'
 
 #女性ユーザーのサンプル
-50.times do |n|
+5000.times do |n|
   for num in 9..16 do
     user = User.create!(
-      name: Gimei.unique.female.first.katakana,
+      name: Gimei.female.first.katakana,
       email: Faker::Internet.unique.email,
       password: 'password',
       sex: 2,
@@ -51,10 +51,10 @@ require 'faker'
 end
 
 #男性ユーザーのサンプル
-50.times do |n|
+5000.times do |n|
   for num in 1..8 do
     user = User.create!(
-      name: Gimei.unique.male.first.katakana,
+      name: Gimei.male.first.katakana,
       email: Faker::Internet.unique.email,
       password: 'password',
       sex: 1,
