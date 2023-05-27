@@ -1,3 +1,5 @@
+ <h1 class="my-5 text-center"><strong>Part-nerにようこそ！</strong></h1>
+
  <div class="card index_card my-5 mx-3">
   <div class="card-header bg-info d-flex">
     <div class="col-5">
@@ -11,11 +13,11 @@
   <div class="card-body">
     <h4 class="card-title"></h4>
     <h5 class="card-text">「アルバイト」を意味する<strong>「part time job」</strong>と、「相方、相棒」を意味する<strong>「partner」</strong>を組み合わせた造語です。</br>
-            バイトは「誰と」で選びたい。という製作者の想いから生まれた、アルバイト探しを通じて人と人とをつなげるマッチングサービスです。</h5>
+            バイトを「誰と」で選びたい。という製作者の想いから生まれた、アルバイト探しを通じて人と人とをつなげるマッチングサービスです。</h5>
 
-    <button class= "btn btn-primary btn-rounded mt-2" data-toggle="modal" data-target="#OKmodal">
+    <a class= "btn btn-primary btn-rounded mt-2" href="#when">
       もっと見る
-    </button>
+    </a>
   </div>
 </div>
 
@@ -27,15 +29,19 @@
 </br>
 <br>
 </br>
+<br>
+</br>
+<br id="when">
+</br>
 
-<div class="row my-5 mx-3 justify-content-end">
+<div class="row my-5 mx-3 justify-content-end fadein">
   <div class="card col-7 align-items-center bg-info">
     <h2 class="text-white p-2">どんな時に使うの？</h2>
   </div>
 </div>
 
 
-<div class="row my-5 mx-3">
+<div class="row my-5 mx-3 fadein">
   <div class="col-2">
     <%= image_tag "Part-ner.png", class: "img-fluid"%>
   </div>
@@ -47,7 +53,7 @@
 
 
 
-<div class="card index_card my-5 mx-3">
+<div class="card index_card my-5 mx-3 fadein">
   <div class="card-header bg-primary d-flex">
     <div class="col-7 text-center text-light row justify-content-center align-content-center">
       <h1 class="col-12">CASE.1</h1>
@@ -61,14 +67,11 @@
     <h4 class="card-title">「アットホームな雰囲気」って言われても．．．。</h4>
     <p class="card-text">なんだかんだ、働いてみるまでイゴコチの良さはわからない。</br>
        素敵な”Part-ner”を見つけましょう。もうバイト選びで失敗させません。</p>
-    <button class= "btn btn-primary btn-rounded" data-toggle="modal" data-target="#OKmodal">
-      使い方を見る
-    </button>
   </div>
 </div>
 
 
-<div class="card index_card my-5 mx-3">
+<div class="card index_card my-5 mx-3 fadein">
   <div class="card-header bg-info d-flex">
     <div class="col-5">
       <%= image_tag "IMG_1359.PNG", class: "img-fluid"%>
@@ -82,15 +85,12 @@
     <h4 class="card-title">今日も一人でバイト．．．。</h4>
     <p class="card-text">仕事に不満はないけれど、毎日ひとりでちょっとユウウツ。</br>
      そんなとき私たちは、あなたの”Part-ner”探しをお手伝いします。</p>
-    <button class= "btn btn-primary btn-rounded text-end" data-toggle="modal" data-target="#OKmodal">
-      使い方を見る
-    </button>
   </div>
 </div>
 
 
 
-<div class="card index_card my-5 mx-3">
+<div class="card index_card my-5 mx-3 fadein">
   <div class="card-header bg-primary d-flex">
     <div class="col-7 text-center text-light row justify-content-center align-content-center">
       <h1 class="col-12">CASE.3</h1>
@@ -104,9 +104,9 @@
     <h4 class="card-title">このバイトなんだか良さそう！でも．．．。</h4>
     <p class="card-text">新しいバイトに１人で飛び込むのって、ユウキがいるもの。</br>
      これから一緒に応募する”Part-ner”を見つけてみませんか？</p>
-    <button class= "btn btn-primary btn-rounded" data-toggle="modal" data-target="#OKmodal">
+     <a class= "btn btn-primary btn-rounded" href="#how">
       使い方を見る
-    </button>
+    </a>
   </div>
 </div>
 
@@ -118,15 +118,19 @@
 </br>
 <br>
 </br>
+<br>
+</br>
+<br id="how">
+</br>
 
-<div class="row my-5 mx-3 justify-content-end">
+<div class="row my-5 mx-3 justify-content-end fadein">
   <div class="card col-7 align-items-center bg-info">
     <h2 class="text-white p-2">どうやって使うの？</h2>
   </div>
 </div>
 
 
-<div class="row my-5 mx-3">
+<div class="row my-5 mx-3 fadein">
   <div class="col-2">
     <%= image_tag "Part-ner.png", class: "img-fluid"%>
   </div>
@@ -138,7 +142,7 @@
 
 
 
-<div class="card index_card my-5 mx-3">
+<div class="card index_card my-5 mx-3 fadein">
   <div class="card-header bg-info d-flex">
     <div class="col-7 text-center text-light row justify-content-center align-content-center">
       <h2 class="col-12">１．バイトを探す</h2>
@@ -149,14 +153,14 @@
     </div>
   </div>
   <div class="card-body">
-    <h4 class="card-title">まずは検索してみよう。</h4>
+    <h4 class="card-title">まずは検索してみよう</h4>
     <p class="card-text">地域と職種とキーワードで絞り込むことが出来ます。もちろん、希望の条件に合うバイトが見つかるとは限りません。</br>
        でも、条件だけで探していた昨日までのバイト探しとは今日でお別れ。”Part-ner”候補者のページものぞきに行ってみましょう！</p>
   </div>
 </div>
 
 
-<div class="card index_card my-5 mx-3">
+<div class="card index_card my-5 mx-3 fadein">
   <div class="card-header bg-primary d-flex">
     <div class="col-5">
       <%= image_tag "offershot.png", class: "img-fluid"%>
@@ -169,13 +173,12 @@
     <h4 class="card-title">この人、仲良くなれるかも．．．？</h4>
     <p class="card-text">そう思ったら、恐れずにオファーを送ってみましょう。</br>
       きちんと言葉にすれば、きっとあなたの想いも届くはず。相手がOKしてくれたら、１対１のチャットが始まります。</p>
-
   </div>
 </div>
 
 
 
-<div class="card index_card my-5 mx-3">
+<div class="card index_card my-5 mx-3 fadein">
   <div class="card-header bg-info d-flex">
     <div class="col-7 text-center text-light row justify-content-center align-content-center">
       <h2 class="col-12">３．チャットでお話</h2>
@@ -185,9 +188,9 @@
     </div>
   </div>
   <div class="card-body">
-    <h4 class="card-title">”Part-ner”を見つけよう。</h4>
+    <h4 class="card-title">”Part-ner”を見つけよう</h4>
     <p class="card-text">チャットを通じて、２人の相性を確かめましょう。</br>
-     これから一緒に働いていく”Part-ner”です。素敵な出会いがありますように！。</p>
+     これから一緒に働いていく”Part-ner”です。素敵な出会いがありますように！</p>
   </div>
 </div>
 
@@ -199,7 +202,7 @@
 
 
 
-<div class="row my-5 mx-3">
+<div class="row my-5 mx-3 fadein">
   <div class="col-2">
     <%= image_tag "Part-ner.png", class: "img-fluid"%>
   </div>
@@ -210,7 +213,7 @@
 </div>
 
 
-<div class="card index_card my-5 mx-3">
+<div class="card index_card my-5 mx-3 fadein">
   <div class="card-header bg-primary d-flex">
     <div class="col-5">
       <%= image_tag "jobnewshot.png", class: "img-fluid"%>
@@ -220,10 +223,88 @@
     </div>
   </div>
   <div class="card-body">
-    <h4 class="card-title"></h4>
-    <p class="card-text">そう思ったら、恐れずにオファーを送ってみましょう。</br>
-      きちんと言葉にすれば、きっとあなたの想いも届くはず。相手がOKしてくれたら、１対１のチャットが始まります。</p>
+    <h4 class="card-title">あなたのバイトをステキに紹介しよう</h4>
+    <p class="card-text">あなたのバイトがたくさんの人の目に留まるように、目を引く写真や文章でアピールしましょう。もちろんバイトだけでなく、あなたのプロフィールも大切です。オファーがもらえるようにがんばりましょう！</p>
+  </div>
+</div>
 
+<div class="card index_card my-5 mx-3 fadein">
+  <div class="card-header bg-info d-flex">
+    <div class="col-7 text-center text-light row justify-content-center align-content-center">
+      <h2 class="col-12">2．オファーを承認</h2>
+    </div>
+    <div class="col-5">
+      <%= image_tag "offerokshot.png", class: "img-fluid"%>
+    </div>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">承認して、チャットを始めよう</h4>
+    <p class="card-text">届いたオファーは一覧になっていて、承認するか拒否するかが選べます。</br>
+       承認するとその人とのチャットが始まります。最初のメッセージは、ぜひあなたから送ってあげてください。</p>
+  </div>
+</div>
+
+<div class="card index_card my-5 mx-3 fadein">
+  <div class="card-header bg-primary d-flex">
+    <div class="col-5">
+      <%= image_tag "chatshot.png", class: "img-fluid"%>
+    </div>
+    <div class="col-7 text-center text-light row justify-content-center align-content-center">
+      <h2 class="col-12">３．チャットでお話</h2>
+    </div>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">”Part-ner”を見つけよう</h4>
+    <p class="card-text">チャットを通じて、２人の相性を確かめましょう。</br>
+     これから一緒に働いていく”Part-ner”です。素敵な出会いがありますように！。</p>
+  </div>
+</div>
+
+
+
+<br>
+</br>
+
+<div class="row my-5 mx-3 fadein">
+  <div class="col-2">
+    <%= image_tag "Part-ner.png", class: "img-fluid"%>
+  </div>
+
+  <div class="card col-7 align-items-center justify-content-center">
+    <h2 class="p-2">使い方はこんな感じだよ！</h2>
+  </div>
+</div>
+
+<div class="row my-5 mx-3 justify-content-end fadein">
+  <div class="card col-7 align-items-center bg-info">
+    <h2 class="text-white p-2">OK！</h2>
+  </div>
+</div>
+
+<br>
+</br>
+
+
+ <div class="card index_card my-5 mx-3 fadein">
+  <div class="card-header bg-info d-flex">
+    <div class="col-5">
+      <%= image_tag "Part-ner.png", class: "img-fluid"%>
+    </div>
+    <div class="col-7 text-center text-light row justify-content-center align-content-center">
+      <h1 class="col-12">”Part-ner”</h1>
+      <h4 class="col-12">をはじめよう！</h4>
+    </div>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">素敵なPart-nerがあなたを待っています！</h4>
+    <h5 class="card-text"></h5>
+
+    <% if user_signed_in?%>
+     <%= link_to 'マイページへ', user_path(current_user), class: "btn btn-primary btn-rounded"%>
+    <% else %>
+     <%= link_to "登録済みの方はこちら", new_user_session_path, class: "btn btn-primary btn-rounded mb-3" %>
+     <%= link_to "新規登録はこちら",  new_user_registration_path, class: "btn btn-primary btn-rounded mb-3" %>
+    <% end %>
   </div>
 </div>
 
@@ -231,9 +312,31 @@
 
 
 
-<% if user_signed_in?%>
- <%= link_to 'マイページへ', user_path(current_user), class: "btn btn-primary btn-rounded"%>
-<% else %>
- <%= link_to "登録済みの方はこちら", new_user_session_path, class: "btn btn-primary btn-rounded mb-3" %>
- <%= link_to "新規登録はこちら",  new_user_registration_path, class: "btn btn-primary btn-rounded" %>
-<% end %>
+<!--aboutページ専用のスタイルとスクリプト。スクロールしてフェードイン-->
+<style>
+  .fadein {
+  opacity : 0;
+  transform : translate(0, 100px);
+  transition : all 1s;
+}
+
+.fadein.active{
+  opacity : 1;
+  transform : translate(0, 0);
+}
+</style>
+
+<script>
+  $(function(){
+    $(window).scroll(function (){
+        $('.fadein').each(function(){
+            var position = $(this).offset().top;
+            var scroll = $(window).scrollTop();
+            var windowHeight = $(window).height();
+            if (scroll > position - windowHeight + 200){
+              $(this).addClass('active');
+            }
+        });
+    });
+});
+</script>
