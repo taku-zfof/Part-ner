@@ -48,3 +48,4 @@
 - フォント：せのびゴシック（http://modi.jpn.org/font_senobi.php）
 - ロゴ・favicon素材作成：Canva（https://www.canva.com/）
 - favicon作成：Favicon ジェネレーター（https://favicon-generator.mintsu-dev.com/）
+- サンプルデータ素材：photoAC（https://www.photo-ac.com/）

@@ -56,7 +56,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #以下追加gem
-
 gem 'devise' #ユーザー認証
 gem 'image_processing' #画像リサイズ
 gem 'kaminari' #ページネーション
@@ -70,6 +69,10 @@ gem 'omniauth', '1.9.1' #SNSログイン機能
 gem 'omniauth-google-oauth2' #google認証
 gem 'omniauth-twitter' #Twitter認証
 gem 'whenever', require: false
+
+#テストデータ用
+gem 'faker'
+gem 'gimei'
 
 #デプロイ用
 gem "net-smtp"

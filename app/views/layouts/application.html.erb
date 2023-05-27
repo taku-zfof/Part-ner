@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row justify-content-evenly">
 
-        <% if user_signed_in?%>
+        <% if user_signed_in? && controller_path != "homes" %>
           <%= render "layouts/sidebar", current: false %>
         <% end %>
 

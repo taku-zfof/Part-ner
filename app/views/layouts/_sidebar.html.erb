@@ -12,10 +12,10 @@
     <!--リンクリスト-->
     <div class="list-group list-group-light mt-3">
         <h6><strong><%= link_to user_path(current_user), class: "list-group-item list-group-item-action text-truncate px-4 mb-3 rounded-pill user_tab" do%>
-        <i class="far fa-user fa-lg"></i> プロフィール<% end %></strong></h6>
+        <i class="far fa-user fa-lg fa-fw"></i> プロフィール<% end %></strong></h6>
         <h6><strong>
             <%= link_to chatrooms_path, class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('chatrooms')}" do%>
-                <i class="far fa-comment-dots fa-lg"></i>
+                <i class="far fa-comment-dots fa-lg fa-fw"></i>
                 メッセージ
                 <!--通知バッジの処理-->
                 <% if Message.unread_by(current_user).exists? %>
@@ -28,7 +28,7 @@
 
         <h6><strong>
             <%= link_to offers_index_path, class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('offers')}" do%>
-                <i class="far fa-dot-circle fa-lg"></i>
+                <i class="far fa-handshake fa-lg fa-fw"></i>
                  オファー
                 <!--通知バッジの処理-->
                 <% if Offer.where(job_id: current_user.jobs.ids).exists? %>
@@ -41,7 +41,7 @@
 
         <h6><strong>
             <%= link_to bookmark_index_path,class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('bookmarks')}" do%>
-            <i class="far fa-bookmark fa-lg"></i> ブックマーク
+            <i class="far fa-bookmark fa-lg fa-fw"></i> ブックマーク
             <% end %>
         </strong></h6>
     </div>
@@ -51,14 +51,17 @@
 <!--サイドバー-->
 
 
+
+
 <!--ボトムバー-->
 <div class=" bottomber list-group list-group-light flex-row justify-content-evenly align-items-end bg-secondary d-lg-none order-md-2 fixed-bottom p-0">
     <h6><%= link_to user_path(current_user), class: "list-group-item list-group-item-action px-3 m-auto rounded-9 user_tab" do%>
-     <i class="far fa-user fa-lg"></i>
+     <i class="far fa-user fa-lg fa-fw"></i>
     <% end %></h6>
-    <h6><strong>
+
+    <h6>
         <%= link_to chatrooms_path, class: "list-group-item list-group-item-action position-relative px-3 m-auto rounded-9 #{active_if('chatrooms')}" do%>
-            <i class="far fa-comment-dots fa-lg"></i>
+            <i class="far fa-comment-dots fa-lg fa-fw"></i>
             <!--通知バッジの処理-->
             <% if Message.unread_by(current_user).exists? %>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-danger">
@@ -66,11 +69,18 @@
                 </span>
             <% end %>
         <% end %>
-    </strong></h6>
+    </h6>
 
-    <h6><strong>
+
+    <h6>
+        <a class="list-group-item list-group-item-action px-3 m-auto rounded-9" data-toggle="modal" data-target="#searchModal">
+            <i class="far fa-dot-circle fa-lg fa-fw"></i>
+        </a>
+    </h6>
+
+    <h6>
         <%= link_to offers_index_path, class: "list-group-item list-group-item-action position-relative px-3 m-auto rounded-9 #{active_if('offers')}" do%>
-            <i class="far fa-dot-circle fa-lg"></i>
+            <i class="far fa-handshake fa-lg fa-fw"></i>
             <!--通知バッジの処理-->
             <% if Offer.where(job_id: current_user.jobs.ids).exists? %>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-danger">
@@ -78,15 +88,18 @@
                 </span>
             <% end %>
         <% end %>
-    </strong></h6>
+    </h6>
 
     <h6><strong>
         <%= link_to bookmark_index_path,class: "list-group-item list-group-item-action px-3 m-auto rounded-9 #{active_if('bookmarks')}" do%>
-            <i class="far fa-bookmark fa-lg"></i>
+            <i class="far fa-bookmark fa-lg fa-fw"></i>
         <% end %>
     </strong></h6>
 </div>
 <!--ボトムバー-->
+
+
+
 
 <!--非表示。スクリプトにデータを渡す用-->
 <div class="d-none" id="current_info" data-current_user_id="<%= current_user.id %>"></div>

@@ -36,5 +36,9 @@ module PartNer
     end
     #バリデーションエラー時にレイアウトが崩れないようにする記述
 
+    Rails.application.config.i18n.default_locale = :ja #railsの日本語化
+    Faker::Config.locale = :ja # Fakerの日本語化
+
+
   end
 end

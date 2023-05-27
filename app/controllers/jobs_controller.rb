@@ -97,7 +97,7 @@ class JobsController < ApplicationController
   end
 
   def search
-    @jobs = Job.where(released: true).all
+    @jobs = Job.where(released: true).all.shuffle
     #条件が存在する場合のみ絞り込む
     @jobs = @jobs.where(prefecture_code: params[:prefecture_code]) if params[:prefecture_code].present?
     @jobs = @jobs.where(job_type: params[:job_type]) if params[:job_type].present?
