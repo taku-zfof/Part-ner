@@ -14,14 +14,8 @@ class JobsController < ApplicationController
 
     if params[:post] # 投稿する場合
       if job.save(context: :release)
-        # 最寄り駅情報を取得して代入
-        uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{job.longitude}&y=#{job.latitude}")
-        response = Net::HTTP.get_response(uri)
-        result = JSON.parse(response.body)
-        job.near_station = result["response"]["station"][0]["name"]
-        job.near_station_line = result["response"]["station"][0]["line"]
-        # 再度保存
-        job.save
+        # 最寄り駅情報を取得して再保存
+        job.addStation
         redirect_to job_path(job),flash: {notice: '募集を公開しました'}
       else
         @job = job
@@ -56,12 +50,7 @@ class JobsController < ApplicationController
         job.released = true
         if job.save(context: :release)
           # 最寄り駅情報を取得して代入
-          uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{job.longitude}&y=#{job.latitude}")
-          response = Net::HTTP.get_response(uri)
-          result = JSON.parse(response.body)
-          job.near_station = result["response"]["station"][0]["name"]
-          job.near_station_line = result["response"]["station"][0]["line"]
-          job.save
+          job.addStation
           redirect_to job_path(job),flash: {notice: '募集を公開しました'}
         else
           @job=job
@@ -97,7 +86,7 @@ class JobsController < ApplicationController
   end
 
   def search
-    @jobs = Job.where(released: true).all.shuffle
+    @jobs = Job.where(released: true).all
     #条件が存在する場合のみ絞り込む
     @jobs = @jobs.where(prefecture_code: params[:prefecture_code]) if params[:prefecture_code].present?
     @jobs = @jobs.where(job_type: params[:job_type]) if params[:job_type].present?

@@ -46,7 +46,7 @@ class Job < ApplicationRecord
     result = JSON.parse(response.body)
     self.near_station = result["response"]["station"][0]["name"] unless result["response"]["station"].blank?
     self.near_station_line =  result["response"]["station"][0]["line"] unless result["response"]["station"].blank?
-    # 再度保存
+    # 再度保存する
     self.save
   end
 

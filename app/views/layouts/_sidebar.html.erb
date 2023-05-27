@@ -71,9 +71,9 @@
         <% end %>
     </h6>
 
-
-    <h6>
-        <a class="list-group-item list-group-item-action px-3 m-auto rounded-9" data-toggle="modal" data-target="#searchModal">
+            
+    <h6><!--コントローラーjobsかつアクションがsearchの時だけアクティブに-->
+        <a class = "list-group-item list-group-item-action px-3 m-auto rounded-9 <% if action_name == "search" %><%= active_if('jobs')%><% end %> " data-toggle="modal" data-target="#searchModal">
             <i class="far fa-dot-circle fa-lg fa-fw"></i>
         </a>
     </h6>
