@@ -9,7 +9,7 @@
 require 'faker'
 
 #女性ユーザーのサンプル
-5000.times do |n|
+500.times do |n|
   for num in 9..16 do
     user = User.create!(
       name: Gimei.female.first.katakana,
@@ -51,7 +51,7 @@ require 'faker'
 end
 
 #男性ユーザーのサンプル
-5000.times do |n|
+500.times do |n|
   for num in 1..8 do
     user = User.create!(
       name: Gimei.male.first.katakana,
