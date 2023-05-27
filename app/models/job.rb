@@ -9,15 +9,15 @@ class Job < ApplicationRecord
 
     has_one_attached :image
 
-    with_options presence: true, on: :release do
-        validates :tytle
-        validates :job_type
-        validates :prefecture_code
-        validates :other_address
+    with_options on: :release do
+      validates :tytle, presence: true
+      validates :job_type, presence: true
+      validates :introduction, length: { minimum: 1, maximum: 3000}
+      validates :prefecture_code, presence: true
+      validates :other_address, presence: true
+      validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,
+      validates :hourly_wage, numericality:{ with: /\A[0-9]+\z/}#半角数字のみ
     end
-    validates :introduction, length: { minimum: 0, maximum: 3000}
-    validates :hourly_wage, numericality:{ only_integer: true }, format:{with: /\A[0-9]+\z/}#半角数字のみ
-    validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,
 
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
@@ -39,6 +39,7 @@ class Job < ApplicationRecord
     offers.exist?(user_id: user.id)
   end
 
+
   #最寄り駅を取得して保存するメソッド
   def addStation
     uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{self.longitude}&y=#{self.latitude}")
@@ -50,10 +51,8 @@ class Job < ApplicationRecord
     self.save
   end
 
-
-
-  before_create :set_rondom_id #新規作成時に以下のアクション
-  # rondom_idが空か、同じrondom_idの仕事が存在する時にランダムな文字列を代入する
+  before_create :set_rondom_id #ユーザー作成時に以下のアクション
+  # rondom_idが空か、同じrondom_idのユーザーが存在する時にランダムな文字列を代入する
     def set_rondom_id
       while self.rondom_id.blank? || Job.find_by(rondom_id: self.rondom_id).present? do
         self.rondom_id = SecureRandom.base36

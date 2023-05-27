@@ -85,6 +85,7 @@ class JobsController < ApplicationController
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール用）
   end
 
+  
   def search
     @jobs = Job.where(released: true).all
     #条件が存在する場合のみ絞り込む

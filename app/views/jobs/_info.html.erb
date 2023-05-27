@@ -46,12 +46,12 @@
 
               <div class="row align-items-center">
                 <%= f.label :hourly_wage,"時給", class: "col-12"%>
-                <%= f.text_field :hourly_wage, class: "form-control mb-4 w-75 ", placeholder: "半角数字" %>円
+                <%= f.number_field :hourly_wage, class: "form-control mb-4 w-75 ", placeholder: "半角数字" %>円
               </div>
 
               <div class="row align-items-center">
                 <%= f.label :postal_code, "郵便番号"%>
-                <%= f.text_field :postal_code, class: "postal_code form-control mb-4 w-75", placeholder: "0000000" %>
+                <%= f.number_field :postal_code, class: "postal_code form-control mb-4 w-75", placeholder: "0000000" %>
               </div>
 
               <div class="row align-items-center">

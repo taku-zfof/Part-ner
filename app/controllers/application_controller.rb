@@ -20,10 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
 
-  # # 不明なエラーが発生したときにフラッシュ
-  # rescue_from Exception do |exception|
-  #   redirect_back fallback_location: root_path, flash: {error: 'エラーが発生しました。'}
-  # end
+  # 不明なエラーが発生したときにフラッシュ
+  rescue_from Exception do |exception|
+    redirect_back fallback_location: root_path, flash: {error: 'エラーが発生しました。'}
+  end
 
   # ルーティングエラー時
   def routing_error
