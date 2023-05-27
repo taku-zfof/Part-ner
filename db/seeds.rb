@@ -13,7 +13,7 @@ require 'faker'
   for num in 9..16 do
     user = User.create!(
       name: Gimei.female.first.katakana,
-      email: Faker::Internet.unique.email,
+      email: Faker::Internet.email,
       password: 'password',
       sex: 2,
       age: Faker::Number.between(from: 18, to: 40),
@@ -31,7 +31,7 @@ require 'faker'
         introduction: "【この情報はサンプルです】とてもやりがいのあるバイトです。私たちは、前向きでやる気のある人を探し、教育とトレーニングを通じて、スキルや知識を身につけることができる素晴らしい機会を提供しています。この仕事には短期間のコミュニケーション能力やプレゼンテーション力など、あらゆるスキルが求められますが、それは将来のキャリアにおいて役立つことは言うまでもありません。私たちのアルバイトは、業界でも最高のキャリアアップチャンスを提供し、社会的責任を果たす立派な仕事だと考えています。",
         postal_code: Faker::Address.zip,
         prefecture_code: user.prefecture,
-        other_address: Gimei.unique.address.city.kanji + Gimei.unique.town.kanji,
+        other_address: Gimei.address.city.kanji + Gimei.town.kanji,
         near_station: "",
         near_station_line: "",
         hourly_wage: (Faker::Number.between(from: 9, to: 17).to_s + "00").to_i,
@@ -55,7 +55,7 @@ end
   for num in 1..8 do
     user = User.create!(
       name: Gimei.male.first.katakana,
-      email: Faker::Internet.unique.email,
+      email: Faker::Internet.email,
       password: 'password',
       sex: 1,
       age: Faker::Number.between(from: 18, to: 40),
@@ -73,7 +73,7 @@ end
         introduction: "【この情報はサンプルです】とてもやりがいのあるバイトです。私たちは、前向きでやる気のある人を探し、教育とトレーニングを通じて、スキルや知識を身につけることができる素晴らしい機会を提供しています。この仕事には短期間のコミュニケーション能力やプレゼンテーション力など、あらゆるスキルが求められますが、それは将来のキャリアにおいて役立つことは言うまでもありません。私たちのアルバイトは、業界でも最高のキャリアアップチャンスを提供し、社会的責任を果たす立派な仕事だと考えています。",
         postal_code: Faker::Address.zip,
         prefecture_code: user.prefecture,
-        other_address: Gimei.unique.address.city.kanji + Gimei.unique.town.kanji,
+        other_address: Gimei.address.city.kanji + Gimei.town.kanji,
         near_station: "",
         near_station_line: "",
         hourly_wage: (Faker::Number.between(from: 9, to: 17).to_s + "00").to_i,
