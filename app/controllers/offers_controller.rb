@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OffersController < ApplicationController
   before_action :ensure_user, only:[:destroy]
 
@@ -6,19 +8,19 @@ class OffersController < ApplicationController
     offer.user = current_user
     offer.save
     
-    #メールを作成
+    # メールを作成
     @from = offer.user
     @job = offer.job
     @content = offer.content
     OfferReceiveMailer.send_mail(@from, @job, @content).deliver
     
-    redirect_to request.referrer,flash: {notice: 'オファーを送りました！'}
+    redirect_to request.referrer,flash: {notice: "オファーを送りました！"}
   end
 
   def destroy
     offer = Offer.find(params[:offer_id])
     offer.destroy
-    redirect_to request.referrer,flash: {error: 'オファーを削除しました'}
+    redirect_to request.referrer,flash: {error: "オファーを削除しました"}
   end
 
 
@@ -36,7 +38,7 @@ class OffersController < ApplicationController
     def ensure_user
       offer = Offer.find(params[:offer_id])
       unless offer.user == current_user or offer.job.user == current_user
-        redirect_back fallback_location: user_path(current_user), flash: {error: '権限がありません。'}
+        redirect_back fallback_location: user_path(current_user), flash: {error: "権限がありません。"}
       end
     end
 

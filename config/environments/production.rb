@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -22,7 +24,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -118,21 +120,21 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     port:                 587,
-    address:              'smtp.gmail.com',
-    domain:               'gmail.com',
-    user_name:            ENV['MAILER_ADDRESS'],
-    password:             ENV['MAILER_PASS'],
-    authentication:       'login',
+    address:              "smtp.gmail.com",
+    domain:               "gmail.com",
+    user_name:            ENV["MAILER_ADDRESS"],
+    password:             ENV["MAILER_PASS"],
+    authentication:       "login",
     enable_starttls_auto: true
   }
 
 
   ActionCable.server.config.disable_request_forgery_protection = true
   config.action_cable.url = "ws://35.76.151.243/cable"
-  config.action_cable.allowed_request_origins = ['http://35.76.151.243']
+  config.action_cable.allowed_request_origins = ["http://35.76.151.243"]
 end

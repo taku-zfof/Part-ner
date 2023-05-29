@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeColumnToNullb < ActiveRecord::Migration[6.1]
   def change
     change_column_null :jobs, :hourly_wage, true

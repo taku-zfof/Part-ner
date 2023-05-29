@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -21,22 +23,22 @@ module PartNer
 
     config.i18n.default_locale = :ja # I18nライブラリに訳文の探索場所を指示する
     # config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.yml').to_s]
-    config.time_zone = 'Tokyo' #タイムゾーンを日本時間に
+    config.time_zone = "Tokyo" # タイムゾーンを日本時間に
 
-    config.paths.add 'lib', eager_load: true #バッチ処理用の有効化
+    config.paths.add "lib", eager_load: true # バッチ処理用の有効化
 
 
-    #バリデーションエラー時にレイアウトが崩れないようにする記述
+    # バリデーションエラー時にレイアウトが崩れないようにする記述
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       if instance.kind_of?(ActionView::Helpers::Tags::Label)
         html_tag.html_safe
       else
-        Nokogiri::HTML.fragment(html_tag).search('input', 'textarea', 'select').add_class('is-error').to_html.html_safe
+        Nokogiri::HTML.fragment(html_tag).search("input", "textarea", "select").add_class("is-error").to_html.html_safe
       end
     end
-    #バリデーションエラー時にレイアウトが崩れないようにする記述
+    # バリデーションエラー時にレイアウトが崩れないようにする記述
 
-    Rails.application.config.i18n.default_locale = :ja #railsの日本語化
+    Rails.application.config.i18n.default_locale = :ja # railsの日本語化
     Faker::Config.locale = :ja # Fakerの日本語化
 
 

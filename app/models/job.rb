@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Job < ApplicationRecord
     geocoded_by :other_address
-    after_validation :geocode, if: :other_address_changed? #住所が入って保存されたら緯度経度を入れる
+    after_validation :geocode, if: :other_address_changed? # 住所が入って保存されたら緯度経度を入れる
 
     belongs_to :user
     has_many :bookmarks, dependent: :destroy
@@ -9,28 +11,28 @@ class Job < ApplicationRecord
 
     has_one_attached :image
     
-    #バリデーション。
+    # バリデーション。
     with_options on: :release do
       validates :tytle, presence: true
       validates :job_type, presence: true
       validates :introduction, length: { minimum: 1, maximum: 3000}
       validates :prefecture_code, presence: true
       validates :other_address, presence: true
-      validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,
-      validates :hourly_wage, format:{ with: /\A[0-9]+\z/}#半角数字のみ
+      validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}# 半角数字７桁のみ。ハイフン有り無しok,
+      validates :hourly_wage, format:{ with: /\A[0-9]+\z/}# 半角数字のみ
     end
 
 
 
-  #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
+  # 画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
     unless image.attached?
       image_number = rand(1..4)
       
       file_path = Rails.root.join("app/assets/images/noimage_job(#{image_number}).png")
-      image.attach(io: File.open(file_path), filename: 'noimage_job.jpg', content_type: 'image/png')
+      image.attach(io: File.open(file_path), filename: "noimage_job.jpg", content_type: "image/png")
     end
-   #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
+   # 指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
     image.variant(resize: "#{width}x#{height}^", gravity: :center, crop: "#{width}x#{height}+0+0").processed
   end
 
@@ -45,7 +47,7 @@ class Job < ApplicationRecord
   end
 
 
-  #最寄り駅を取得して保存するメソッド
+  # 最寄り駅を取得して保存するメソッド
   def addStation
     uri = URI.parse("http://express.heartrails.com/api/json?method=getStations&x=#{self.longitude}&y=#{self.latitude}")
     response = Net::HTTP.get_response(uri)
@@ -56,7 +58,7 @@ class Job < ApplicationRecord
     self.save
   end
 
-  before_create :set_rondom_id #ユーザー作成時に以下のアクション
+  before_create :set_rondom_id # ユーザー作成時に以下のアクション
   # rondom_idが空か、同じrondom_idのユーザーが存在する時にランダムな文字列を代入する
     def set_rondom_id
       while self.rondom_id.blank? || Job.find_by(rondom_id: self.rondom_id).present? do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddReleasedToJobs < ActiveRecord::Migration[6.1]
   def change
     add_column :jobs, :released, :boolean, default: true, null: false

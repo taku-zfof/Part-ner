@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -6,15 +8,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'faker'
+require "faker"
 
-#女性ユーザーのサンプル
+# 女性ユーザーのサンプル
 100.times do |n|
   for num in 9..16 do
     user = User.create!(
       name: Gimei.female.first.katakana,
       email: Faker::Internet.email,
-      password: 'password',
+      password: "password",
       sex: 2,
       age: Faker::Number.between(from: 18, to: 40),
       prefecture: Faker::Number.between(from: 1, to: 47),
@@ -50,13 +52,13 @@ require 'faker'
   end
 end
 
-#男性ユーザーのサンプル
+# 男性ユーザーのサンプル
 100.times do |n|
   for num in 1..8 do
     user = User.create!(
       name: Gimei.male.first.katakana,
       email: Faker::Internet.email,
-      password: 'password',
+      password: "password",
       sex: 1,
       age: Faker::Number.between(from: 18, to: 40),
       prefecture: Faker::Number.between(from: 1, to: 47),

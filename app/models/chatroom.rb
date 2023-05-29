@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Chatroom < ApplicationRecord
   belongs_to :job
   belongs_to :user
@@ -14,7 +16,7 @@ class Chatroom < ApplicationRecord
     return Chatroom.where(job_id: myjob_ids).or(Chatroom.where(user_id: user.id))
   end
   
-  before_create :set_rondom_id #ユーザー作成時に以下のアクション
+  before_create :set_rondom_id # ユーザー作成時に以下のアクション
   # rondom_idが空か、同じrondom_idのユーザーが存在する時にランダムな文字列を代入する
     def set_rondom_id
       while self.rondom_id.blank? || Chatroom.find_by(rondom_id: self.rondom_id).present? do

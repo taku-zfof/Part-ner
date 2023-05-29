@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeColumnsAddNotnullOnAll < ActiveRecord::Migration[6.1]
   def change
     change_column :chatrooms, :user_id, :integer, null: false

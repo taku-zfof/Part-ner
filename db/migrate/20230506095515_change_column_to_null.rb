@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeColumnToNull < ActiveRecord::Migration[6.1]
   def change
     def up

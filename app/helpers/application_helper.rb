@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   # 現在いるコントローラに応じてサイドバーをアクティブにするヘルパー
   def active_if(path)
-    path == controller_path ? 'active' : ''
+    path == controller_path ? "active" : ""
   end
 
-  #deviseのフラッシュメッセージにalertのスタイルを適用
+  # deviseのフラッシュメッセージにalertのスタイルを適用
   def bootstrap_alert(key)
     case key
     when "alert"

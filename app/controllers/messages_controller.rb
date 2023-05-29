@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
   def create
     message = Message.new(message_params)
@@ -6,7 +8,7 @@ class MessagesController < ApplicationController
   end
   
   private
-  def message_params
-    params.require(:message).permit(:user_id, :content, :chatroom_id)
-  end
+    def message_params
+      params.require(:message).permit(:user_id, :content, :chatroom_id)
+    end
 end

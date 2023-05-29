@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
 
   has_many :jobs, dependent: :destroy
@@ -8,32 +10,32 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:twitter, :google_oauth2] #googleログイン用の記述
+         :omniauthable, omniauth_providers: [:twitter, :google_oauth2] # googleログイン用の記述
 
-#SNSログイン用の記述。uidとproviderでユーザーを新規なら作成、既存なら取得
+# SNSログイン用の記述。uidとproviderでユーザーを新規なら作成、既存なら取得
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.name = auth.info.name #認証情報からもらう
-      user.account_name = Devise.friendly_token[0,20] #ランダム生成
-      user.introduction = "自己紹介、年齢、性別、地域は未設定です。" #auth.infoでもらえないので手動
-      user.sex = 3 #もらえないので手動
-      user.age = 18 #もらえないので手動
-      user.prefecture = 13 #もらえない値なので手動
-      user.email = auth.info.email #認証情報からもらう
-      user.password = Devise.friendly_token[0,20] #ランダム生成
+      user.name = auth.info.name # 認証情報からもらう
+      user.account_name = Devise.friendly_token[0,20] # ランダム生成
+      user.introduction = "自己紹介、年齢、性別、地域は未設定です。" # auth.infoでもらえないので手動
+      user.sex = 3 # もらえないので手動
+      user.age = 18 # もらえないので手動
+      user.prefecture = 13 # もらえない値なので手動
+      user.email = auth.info.email # 認証情報からもらう
+      user.password = Devise.friendly_token[0,20] # ランダム生成
     end
   end
 
   has_one_attached :image
 
-  #バリデーション
+  # バリデーション
   validates :name, length: { minimum: 1, maximum: 15 }
   validates :sex, presence: true
   validates :age, presence: true
   validates :prefecture, presence: true
   validates :introduction, length: {maximum: 1000}
 
-  #都道府県コード→都道府県名
+  # 都道府県コード→都道府県名
   enum prefecture: {
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
      茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,
@@ -49,20 +51,20 @@ class User < ApplicationRecord
     男性:1,女性:2,その他:3
   }
 
-  #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
+  # 画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
     unless image.attached?
       image_number = rand(1..4)
 
       file_path = Rails.root.join("app/assets/images/noimage_user (#{image_number}).png")
-      image.attach(io: File.open(file_path), filename: 'noimage_user (#{image_number}).png', content_type: 'image/png')
+      image.attach(io: File.open(file_path), filename: 'noimage_user (#{image_number}).png', content_type: "image/png")
     end
-    #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
+    # 指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
     image.variant(resize: "#{width}x#{height}^", gravity: :center, crop: "#{width}x#{height}+0+0").processed
   end
 
 
-  before_create :set_account_name #ユーザー作成時に以下のアクション
+  before_create :set_account_name # ユーザー作成時に以下のアクション
   # アカウント名が空か、同じアカウント名のユーザーが存在する時にランダムな文字列を代入する
     def set_account_name
       while self.account_name.blank? || User.find_by(account_name: self.account_name).present? do
@@ -73,9 +75,9 @@ class User < ApplicationRecord
        account_name
     end
 
-  #ゲストユーザーの設定
+  # ゲストユーザーの設定
   def self.guest
-    find_or_create_by!(name: 'バイト太郎' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: "バイト太郎" ,email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.age = 25
       user.sex = 3

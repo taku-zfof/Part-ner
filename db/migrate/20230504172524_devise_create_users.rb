@@ -32,7 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
       
-      ##以下は追加カラム
+      # #以下は追加カラム
       t.string :name, null: false
       t.integer :sex, null: false
       t.integer :age, null: false

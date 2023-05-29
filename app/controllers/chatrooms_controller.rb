@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatroomsController < ApplicationController
   before_action :ensure_user, only:[:show]
 
@@ -17,7 +19,7 @@ class ChatroomsController < ApplicationController
     @message = Message.new
     @messages = Message.where(chatroom_id: @chatroom.id)
 
-    #チャット相手のメッセージをすべて既読にする
+    # チャット相手のメッセージをすべて既読にする
     partner_messages = @messages.where.not(user_id: current_user.id)
     partner_messages.update(read_status: true)
   end
@@ -27,21 +29,21 @@ class ChatroomsController < ApplicationController
     chatroom.user = User.find(params[:offerer_id])
     chatroom.job = Job.find(params[:job_id])
     if chatroom.save
-      #チャットルーム作成したらオファー削除
+      # チャットルーム作成したらオファー削除
       offer = Offer.find(params[:offer_id])
       offer.destroy
 
-      #応募ユーザーにメール送信
+      # 応募ユーザーにメール送信
       @mail_to = chatroom.user
       @job = chatroom.job
       OfferOkMailer.send_mail(@mail_to, @job).deliver
 
-      redirect_to chatroom_path(chatroom),flash: {notice: 'メッセージを送ってみましょう！'}
+      redirect_to chatroom_path(chatroom),flash: {notice: "メッセージを送ってみましょう！"}
     else
       myjobs_ids = Job.where(user_id: current_user.id).pluck(:id)
       @receive_offers = Offer.where(job_id: myjobs_ids)
       @send_offers = current_user.offers.all
-      flash.now[:error] = '承認に失敗しました'
+      flash.now[:error] = "承認に失敗しました"
       render "offers/index"
     end
   end
@@ -56,7 +58,7 @@ class ChatroomsController < ApplicationController
     def ensure_user
       chatroom = Chatroom.find_by(rondom_id: params[:rondom_id])
       unless chatroom.user == current_user or chatroom.job.user == current_user
-        redirect_back fallback_location: user_path(current_user), flash: {error: '権限がありません。'}
+        redirect_back fallback_location: user_path(current_user), flash: {error: "権限がありません。"}
       end
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
    before_action :ensure_guest_user, only: [:edit]
    before_action :ensure_user, only:[:edit, :update]
@@ -11,10 +13,10 @@ class UsersController < ApplicationController
   def update
     user = User.find_by(account_name: params[:account_name])
     if user.update(user_params)
-      redirect_to user_path(current_user),flash: {notice: '編集を保存しました。'}
+      redirect_to user_path(current_user),flash: {notice: "編集を保存しました。"}
     else
       @user = current_user
-      flash.now[:error] = '登録に失敗しました'
+      flash.now[:error] = "登録に失敗しました"
       render :edit
     end
   end
@@ -27,14 +29,14 @@ class UsersController < ApplicationController
     def ensure_guest_user
       @user = User.find_by(account_name: params[:account_name])
       if @user.name == "バイト太郎"
-        redirect_to user_path(current_user), flash: {error: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'}
+        redirect_to user_path(current_user), flash: {error: "ゲストユーザーはプロフィール編集画面へ遷移できません。"}
       end
     end
 
     def ensure_user
       user = User.find_by(account_name: params[:account_name])
       unless user == current_user
-       redirect_back fallback_location: user_path(current_user), flash: {error: '権限がありません。'}
+       redirect_back fallback_location: user_path(current_user), flash: {error: "権限がありません。"}
       end
     end
 end

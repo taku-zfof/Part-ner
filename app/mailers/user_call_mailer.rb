@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserCallMailer < ApplicationMailer
   def send_mail(user,offers,messages)
     @user = user
