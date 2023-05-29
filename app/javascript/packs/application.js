@@ -20,10 +20,3 @@ import '@fortawesome/fontawesome-free/js/all' //
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-
-window.onpageshow = function(event) {
-	if (event.persisted) {
-		 window.location.reload();
-	}
-};

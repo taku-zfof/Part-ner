@@ -38,18 +38,19 @@
             </div>
             <!--自分の仕事の場合はオファーを非表示して編集・共有ボタンを表示-->
             <% if @job.user == current_user %>
-                <!--編集ボタン-->
-                <%= link_to edit_job_path,class: "btn btn-primary btn-rounded",data: {"turbolinks" => false} do%>
-                  <i class="fa fa-pen fa-2x"></i>
-                <% end %>
+                <!--編集ボタン、ツールチップ付き-->
+                  <%= link_to edit_job_path, class: "btn btn-primary btn-rounded",data: {"turbolinks" => false}, 'data-mdb-toggle': "tooltip", 'title': "編集する" do%>
+                    <i class="fa fa-pen fa-2x" ></i>
+                  <% end %>
+
             <% else %>
               <!--オファーモーダルを開く。既にオファー済みの時はアナウンスされる。-->
               <% if @job.offers.where(user_id: current_user.id).exists? or @job.chatrooms.where(user_id: current_user.id).exists? %>
-               <button class= "btn btn-primary text-white-50 btn-rounded" data-toggle="modal" data-target="#offerExistModal">
+               <button class= "btn btn-primary text-white-50 btn-rounded" data-toggle="modal" data-target="#offerExistModal" data-mdb-toggle="tooltip" title="オファー済み">
                  <i class="fa fa-paper-plane fa-2x"></i>
                </button>
               <% else %>
-               <button class= "btn btn-primary btn-rounded" data-toggle="modal" data-target="#offermodal">
+               <button class= "btn btn-primary btn-rounded" data-toggle="modal" data-target="#offermodal" data-target="#offerExistModal" data-mdb-toggle="tooltip" title="オファーを送る">
                  <i class="fa fa-paper-plane fa-2x"></i>
                </button>
               <% end %>
@@ -62,7 +63,7 @@
               <p class="text-center text-secondary text-nowrap">――――――― Share ―――――――</p>
               <div class="col-6">
                 <!--teitterで共有ボタン-->
-                <%= link_to "https://twitter.com/share?url=#{request.url}/&text=【Part-ner】で#{@job.tytle}のバイト仲間募集中です！&hashtags=Part_ner", class: "btn btn-info btn-rounded btn-block",title: 'Twitter', target: '_blank' do%>
+                <%= link_to "https://twitter.com/share?url=#{request.url}/&text=【Part-ner】で#{@job.tytle}のバイト仲間募集中です！&hashtags=Part_ner", class: "btn btn-info btn-rounded btn-block",title: 'Twitter', target: '_blank' , 'data-mdb-toggle': "tooltip", 'title': "Twitterで共有" do%>
                   <i class ="fab fa-twitter fa-2x"></i>
                 <% end %>
               </div>
