@@ -52,7 +52,9 @@ class User < ApplicationRecord
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
     unless image.attached?
-      file_path = Rails.root.join('app/assets/images/noimage.png')
+      image_number = rand(1..4)
+
+      file_path = Rails.root.join("app/assets/images/noimage_user(#{image_number}).png")
       image.attach(io: File.open(file_path), filename: 'noimage.png', content_type: 'image/png')
     end
     #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。

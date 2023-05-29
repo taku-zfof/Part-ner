@@ -7,11 +7,12 @@
           .row.mb-5
             .col-12.text-center
               = f.label :image  do
-                = image_tag('noimage.png', class: 'avatar rounded-circle d-inline img-thumbnail',style: "height: 80px; width: 80px; object-fit: cover;")
+                = image_tag("noimage_user (#{rand(1..4)}).png", class: 'avatar rounded-circle d-inline img-thumbnail',style: "height: 80px; width: 80px; object-fit: cover;")
                 = f.file_field :image, class: 'uploader d-inline form-control d-none'
             .col-12.text-center.mb-3
               small
-                |プロフィール画像
+                |プロフィール画像<br>
+                  （設定しない場合はランダム）
 
             .col-12.mb-4
               = f.text_field :name, class: "form-control", placeholder: "ニックネーム"

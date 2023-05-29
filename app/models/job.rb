@@ -25,7 +25,7 @@ class Job < ApplicationRecord
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
     unless image.attached?
-      image_number = rand(4)
+      image_number = rand(1..4)
       
       file_path = Rails.root.join("app/assets/images/noimage_job(#{image_number}).png")
       image.attach(io: File.open(file_path), filename: 'noimage_job.jpg', content_type: 'image/png')
