@@ -5,7 +5,6 @@
     .container.px-md-5
         = form_with model: @user,url: user_registration_path do |f|
           .row.mb-5
-            = render 'layouts/error_messages', model: f.object
             .col-12.text-center
               = f.label :image  do
                 = image_tag('noimage.png', class: 'avatar rounded-circle d-inline img-thumbnail',style: "height: 80px; width: 80px; object-fit: cover;")
@@ -14,21 +13,48 @@
               small
                 |プロフィール画像
 
-            .col-12
-              = f.text_field :name, class: "form-control mb-4", placeholder: "ニックネーム"
-            .col-12
-              = f.email_field :email, autocomplete: "email", class: "form-control mb-4 ", placeholder: "Eメール"
+            .col-12.mb-4
+              = f.text_field :name, class: "form-control", placeholder: "ニックネーム"
+              - if @user.errors.include?(:name)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:name).first
 
-            .col-4
-              = f.select :age,  options_for_select((18..85).to_a), { include_blank: '年齢'}, { class: 'form-control mb-4 text-muted'  }
-            .col-4
-              = f.select :sex, User.sexes.keys, { include_blank: '性別'}, { class: 'form-control mb-4 text-muted'  }
-            .col-4
-              = f.select :prefecture, User.prefectures.keys, { include_blank: '地域'}, { class: 'form-control mb-4 text-muted'  }
-            .col-12
-              = f.password_field :password, autocomplete: "new-password",class: "form-control mb-4 ", placeholder: "パスワード（６文字以上）", minlength:"6"
-            .col-12
-              = f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control mb-4 ", placeholder: "パスワード（確認用）",minlength:"6"
+            .col-12.mb-4
+              = f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "Eメール"
+              - if @user.errors.include?(:email)
+              small.text-danger
+                = @user.errors.full_messages_for(:email).first
+
+            .col-4.mb-4
+              = f.select :age,  options_for_select((18..85).to_a), { include_blank: '年齢'}, { class: 'form-control text-muted'  }
+              - if @user.errors.include?(:age)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:age).first
+
+            .col-4.mb-4
+              = f.select :sex, User.sexes.keys, { include_blank: '性別'}, { class: 'form-control text-muted'  }
+              - if @user.errors.include?(:sex)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:sex).first
+
+            .col-4.mb-4
+              = f.select :prefecture, User.prefectures.keys, { include_blank: '地域'}, { class: 'form-control text-muted'  }
+              - if @user.errors.include?(:prefecture)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:prefecture).first
+
+            .col-12.mb-4
+              = f.password_field :password, autocomplete: "new-password",class: "form-control", placeholder: "パスワード（６文字以上）", minlength:"6"
+              - if @user.errors.include?(:password)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:password).first
+
+            .col-12.mb-4
+              = f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control", placeholder: "パスワード（確認用）",minlength:"6"
+              - if @user.errors.include?(:password_confirmation)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:password_confirmation).first
+
               = f.hidden_field :introduction,:value => ""
             .col-12
               = f.submit "はじめる", class: "btn btn-primary btn-block rounded-pill"

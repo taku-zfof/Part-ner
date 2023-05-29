@@ -6,9 +6,16 @@
     .container.px-md-5
       .row
         = form_with model: @user, url: user_session_path do |f|
-          = render "devise/shared/error_messages", resource: resource
           = f.email_field :email, autocomplete: "email", class: "form-control mb-4", placeholder: "Eメール"
+          - if @user.errors.include?(:email)
+            small.text-danger.text-nowrap
+            = @user.errors.full_messages_for(:email).first
+
           = f.password_field :password, autocomplete: "current-password",class: "form-control mb-5", placeholder: "パスワード（６文字以上）"
+          - if @user.errors.include?(:password)
+            small.text-danger.text-nowrap
+            = @user.errors.full_messages_for(:password).first
+
           = f.submit "ログイン", class: "btn btn-primary btn-block mb-3 rounded-pill"
           = link_to 'ゲストログイン', users_guest_sign_in_path, class: "btn btn-primary btn-block mb-5 rounded-pill", method: :post
 

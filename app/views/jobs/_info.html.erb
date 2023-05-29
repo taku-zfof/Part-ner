@@ -10,7 +10,6 @@
 
 
         <%= form_with model: @job do|f|%>
-            <%= render 'layouts/error_messages', model: f.object %>
             <div class="container">
               <div class="row align-items-center my-4">
                 <% if action_name == 'new' or action_name == 'create' %><!--新規作成と編集時でビューの一部を分岐-->
@@ -28,40 +27,61 @@
               </div>
 
 
-              <div class="row align-items-center">
+              <div class="row align-items-center mb-4">
                 <%= f.label :tytle ,"タイトル"%>
-                <%= f.text_field :tytle, class: "form-control mb-4", placeholder: "募集タイトル"%>
+                <%= f.text_field :tytle, class: "form-control", placeholder: "募集タイトル"%>
+                <% if @job.errors.include?(:tytle) %>
+                  <small class = "text-danger text-nowrap"><%= @job.errors.full_messages_for(:tytle).first %></small>
+                <% end %>
               </div>
 
-              <div class="row align-items-center">
+              <div class="row align-items-center mb-4">
                 <%= f.label :job_type ,"職種"%>
-                <%= f.select :job_type, Job.job_types.keys, { include_blank: '選択'}, { class: 'form-control mb-4 w-75 text-muted'}%>
+                <%= f.select :job_type, Job.job_types.keys, { include_blank: '選択'}, { class: 'form-control w-75 text-muted'}%>
+                <% if @job.errors.include?(:job_type) %>
+                  <small class = "text-danger text-nowrap"><%= @job.errors.full_messages_for(:job_type).first %></small>
+                <% end %>
               </div>
 
-              <div class="row align-items-center">
+              <div class="row align-items-center mb-4">
                 <%= f.label :introduction,"紹介文"%>
                 <%= f.text_area :introduction, class: "introduction form-control", placeholder: "仕事の詳細やアピールポイントなど", size: "10x5"%>
-                <small class="text-count text-success mb-4"></small><br>
+                <small class="text-count text-success"></small><br>
+                <% if @job.errors.include?(:introduction) %>
+                  <small class = "text-danger text-nowrap"><%= @job.errors.full_messages_for(:introduction).first %></small>
+                <% end %>
               </div>
 
-              <div class="row align-items-center">
+              <div class="row align-items-center mb-4">
                 <%= f.label :hourly_wage,"時給", class: "col-12"%>
-                <%= f.number_field :hourly_wage, class: "form-control mb-4 w-75 ", placeholder: "半角数字" %>円
+                <%= f.number_field :hourly_wage, class: "form-control w-75 ", placeholder: "半角数字" %>円
+                <% if @job.errors.include?(:hourly_wage) %>
+                  <small class = "text-danger text-nowrap"><%= @job.errors.full_messages_for(:hourly_wage).first %></small>
+                <% end %>
               </div>
 
-              <div class="row align-items-center">
+              <div class="row align-items-center mb-4">
                 <%= f.label :postal_code, "郵便番号"%>
-                <%= f.number_field :postal_code, class: "postal_code form-control mb-4 w-75", placeholder: "0000000" %>
+                <%= f.number_field :postal_code, class: "postal_code form-control w-75", placeholder: "0000000" %>
+                <% if @job.errors.include?(:postal_code) %>
+                  <small class = "text-danger text-nowrap"><%= @job.errors.full_messages_for(:postal_code).first %></small>
+                <% end %>
               </div>
 
-              <div class="row align-items-center">
+              <div class="row align-items-center mb-4">
                 <%= f.label :prefecture_code, "所在地（都道府県）"%><br>
-                <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '選択'}, { class: 'prefecture_code form-control mb-4 w-75  text-muted' }%>
+                <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '選択'}, { class: 'prefecture_code form-control w-75 text-muted' }%>
+                <% if @job.errors.include?(:prefecture_code) %>
+                  <small class = "text-danger text-nowrap"><%= @job.errors.full_messages_for(:prefecture_code).first %></small>
+                <% end %>
               </div>
 
-              <div class="row align-items-center">
+              <div class="row align-items-center mb-4">
                 <%= f.label :other_address, "市区町村以降の住所" %>
-                <%= f.text_field :other_address, class: "other_address form-control mb-4 w-100", placeholder: "住所を入力" %>
+                <%= f.text_field :other_address, class: "other_address form-control w-100", placeholder: "住所を入力" %>
+                <% if @job.errors.include?(:other_address) %>
+                  <small class = "text-danger text-nowrap"><%= @job.errors.full_messages_for(:other_address).first %></small>
+                <% end %>
             </div>
           </div>
 

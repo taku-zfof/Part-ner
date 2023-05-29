@@ -16,7 +16,7 @@ class Job < ApplicationRecord
       validates :prefecture_code, presence: true
       validates :other_address, presence: true
       validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}#半角数字７桁のみ。ハイフン有り無しok,
-      validates :hourly_wage, numericality:{ with: /\A[0-9]+\z/}#半角数字のみ
+      validates :hourly_wage, format:{ with: /\A[0-9]+\z/}#半角数字のみ
     end
 
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
