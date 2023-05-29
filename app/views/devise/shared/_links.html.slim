@@ -1,10 +1,10 @@
 
 - if devise_mapping.omniauthable?
   .col-6
-    = button_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block rounded-pill text-white text-center", style:"background-color: #dd4b39;", method: :post
+    = button_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block rounded-pill text-white text-center", style:"background-color: #dd4b39;", method: :post, 'data-mdb-toggle': "tooltip", 'title': "Googleで続ける"
       i.fab.fa-google.fa-lg
   .col-6
-    = button_to user_twitter_omniauth_authorize_path, class: "btn btn-block rounded-pill text-white text-center", style:"background-color: #55acee;",method: :post
+    = button_to user_twitter_omniauth_authorize_path, class: "btn btn-block rounded-pill text-white text-center", style:"background-color: #55acee;",method: :post, 'data-mdb-toggle': "tooltip", 'title': "Twitterで続ける"
       i.fab.fa-twitter.fa-lg
 
 - if controller_name != 'sessions'
