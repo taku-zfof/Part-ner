@@ -92,6 +92,7 @@ class JobsController < ApplicationController
     @jobs = @jobs.where(prefecture_code: params[:prefecture_code]) if params[:prefecture_code].present?
     @jobs = @jobs.where(job_type: params[:job_type]) if params[:job_type].present?
     @jobs = @jobs.where('tytle LIKE(?) or introduction LIKE(?)',"%#{params[:key_word]}%","%#{params[:key_word]}%") if params[:key_word].present?
+    @jobs = @jobs.where.not('introduction LIKE(?)', "%【この情報はサンプルです】%" ) if params[:include_sample] == "1" #チェックボックスが選択されていたらサンプルを除外
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール用）
     render :index
   end

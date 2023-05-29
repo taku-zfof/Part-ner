@@ -15,7 +15,10 @@
           <%= f.select :prefecture_code, Job.prefecture_codes.keys, { include_blank: '指定しない'}, { class: 'form-control mb-4' } %>
 
           <%= f.label :key_word,"キーワード"%>
-          <%= f.text_field :key_word,  class: "form-control mb-5", placeholder: "キーワードを入力"%>
+          <%= f.text_field :key_word,  class: "form-control mb-3", placeholder: "キーワードを入力"%>
+
+          <%= f.check_box :include_sample,:as => :boolean, checked: false, class: "form-check-input mb-4"%>
+          <%= f.label :include_sample, "サンプルを検索結果に含めない" %>
         </div>
 
         <div class="modal-footer">
