@@ -9,12 +9,19 @@
 }
 
 html {scroll-behavior: smooth;}
+// アバウトページのscrollを滑らかに
+
 
 body{
   background-color: #c8c8c9;
   font-family:'せのびゴシック';
 }
+// 全体への指定
 
+
+
+
+// サイドバー・ボトムバー
 .list-group {
     --mdb-list-group-item-transition-time: 0.2s;
 }
@@ -28,26 +35,33 @@ body{
  .bottomber{
      height: 70px;
  }
+// サイドバー・ボトムバー
 
 
+
+
+
+//カードのスタイルと挙動
  .card{
     box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.2), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
  }
-
-
  .index_card {
     transition:box-shadow 0.3s, transform 0.3s;
 }
-
 .index_card:hover {
     box-shadow:0 6px 14px rgba(0, 0, 0, 0.5);
     transform:translate(0, -2px);
 }
+//カードのスタイルと挙動
 
+
+
+
+// チャットルームのスタイル
 .shadow-inner {
     box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.3) !important;
 }
-
 #area{
   height: 55vh;
 }
+// チャットルームのスタイル
