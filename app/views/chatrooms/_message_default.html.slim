@@ -1,0 +1,19 @@
+/actioncableを使わない場合のビューファイル
+
+#messages.row.mb-3
+  - if message.user == current_user
+    .col-5.offset-5.text-end
+      p.border.rounded-9.d-inline-block.p-3.text-break.bg-info.text-white
+        = message.content
+      small
+        = message.created_at.strftime('%m/%d %H:%M')
+    .col-2.text-start
+      = image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"
+  - else
+    .col-2.text-end
+      = image_tag message.user.get_image(70,70), class: "rounded-circle img-thumbnail img-fluid"
+    .col-5.px-auto
+      p.border.rounded-9.d-inline-block.p-3.text-break
+        = message.content
+      small
+        = message.created_at.strftime('%m/%d %H:%M')

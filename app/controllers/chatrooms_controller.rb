@@ -38,6 +38,7 @@ class ChatroomsController < ApplicationController
       @job = chatroom.job
       OfferOkMailer.send_mail(@mail_to, @job).deliver
 
+      chatroom.messages.create(user_id: current_user.id, content: "オファーありがとうございます！", read_status: false)
       redirect_to chatroom_path(chatroom),flash: {notice: "メッセージを送ってみましょう！"}
     else
       myjobs_ids = Job.where(user_id: current_user.id).pluck(:id)

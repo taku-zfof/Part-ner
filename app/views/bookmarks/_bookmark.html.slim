@@ -1,0 +1,6 @@
+- if job.keeped_by?(current_user)
+  = link_to bookmarks_path(job_id: job.id), method: :delete, remote: true, class: "text-white-50 btn btn-primary btn-rounded" ,'data-mdb-toggle': "tooltip", 'title': "ブックマークを解除" do
+    i.fas.fa-bookmark.fa-2x
+- else
+  = link_to bookmarks_path(job_id: job.id), method: :post, remote: true, class: "btn btn-primary btn-rounded",'data-mdb-toggle': "tooltip", 'title': "ブックマークする" do
+    i.fas.fa-bookmark.fa-2x

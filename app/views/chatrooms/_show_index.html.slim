@@ -1,0 +1,37 @@
+#show_chatrooms_index.tab-pane.fade.show.active
+  - show_chatrooms.each do |chatroom|
+    = link_to chatroom_path(chatroom) ,data: {"turbolinks" => false} do
+
+      .container.card.index_card.mb-4.py-3.text-body
+        .row.justify-content-center
+
+          /画像カラム
+          .col-3.col-md-2.m-0.d-flex.justify-content-end.align-items-center
+            div
+              - if chatroom.user == current_user
+                = image_tag chatroom.job.user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'
+              - else
+                = image_tag chatroom.user.get_image(100,100), class: 'rounded-circle mt-2 img-thumbnail img-fluid'
+
+          /タイトルと本文７カラム
+          .col-7.col-md-8.d-flex.flex-column.justify-content-center
+            h4
+              strong
+                - if chatroom.user == current_user
+                  = chatroom.job.user.name
+                - else
+                  = chatroom.user.name
+            strong
+              | (
+              = chatroom.job.tytle
+              | )
+            p.text-break.border.rounded-8.bg-light.p-3.bg-light
+              - if Message.where(chatroom_id: chatroom.id).exists?
+                = Message.where(chatroom_id: chatroom.id).last.content.truncate(50)
+
+          /未読バッジ2カラム 未読ある時のみ表示
+          .col-2.d-flex.align-items-center.justify-content-evenly
+            - if chatroom.unread_messages(current_user).exists?
+              h3
+              span.badge.badge-danger.rounded-pill
+                = chatroom.unread_messages(current_user).count

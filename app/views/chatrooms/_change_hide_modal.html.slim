@@ -1,0 +1,25 @@
+#HideModal.modal.fade
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .pt-4
+        h5.text-center
+          strong
+            = partner.name
+            | との会話を非表示にしますか？
+      .modal-footer
+        = link_to "非表示する", chatroom_change_hide_path(chatroom), class: "btn btn-danger btn-rounded"
+        button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
+          | 後で
+
+#ShowModal.modal.fade
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .pt-4
+        h5.text-center
+          strong
+            = partner.name
+            | との会話を再表示しますか？
+      .modal-footer
+        = link_to "再表示する", chatroom_change_hide_path(chatroom), class: "btn btn-primary btn-rounded"
+        button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
+          | 後で
