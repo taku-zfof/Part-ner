@@ -15,9 +15,15 @@
     <h5 class="card-text">「アルバイト」を意味する<strong>「part time job」</strong>と、「相方、相棒」を意味する<strong>「partner」</strong>を組み合わせた造語です。</br>
             バイトを「誰と」で選びたい。という製作者の想いから生まれた、アルバイト探しを通じて人と人とをつなげるマッチングサービスです。</h5>
 
-    <a class= "btn btn-primary btn-rounded mt-2" href="#when">
-      もっと見る
-    </a>
+    <div class="d-flex justify-content-between mt-2">
+      <a class= "btn btn-primary btn-rounded" href="#when">
+        もっと見る
+      </a>
+      <% if user_signed_in?%>
+        <%= link_to 'マイページへ', user_path(current_user), class: "btn btn-secondary btn-rounded"%>
+      <% end %>
+    </div>
+
   </div>
 </div>
 

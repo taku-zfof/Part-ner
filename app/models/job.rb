@@ -8,7 +8,8 @@ class Job < ApplicationRecord
     has_many :chatrooms, dependent: :destroy
 
     has_one_attached :image
-
+    
+    #バリデーション。
     with_options on: :release do
       validates :tytle, presence: true
       validates :job_type, presence: true
@@ -19,10 +20,14 @@ class Job < ApplicationRecord
       validates :hourly_wage, format:{ with: /\A[0-9]+\z/}#半角数字のみ
     end
 
+
+
   #画像を表示させるメソッド。画像がない場合にはnoimageを表示させる。
   def get_image(width,height)
     unless image.attached?
-      file_path = Rails.root.join('app/assets/images/noimage_job.png')
+      image_number = rand(4)
+      
+      file_path = Rails.root.join("app/assets/images/noimage_job(#{image_number}).png")
       image.attach(io: File.open(file_path), filename: 'noimage_job.jpg', content_type: 'image/png')
     end
    #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。

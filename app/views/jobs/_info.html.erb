@@ -14,7 +14,7 @@
               <div class="row align-items-center my-4">
                 <% if action_name == 'new' or action_name == 'create' %><!--新規作成と編集時でビューの一部を分岐-->
                     <%= f.label :image do%>
-                      <%= image_tag 'noimage_job.png', class: 'avatar img-thumbnail w-100',size: "300x300"%>
+                      <%= image_tag "noimage_job(#{rand(4)}).png", class: 'avatar img-thumbnail w-100',size: "300x300"%>
                       <%= f.file_field :image, class: 'uploader d-none' %>
                     <% end %>
                 <% else %>
@@ -23,7 +23,7 @@
                       <%= f.file_field :image, class: 'uploader d-none' %>
                     <% end %>
                 <% end %>
-                <p>紹介画像</p>
+                <p>紹介画像　<small>(変更しない場合はランダムな画像になります)</small></p>
               </div>
 
 
