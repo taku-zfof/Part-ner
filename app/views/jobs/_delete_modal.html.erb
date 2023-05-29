@@ -1,0 +1,16 @@
+<div class="modal fade" id="jobDeletemodal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="pt-4">
+        <h5 class="text-center"><strong>削除してよろしいですか？</strong></h5>
+      </div>
+      
+      <div class="modal-footer">
+        <%= link_to job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" do%>削除<% end %>
+        <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">閉じる</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -92,7 +92,8 @@
               <% else %>
                 <%= f.button :type => 'submit', :name => 'post', class: "btn btn-primary btn-rounded" do%>公開<% end %>
                 <%= f.button :type => 'submit', :name => 'draft', class: "btn btn-primary btn-rounded" do%>下書き<% end %>
-                <%= link_to job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" do%>削除<% end %>
+
+                <button class= "btn btn-danger btn-rounded" data-toggle="modal" data-target="#jobDeletemodal">削除</button>
               <% end %>
             </div>
         <%end%>

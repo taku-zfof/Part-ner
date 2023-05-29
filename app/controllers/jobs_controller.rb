@@ -57,7 +57,7 @@ class JobsController < ApplicationController
           flash.now[:error] = '公開できませんでした'
           render :edit
         end
-    else #下書きにする場合
+    elsif params[:draft] #下書きにする場合
         job.released = false
         if job.update(job_params)
           redirect_to job_draft_index_path, flash: {notice: "募集を下書き保存しました"}
@@ -73,7 +73,7 @@ class JobsController < ApplicationController
   def destroy
     job=Job.find_by(rondom_id: params[:rondom_id])
     if job.destroy
-      redirect_to user_path(current_user), flash: {alert: '募集を削除しました'}
+      redirect_to user_path(current_user), flash: {notice: '募集を削除しました'}
     else
       flash.now[:error] = '削除できませんでした'
       render :edit
@@ -85,7 +85,7 @@ class JobsController < ApplicationController
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(5) #ページネーション（無限スクロール用）
   end
 
-  
+
   def search
     @jobs = Job.where(released: true).all
     #条件が存在する場合のみ絞り込む
