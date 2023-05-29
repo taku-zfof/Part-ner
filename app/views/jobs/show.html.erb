@@ -14,7 +14,7 @@
         <div class="col-lg-2 col-3 text-center">
           <%= link_to user_path(@job.user) do %>
             <%= image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2 i-fluid'%>
-            <p class="text-truncate "><%= @job.user.name %></p>
+            <p class="text-truncate text-body"><%= @job.user.name %></p>
           <%end%>
         </div>
         <div class="col-lg-10 col-9 border rounded-8 bg-light py-3">

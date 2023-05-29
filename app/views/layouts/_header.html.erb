@@ -1,9 +1,14 @@
 <header class="shadow-sm sticky-top bg-info">
   <nav class="navbar navbar-expand-lg navbar-light p-1">
     <div class="container">
-      <a class="navbar-brand" href="/">
-        <%= image_tag 'Part-ner.png', size: "60x60"%>
-      </a>
+      <div class="d-flex align-items-center">
+        <a class="navbar-brand" href="/">
+          <%= image_tag 'Part-ner.png', size: "60x60"%>
+        </a>
+        <% if user_signed_in? && action_name == "about"%>
+          <%= link_to 'マイページへ', user_path(current_user), class: "btn btn-secondary btn-rounded nav-item"%>
+        <% end %>
+      </div>
 
       <!--メニュー-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
