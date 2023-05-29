@@ -56,7 +56,7 @@
               small.text-danger.text-nowrap
                 = @user.errors.full_messages_for(:password_confirmation).first
 
-              = f.hidden_field :introduction,:value => ""
+              = f.hidden_field :introduction,:value => "自己紹介は未設定です。"
             .col-12
               = f.submit "はじめる", class: "btn btn-primary btn-block rounded-pill"
 

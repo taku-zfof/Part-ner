@@ -41,7 +41,13 @@
 
         <h6><strong>
             <%= link_to bookmark_index_path,class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('bookmarks')}" do%>
-            <i class="far fa-bookmark fa-lg fa-fw"></i> ブックマーク
+                <i class="far fa-bookmark fa-lg fa-fw"></i> ブックマーク
+            <% end %>
+        </strong></h6>
+
+        <h6 class="mt-5"><strong>
+            <%= link_to :back, class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill" do%>
+                <i class="fas fa-arrow-left fa-lg fa-fw"></i> 戻る
             <% end %>
         </strong></h6>
     </div>
@@ -55,9 +61,11 @@
 
 <!--ボトムバー-->
 <div class=" bottomber list-group list-group-light flex-row justify-content-evenly align-items-end bg-secondary d-lg-none order-md-2 fixed-bottom p-0">
-    <h6><%= link_to user_path(current_user), class: "list-group-item list-group-item-action px-3 m-auto rounded-9 user_tab" do%>
-     <i class="far fa-user fa-lg fa-fw"></i>
-    <% end %></h6>
+    <h6>
+        <%= link_to user_path(current_user), class: "list-group-item list-group-item-action px-3 m-auto rounded-9 user_tab" do%>
+            <i class="far fa-user fa-lg fa-fw"></i>
+        <% end %>
+    </h6>
 
     <h6>
         <%= link_to chatrooms_path, class: "list-group-item list-group-item-action position-relative px-3 m-auto rounded-9 #{active_if('chatrooms')}" do%>
@@ -71,7 +79,6 @@
         <% end %>
     </h6>
 
-            
     <h6><!--コントローラーjobsかつアクションがsearchの時だけアクティブに-->
         <a class = "list-group-item list-group-item-action px-3 m-auto rounded-9 <% if action_name == "search" %><%= active_if('jobs')%><% end %> " data-toggle="modal" data-target="#searchModal">
             <i class="far fa-dot-circle fa-lg fa-fw"></i>

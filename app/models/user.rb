@@ -10,12 +10,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:twitter, :google_oauth2] #googleログイン用の記述
 
-#googleログイン用の記述。uidとproviderでユーザーを新規なら作成、既存なら取得
+#SNSログイン用の記述。uidとproviderでユーザーを新規なら作成、既存なら取得
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.name #認証情報からもらう
       user.account_name = Devise.friendly_token[0,20] #ランダム生成
-      user.introduction = "" #auth.infoでもらえないので手動
+      user.introduction = "自己紹介、年齢、性別、地域は未設定です。" #auth.infoでもらえないので手動
       user.sex = 3 #もらえないので手動
       user.age = 18 #もらえないので手動
       user.prefecture = 13 #もらえない値なので手動
@@ -54,8 +54,8 @@ class User < ApplicationRecord
     unless image.attached?
       image_number = rand(1..4)
 
-      file_path = Rails.root.join("app/assets/images/noimage_user(#{image_number}).png")
-      image.attach(io: File.open(file_path), filename: 'noimage.png', content_type: 'image/png')
+      file_path = Rails.root.join("app/assets/images/noimage_user (#{image_number}).png")
+      image.attach(io: File.open(file_path), filename: 'noimage_user (#{image_number}).png', content_type: 'image/png')
     end
     #指定サイズにリサイズ、中心を基準点にして、指定サイズに切り抜く。
     image.variant(resize: "#{width}x#{height}^", gravity: :center, crop: "#{width}x#{height}+0+0").processed
