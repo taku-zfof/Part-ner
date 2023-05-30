@@ -13,7 +13,6 @@ class JobsController < ApplicationController
     job.user = current_user
     job.near_station_line = ""
     job.near_station = "" # 一度保存しないとgeocoderが動かないため最寄り駅空欄でいったん保存
-
     if params[:post] # 投稿する場合
       if job.save(context: :release)
         # 最寄り駅情報を取得して再保存
@@ -24,7 +23,6 @@ class JobsController < ApplicationController
         flash.now[:error] = "作成に失敗しました"
         render :new
       end
-
     else  # 下書きの場合
       if job.update(released: false)
         redirect_to job_draft_index_path, flash: {notice: "募集を下書き保存しました！"}
@@ -34,16 +32,21 @@ class JobsController < ApplicationController
         render :new
       end
     end
-
   end
+
+
 
   def show
     @job=Job.find_by(rondom_id: params[:rondom_id])
   end
 
+
+
   def edit
     @job=Job.find_by(rondom_id: params[:rondom_id])
   end
+
+
 
   def update
     job=Job.find_by(rondom_id: params[:rondom_id])
@@ -69,8 +72,8 @@ class JobsController < ApplicationController
           render :edit
         end
     end
-
   end
+
 
   def destroy
     job=Job.find_by(rondom_id: params[:rondom_id])
@@ -103,7 +106,8 @@ private
   def job_params
     params.require(:job).permit(:rondom_id, :tytle, :job_type, :image, :introduction, :hourly_wage, :postal_code, :prefecture_code, :other_address ,:near_station, :near_station_line)
   end
-
+  
+  # 自分の投稿以外は編集不可
   def ensure_user
     job=Job.find_by(rondom_id: params[:rondom_id])
     unless job.user == current_user
