@@ -60,7 +60,7 @@
           <!--自分の仕事の場合だけ共有ボタンを表示-->
           <% if @job.user == current_user %>
             <div class="row justify-content-center">
-              <p class="text-center text-secondary text-nowrap">――――――― Share ―――――――</p>
+              <p class="text-center text-secondary text-nowrap">―――――― Share ――――――</p>
               <div class="col-6">
                 <!--teitterで共有ボタン-->
                 <%= link_to "https://twitter.com/share?url=#{request.url}/&text=【Part-ner】で#{@job.tytle}のバイト仲間募集中です！&hashtags=Part_ner", class: "btn btn-info btn-rounded btn-block",title: 'Twitter', target: '_blank' , 'data-mdb-toggle': "tooltip", 'title': "Twitterで共有" do%>
