@@ -1,0 +1,30 @@
+<!--aboutページ専用のスタイルとスクリプト。スクロールしてフェードイン-->
+<style>
+  .fadein {
+  opacity : 0;
+  transform : translate(0, 100px);
+  transition : all 1s;
+  /*active前は見えない。100px動きながら1秒で動く*/
+}
+
+.fadein.active{
+  opacity : 1;
+  transform : translate(0, 0);
+  /*active付与したら可視化*/
+}
+</style>
+
+<script>
+  $(function(){
+    $(window).scroll(function (){
+        $('.fadein').each(function(){
+            var position = $(this).offset().top;　//その要素の最上部
+            var scroll = $(window).scrollTop();　　//スクロールした高さ
+            var windowHeight = $(window).height();　// ウインドウの高さ
+            if (scroll > position - windowHeight + 200){　//スクロール量が要素の高さ-ウインドウの高さ+200pxよりも大きくなったら≒画面の下の方に要素が入ったら
+              $(this).addClass('active'); // activeクラスを付与。
+            }
+        });
+    });
+});
+</script>
