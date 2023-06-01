@@ -1,6 +1,7 @@
 .job-index.jscroll
   - jobs.each do |job|
 
+    /公開中の場合。仕事詳細へのリンク
     - if job.released == true
       = link_to job_path(job), data: {"turbolinks" => false}  do
         .card.index_card.text-body
@@ -31,6 +32,8 @@
                     = job.user.sex
                     |
                     = job.user.prefecture
+
+    /下書き一覧の場合。直接編集画面に遷移させる
     - else
       = link_to edit_job_path(job), data: {"turbolinks" => false}  do
         .card.index_card.text-body
@@ -54,6 +57,9 @@
                 h6.text-center.mt-3.p-4.border.rounded-8.bg-light.col-9
                   = job.introduction.truncate(70)
 
+  /ページネーション。無限スクロール用に非表示
   .d-none
     = paginate jobs
+
+/jscroll呼び出し
 = render "jobs/jscroll"
