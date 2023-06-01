@@ -1,0 +1,17 @@
+
+<!--jscroll本体の読み込み-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+
+<!--jscrollで、画面の下部5％にスクロールしたら次を読み込む-->
+<script>
+$(window).on('scroll', function() {
+  	scrollHeight = $(document).height();
+  	scrollPosition = $(window).height() + $(window).scrollTop();
+  	if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+            $('.jscroll').jscroll({
+              contentSelector: '.job-index',
+              nextSelector: 'span.next:last a'
+            });
+  	}
+});
+</script>
