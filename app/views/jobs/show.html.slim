@@ -1,0 +1,76 @@
+/オファー作成モーダル
+= render "/offers/offer_modal"
+
+/オファーが既に存在する場合のモーダル
+= render "/offers/offer_exist_modal"
+
+.card.job_card.my-5
+  = image_tag @job.get_image(2000,1200), class: "card-img-top img-thumbnail"
+  .card_body.my-auto
+    h2.text-center.mt-3
+      strong
+        = @job.tytle
+
+    /時給と職種
+    .text-center
+      h4
+        | 時給：
+        = @job.hourly_wage
+        |  円 /
+        = @job.job_type
+
+    /ユーザー情報と紹介文
+    .row.px-5.py-3
+      .col-lg-2.col-3.text-center
+        = link_to user_path(@job.user) do
+          = image_tag @job.user.get_image(100,100), class: 'rounded-circle img-thumbnail mt-2 i-fluid'
+          p.text-truncate.text-body
+            = @job.user.name
+      .col-lg-10.col-9.border.rounded-8.bg-light.py-3
+        small
+          = @job.introduction
+
+    /マップと住所・駅とボタン群
+    .row.justify-content-center.p-3.p-lg-5
+      .col-lg-6.col-10.order-lg-2
+        /マップを呼び出す
+        = render "/jobs/map", job: @job
+      .col-lg-6.col-md-12.my-4.my-lg-auto.order-lg-1
+        h6.fw-bold.text-center
+          | 所在地：
+          = @job.prefecture_code
+          = @job.other_address
+        h6.fw-bold.text-center
+          | 最寄り駅：
+          =@job.near_station_line
+          |  /
+          =@job.near_station
+          | 駅
+
+        .my-5.d-flex.justify-content-evenly
+          /非同期ブックマークパーシャル
+          .bookmark
+            = render "/bookmarks/bookmark",job: @job
+
+          /編集ボタンかオファーボタンを分岐表示
+          - if @job.user == current_user
+            = link_to edit_job_path, class: "btn btn-primary btn-rounded",data: {"turbolinks" => false}, 'data-mdb-toggle': "tooltip", 'title': "編集する" do
+              i.fa.fa-pen.fa-2x
+          - else
+            /オファーかチャットルームが存在する場合はオファー済みモーダルを
+            - if @job.offers.where(user_id: current_user.id).exists? or @job.chatrooms.where(user_id: current_user.id).exists?
+              button.btn.btn-primary.text-white-50.btn-rounded[data-toggle="modal" data-target="#offerExistModal" data-mdb-toggle="tooltip" title="オファー済み"]
+                i.fa.fa-paper-plane.fa-2x
+            - else
+              button.btn.btn-primary.btn-rounded[data-toggle="modal" data-target="#offermodal" data-mdb-toggle="tooltip" title="オファーを送る"]
+                i.fa.fa-paper-plane.fa-2x
+
+        /自分の投稿だったら共有ボタン表示
+        - if @job.user == current_user
+          .row.justify-content-center
+
+            p.text-center.text-secondary.text-nowrap
+              | ―――――― Share ――――――
+            .col-6
+              = link_to "https://twitter.com/share?url=#{request.url}/&text=【Part-ner】で#{@job.tytle}のバイト仲間募集中です！&hashtags=Part_ner", class: "btn btn-info btn-rounded btn-block",title: 'Twitter', target: '_blank' , 'data-mdb-toggle': "tooltip", 'title': "Twitterで共有" do
+                i.fab.fa-twitter.fa-2x
