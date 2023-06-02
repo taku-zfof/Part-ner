@@ -1,0 +1,11 @@
+#Logoutmodal.modal.fade[aria-hidden="true"]
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .pt-4
+        h5.text-center
+          strong
+            | ログアウトしますか？
+      .modal-footer
+        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-rounded"
+        button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
+          | 今はしない

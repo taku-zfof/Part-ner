@@ -1,0 +1,39 @@
+header.shadow-sm.sticky-top.bg-info
+  nav.navbar.navbar-expand-lg.navbar-light.p-1
+    .container
+
+      .d-flex.align-items-center
+        a.navbar-brand[href="/"]
+          = image_tag 'Part-ner.png', size: "60x60"
+        - if user_signed_in? && action_name == "about"
+          = link_to 'マイページへ', user_path(current_user), class: "btn btn-secondary btn-rounded nav-item"
+
+      #navbarNavDropdown.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto.ms-auto
+          - if user_signed_in?
+            button.btn.btn-secondary.btn-rounded.nav-item.ms-auto.m-2[data-toggle="modal" data-target="#searchModal"]
+              |  バイトを探す
+            .dropdown.nav-item.ms-auto.m-2
+
+              button#dropdownMenuButton.btn.btn-secondary.rounded-pill.dropdown-toggle[type="button" data-mdb-toggle="dropdown" aria-expanded="false"]
+                |  パートナー募集
+              ul.dropdown-menu[aria-labelledby="dropdownMenuButton"]
+                li
+                  = link_to "新規募集",new_job_path, class: 'dropdown-item',data: {"turbolinks" => false}
+                li
+                  = link_to "下書き一覧",job_draft_index_path, class: 'dropdown-item'
+            button.btn.btn-secondary.rounded-pill.nav-item.ms-auto.m-2[data-toggle="modal" data-target="#Logoutmodal"]
+              |  ログアウト
+
+          - else
+            = link_to "新規登録", new_user_registration_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2'
+            = link_to "ログイン", new_user_session_path, class: 'nav-item ms-auto btn btn-secondary btn-rounded nav-item ms-auto m-2'
+
+      button.navbar-toggler.ms-auto[type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
+        i.fas.fa-bars.fa-lg
+
+  #flash.container
+    = render "/layouts/flash"
+
+= render "layouts/search_modal"
+= render "layouts/logout_modal"
