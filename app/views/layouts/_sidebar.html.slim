@@ -1,7 +1,7 @@
 .sidebar.col-lg-3.d-lg-block.d-none
   /サイドバーをいい位置で固定
   div[style="position: sticky; top: 127px;"]
-  
+
     /プロフィール画像
     #user_img.card.rounded-9.my-5[data-turbolinks-permanent]
       = link_to user_path(current_user),class: "mx-auto text-center text-body" do
@@ -9,7 +9,7 @@
         h5
           strong
             = current_user.name.truncate(9)
-    
+
     /リンクリスト
     .list-group.list-group-light.mt-3
       h6
@@ -17,7 +17,7 @@
           = link_to user_path(current_user), class: "list-group-item list-group-item-action text-truncate px-4 mb-3 rounded-pill user_tab" do
             i.far.fa-user.fa-lg.fa-fw
             |  プロフィール
-            
+
       h6
         strong
           = link_to chatrooms_path, class: "list-group-item list-group-item-action text-truncate  px-4 mb-3 rounded-pill #{active_if('chatrooms')}" do
@@ -86,4 +86,4 @@
 #current_info.d-none[data-current_user_id="#{current_user.id}"]
 
 /サイドバーの動きスクリプト
-= render "/layouts/side_animate"
+= render "/layouts/js/side_animate"

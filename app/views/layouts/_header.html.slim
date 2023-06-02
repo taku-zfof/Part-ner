@@ -40,8 +40,8 @@ header.shadow-sm.sticky-top.bg-info
 
   /フラッシュメッセージをヘッダー直下に出すためheaderタグ内に記述
   #flash.container
-    = render "/layouts/flash"
+    = render "/layouts/js/flash"
 
 /検索モーダルとログアウト確認モーダル
-= render "layouts/search_modal"
-= render "layouts/logout_modal"
+= render "layouts/modals/search_modal"
+= render "layouts/modals/logout_modal"

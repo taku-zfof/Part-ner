@@ -10,11 +10,14 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     script[src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"]
+
   body
     = render "layouts/header"
     .container
       .row.justify-content-evenly
+        /サイドバーはログイン時で、ホームコントローラ以外
         - if user_signed_in? && controller_path != "homes"
           = render "layouts/sidebar", current: false
+
         #contents.col-lg-8.col-md-12
           = yield

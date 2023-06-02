@@ -30,4 +30,4 @@ h2.text-center
   strong
     |募集中のバイト
 = render "/jobs/index", jobs: @user.jobs.where(released: true).page(params[:page]).per(5)
-= render "layouts/top_btn"
+= render "jobs/js/top_btn"
