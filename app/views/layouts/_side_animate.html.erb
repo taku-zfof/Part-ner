@@ -1,0 +1,17 @@
+<script>
+//ボトムバー表示した際にコンテンツが隠れないようにするスクリプト
+$(function(){
+  let height = $(".bottomber").height();
+  $("#contents").css("padding-bottom", `${height+ 15}px`);
+});
+
+//プロフィールタブをアクティブにするためのスクリプト
+$(document).on('turbolinks:load', () => {
+    const user_id = $('#user_id').data('user_id'); //"users/show"から渡される、表示中のユーザーid
+    const current_user_id = $('#current_info').data('current_user_id');//サイドバーの非表示のところから渡されるcurrent_user_id
+
+    if (user_id == current_user_id){
+        $('.user_tab').addClass('active'); //二つが一致したときにactiveクラスを追加
+    };
+});
+</script>
