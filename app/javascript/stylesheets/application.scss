@@ -44,6 +44,7 @@ body{
 //カードのスタイルと挙動
  .card{
     box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.2), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+    margin-bottom: 2rem;
  }
  .index_card {
     transition:box-shadow 0.3s, transform 0.3s;

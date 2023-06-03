@@ -1,0 +1,13 @@
+#jobDeletemodal.modal.fade[aria-hidden="true"]
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .pt-4
+        h5.text-center
+          strong
+            | 削除してよろしいですか？
+
+      .modal-footer
+        = link_to job_path(@job),method: :delete ,class: "btn btn-danger btn-rounded" do
+          | 削除
+        button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
+          | 閉じる

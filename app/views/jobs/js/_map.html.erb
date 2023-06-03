@@ -1,0 +1,23 @@
+<div id="map" class="border border-primary rounded-8"></div>
+
+<style>
+#map{
+  height: 300px;
+  width:100%;
+}
+</style>
+
+<script>
+// マップ表示スクリプト
+function initMap(){
+  let map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: <%=job.latitude%>, lng: <%= job.longitude %>},
+  zoom: 15
+  });
+  let marker= new google.maps.Marker({
+     position: { lat: <%=job.latitude%>,lng:  <%= job.longitude %>},
+     map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap" async defer></script>

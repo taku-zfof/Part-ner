@@ -4,6 +4,7 @@ class ChatroomsController < ApplicationController
   before_action :ensure_user, only:[:show]
 
   def index
+    #selfchatはモデルに記載、の中からメッセージ新着順に並べる。
     chatrooms = Chatroom.selfchat(current_user).joins(:messages).includes(:messages).order("messages.created_at DESC")
     @show_chatrooms = chatrooms.where(hidden: false)
     @hide_chatrooms = chatrooms.where(hidden: true)

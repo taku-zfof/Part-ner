@@ -1,0 +1,34 @@
+= render "/chatrooms/change_hide_modal", partner: @partner, chatroom: @chatroom
+
+.d-flex.justify-content-between.mt-lg-5.mt-3
+  h3
+    strong
+      = @partner.name
+      | とのメッセージ
+
+  /表示ボタン
+  h3
+    - if @chatroom.hidden == false
+      button.btn.btn-light.rounded-9 [data-toggle="modal" data-target="#HideModal"]
+        strong
+          | 非表示する
+    - else
+      button.btn.btn-light.rounded-9 [data-toggle="modal" data-target="#ShowModal"]
+        strong
+          | 再表示する
+  /表示ボタン
+
+/チャットボックス
+#area.shadow-inner.bg-light.overflow-auto.rounded-top.p-3
+  #messages.container[data-chatroom_id="#{@chatroom.id}"]
+    - @messages.each do |message|
+      = render "/chatrooms/message", message: message
+
+/入力フォーム
+.input-group
+  = text_field_tag :content, nil, data: { behavior: 'chatroom_speaker' } , class: "form-control"
+  button#message_button.btn.btn-primary
+    i.fa.fa-paper-plane.fa-lg
+
+/チャット最下部へ自動スクロールするスクリプト
+= render "chatrooms/chatscroll"

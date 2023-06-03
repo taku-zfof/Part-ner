@@ -1,0 +1,16 @@
+#offermodal.modal.fade[aria-hidden="true"]
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .pt-4
+        h5.text-center
+          strong
+            | パートナーに立候補しますか？
+      = form_with model: Offer.new ,url: offers_path, method: :post do |f|
+        .modal-body
+          = f.label :content, "コメント"
+          = f.text_area :content, class: "form-control"
+          = f.hidden_field :job_id, :value =>@job.id
+        .modal-footer
+          = f.submit "オファーを送る", class: "btn btn-primary btn-rounded"
+          button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
+            | 閉じる

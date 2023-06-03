@@ -1,0 +1,15 @@
+<% flash.each do |key, message| %>
+    <div class="alert alert-<%= bootstrap_alert(key) %> text-center"
+         style="display: none; z-index: 5; position: absolute; right:0; left:0;">
+        <%= message %>
+    </div>
+<% end %>
+
+<script>
+$('.alert').slideDown(500);
+    window.setTimeout(function() {
+    $(".alert").slideUp(500, function(){
+        $(this).remove();
+    });
+}, 2000);
+</script>
