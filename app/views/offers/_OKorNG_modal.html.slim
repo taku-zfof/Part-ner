@@ -1,0 +1,25 @@
+/承認の場合
+#OKmodal.modal.fade
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .pt-4
+        h5.text-center
+          strong
+            | 承認してDMを始めますか?
+      .modal-footer
+        = link_to "はじめる", chatrooms_path(offer_id: offer.id, offerer_id: offer.user.id, job_id: offer.job.id), method: :post, class: "btn btn-primary btn-rounded"
+        button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
+          | あとで
+
+/拒否の場合
+#receiveNGmodal.modal.fade[aria-hidden="true"]
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .pt-4
+        h5.text-center
+         strong
+            | 削除してよろしいですか？
+      .modal-footer
+        = link_to "削除する", offers_path(offer_id: offer.id), method: :delete, class: "btn btn-danger btn-rounded"
+        button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
+          | あとで
