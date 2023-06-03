@@ -7,7 +7,6 @@
 
     = form_with model: @user do |f|
       .row.justify-content-center
-        = render 'layouts/error_messages', model: @user
         .col-12.col-lg-3.text-center
           = f.label :image do
             = image_tag( @user.get_image(100,100), class: 'avatar rounded-circle img-thumbnail img-fluid', style: "height: 100px; width: 100px; object-fit: cover;")
@@ -16,15 +15,29 @@
               |プロフィール画像
         .col-9.col-lg-6
           = f.text_field :name, class: "form-control my-4", placeholder: "ニックネーム"
+          - if @user.errors.include?(:name)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:name).first
+
           .row.mb-4
             .col-4
               = f.select :sex, User.sexes.keys, { include_blank: '性別'}, { class: 'form-control'}
+              - if @user.errors.include?(:sex)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:sex).first
             .col-4
               = f.select :prefecture, User.prefectures.keys, { include_blank: '地域'}, { class: 'form-control'}
+              - if @user.errors.include?(:prefecture)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:prefecture).first
+
             .col-4
-              = f.select :age,  options_for_select((18..85).to_a, selected: @user.age), { include_blank: '年齢'}, { class: 'form-control w-75 d-inline'}
+              = f.select :age, options_for_select((18..85).to_a, selected: @user.age), { include_blank: '年齢'}, { class: 'form-control w-75 d-inline'}
               small
                 |歳
+              - if @user.errors.include?(:age)
+              small.text-danger.text-nowrap
+                = @user.errors.full_messages_for(:a).first
 
         .col-9.mb-4
           = f.text_area :introduction, class: "introduction form-control", placeholder: "自己紹介を追加", size: "10x5"
@@ -34,4 +47,4 @@
           = f.submit "変更を保存", class: "btn btn-primary btn-rounded border"
 
 /文字数カウントを呼び出し
-= render "/users/textcounter"
+= render "/layouts/js/textcounter", max: 1500

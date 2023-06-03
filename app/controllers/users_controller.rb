@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user),flash: {notice: "編集を保存しました。"}
     else
       @user = current_user
-      flash.now[:error] = "登録に失敗しました"
+      flash.now[:error] = "更新に失敗しました"
       render :edit
     end
   end

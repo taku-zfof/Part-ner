@@ -1,7 +1,7 @@
 #received_offer_index.tab-pane.fade.show.active
   - receive_offers.each do |offer|
     /オファー承認してDM作成or拒否モーダル
-    = render "/offers/OKorNG_modal", offer: offer
+    = render "/offers/modals/OKorNG_modal", offer: offer
     .container.card.index_card.my-3.py-3.text-body
       .row.justify-content-center.mx-1
 

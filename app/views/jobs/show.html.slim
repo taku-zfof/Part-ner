@@ -1,8 +1,8 @@
 /オファー作成モーダル
-= render "/offers/offer_modal"
+= render "/offers/modals/offer_modal"
 
 /オファーが既に存在する場合のモーダル
-= render "/offers/offer_exist_modal"
+= render "/offers/modals/offer_exist_modal"
 
 .card.job_card.my-5
   = image_tag @job.get_image(2000,1200), class: "card-img-top img-thumbnail"
