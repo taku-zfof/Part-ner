@@ -13,11 +13,12 @@
             = f.file_field :image, class: 'uploader d-none form-control'
             small.d-block
               |プロフィール画像
+              
         .col-9.col-lg-6
           = f.text_field :name, class: "form-control my-4", placeholder: "ニックネーム"
           - if @user.errors.include?(:name)
-              small.text-danger.text-nowrap
-                = @user.errors.full_messages_for(:name).first
+          small.text-danger.text-nowrap
+            = @user.errors.full_messages_for(:name).first
 
           .row.mb-4
             .col-4
