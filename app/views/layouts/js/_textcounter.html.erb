@@ -1,40 +1,39 @@
 <!--あと〇文字　のスクリプト-->
 <script>
 $(function (){
-  // 処理（ページが読み込まれた時、フォームに残り何文字入力できるかを数えて表示する）
+
+  //最大文字数として指定したい数を変数maxに。
   const max = <%= max %>
-  //パーシャル呼び出し時に渡される最大文字数を変数に入れる
-  
-  //フォームに入力されている文字数を数える
-  //\nは"改行"に変換して2文字にする。オプションフラグgで文字列の最後まで\nを探し変換する
-  var count = $(".introduction").text().replace(/\n/g, "改行").length;
-  //残りの入力できる文字数を計算
-  var now_count = max - count;
-  //文字数がオーバーしていたら文字色を赤にする
-  if (count > max) {
-    $(".text-count").removeClass("text-success");
-    $(".text-count").addClass("text-danger");
-  }else if (count < max){
-    $(".text-count").removeClass("text-danger");
-    $(".text-count").addClass("text-success");
-  }
-  //残りの入力できる文字数を表示
-  $(".text-count").text( "あと" + now_count + "文字");
 
-  $(".introduction").on("keyup", function() {
-    // 処理（キーボードを押した時、フォームに残り何文字入力できるかを数えて表示する）
-    //フォームのvalueの文字数を数える
-    var count = $(this).val().replace(/\n/g, "改行").length;
-    var now_count = max - count;
+  //文字数カウント・テキスト色変更の処理を関数化
+  const addClassToTextCounter = elem => {
 
+    //elem.val()→ここではクラス"introduction"の文字数を変数countに。改行は"改行"の二文字にカウントする。
+    const count = elem.val().replace(/\n/g, "改行").length;
+
+    //残りの入力できる文字数を計算
+    const now_count = max - count;
+
+    //文字数がオーバーしているかどうかで分岐し、クラス"text-counter"にBootstrapのクラスを付け外しする
+    //オーバーしている時はtext-sucsessをtext-dangerに。
     if (count > max) {
       $(".text-count").removeClass("text-success");
       $(".text-count").addClass("text-danger");
+    //していないときはtext-dangerをtext-sucsessに。
     }else if (count < max){
       $(".text-count").removeClass("text-danger");
       $(".text-count").addClass("text-success");
-    } ;
+    }
+    //残りの入力できる文字数を表示
     $(".text-count").text( "あと" + now_count + "文字");
+  };
+
+  //関数呼び出し（ページ読み込み時）
+  addClassToTextCounter($(".introduction"));
+
+ // キーボードを押した時にも発火させる
+  $(".introduction").on("keyup", function() {
+     addClassToTextCounter($(this));
   });
 });
 
