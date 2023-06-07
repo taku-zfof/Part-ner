@@ -5,7 +5,7 @@ class BookmarksController < ApplicationController
     bookmark=Bookmark.new(user_id: current_user.id,job_id: params[:job_id])
     bookmark.save
     @job = Job.find(params[:job_id]) # 非同期書処理のため追加
-     flash.now[:notice] = "ブックマークしました"
+    flash.now[:notice] = "ブックマークしました"
   end
 
   def destroy

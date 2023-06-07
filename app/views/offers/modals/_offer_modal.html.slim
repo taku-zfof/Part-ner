@@ -5,12 +5,12 @@
         h5.text-center
           strong
             | パートナーに立候補しますか？
-      = form_with model: Offer.new ,url: offers_path, method: :post do |f|
+      = form_with model: Offer.new ,url: offers_path, method: :post, local: false do |f|
         .modal-body
           = f.label :content, "コメント"
           = f.text_area :content, class: "form-control"
           = f.hidden_field :job_id, :value =>@job.id
         .modal-footer
-          = f.submit "オファーを送る", class: "btn btn-primary btn-rounded"
+          = f.submit "オファーを送る", class: "btn btn-primary btn-rounded offer_button"
           button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
             | 閉じる

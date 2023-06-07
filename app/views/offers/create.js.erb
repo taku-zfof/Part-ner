@@ -1,0 +1,5 @@
+$('#offermodal').hide(); <!--モーダルを非表示する-->
+$('.modal-backdrop').remove();<!--モーダル背景を消してクリック可能にする-->
+
+$("#offer").html("<%= j(render 'offers/offer_button',job: @job) %>");
+$('#flash').html("<%= j(render "layouts/js/flash") %>");

@@ -8,13 +8,12 @@ class OffersController < ApplicationController
     offer.user = current_user
     offer.save
 
+    flash.now[:notice] = "オファーを送りました！"
     # メールを作成
     @from = offer.user
     @job = offer.job
     @content = offer.content
-    OfferReceiveMailer.send_mail(@from, @job, @content).deliver
-
-    redirect_to request.referrer,flash: {notice: "オファーを送りました！"}
+    OfferReceiveMailer.send_mail(@from, @job, @content).deliver_later
   end
 
   def destroy
