@@ -12,6 +12,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:twitter, :google_oauth2] # googleログイン用の記述
 
+
 # SNSログイン用の記述。uidとproviderでユーザーを新規なら作成、既存なら取得
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
