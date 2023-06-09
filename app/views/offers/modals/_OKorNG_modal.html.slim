@@ -1,5 +1,5 @@
 /承認の場合
-#OKmodal.modal.fade
+div id="OKmodal_#{offer.id}" class="modal fade"
   .modal-dialog.modal-dialog-centered
     .modal-content
       .pt-4
@@ -12,7 +12,7 @@
           | あとで
 
 /拒否の場合
-#receiveNGmodal.modal.fade[aria-hidden="true"]
+div id="NGmodal_#{offer.id}" class="modal fade" aria-hidden="true"
   .modal-dialog.modal-dialog-centered
     .modal-content
       .pt-4

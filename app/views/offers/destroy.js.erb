@@ -4,6 +4,7 @@ $('.modal-backdrop').remove();<!--モーダル背景を消してクリック可�
 $("#send_offer_index").html("<%= j(render 'offers/send_index',send_offers: @send_offers) %>");
 $('#flash').html("<%= j(render "layouts/js/flash") %>");
 
+<!--一覧にクラス付与してタブの切り替えをする。indexと同じ処理-->
 $('#received_offer_index').addClass("d-none");
 $('.send').removeClass("d-none");
 $('.send').addClass("active show");
