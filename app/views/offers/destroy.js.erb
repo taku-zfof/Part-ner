@@ -1,10 +1,17 @@
 $('#delete_modal').hide(); <!--モーダルを非表示する-->
 $('.modal-backdrop').remove();<!--モーダル背景を消してクリック可能にする-->
 
-$("#send_offer_index").html("<%= j(render 'offers/send_index',send_offers: @send_offers) %>");
-$('#flash').html("<%= j(render "layouts/js/flash") %>");
+<% if @offer.user == current_user %>
+  $("#send_offer_index").html("<%= j(render 'offers/send_index',send_offers: @send_offers) %>");
+  $('#flash').html("<%= j(render "layouts/js/flash") %>");
 
-<!--一覧にクラス付与してタブの切り替えをする。indexと同じ処理-->
-$('#received_offer_index').addClass("d-none");
-$('.send').removeClass("d-none");
-$('.send').addClass("active show");
+  <!--一覧にクラス付与してタブの切り替えをする。indexと同じ処理-->
+  $('#received_offer_index').addClass("d-none");
+  $('.send').removeClass("d-none");
+  $('.send').addClass("active show");
+
+<% else %>
+  $("#received_offer_index").html("<%= j(render 'offers/receive_index',receive_offers: @receive_offers) %>");
+  $('#flash').html("<%= j(render "layouts/js/flash") %>");
+
+<% end %>
