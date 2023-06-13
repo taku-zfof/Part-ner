@@ -43,6 +43,29 @@
 - Github ActionsによるCI/CD
 
 ## 使用技術
+- ユーザー認証機能、ゲストログイン機能（devise）
+- SNS認証機能（Google、Twitterでのログイン）
+- 画像アップロード機能（Active Storage）
+- 投稿のSNSシェア機能（Twitterで共有）
+- 投稿の下書き機能
+- 投稿と自己紹介文に「あと〇〇文字」の表示
+- 住所の自動入力機能
+- 画像プレビュー機能（jQuery）
+- 無限スクロール機能（jQuery）
+- 投稿の絞込み検索機能
+- 募集に対するオファー（DMリクエスト）機能
+- リアルタイムチャット（Action Cable）
+- 通知機能（オファーとDMそれぞれ）
+- 非同期通信（Ajax。オファーとブックマークに採用）
+- タブメニュー、モーダル、ツールチップ等MDBootstrapコンポーネントの活用
+- Google Maps API、Geocoding API
+- Heartrails API（駅・路線情報の使用）
+- Action Mailer
+- 定時処理（未読通知ある場合にメール送信）
+- 例外処理（エラー画面に遷移させずフラッシュメッセージを表示）
+- Docker環境構築
+- Https化
+- slim記法
 
 ## 使用素材
 - フォント：せのびゴシック（http://modi.jpn.org/font_senobi.php）
