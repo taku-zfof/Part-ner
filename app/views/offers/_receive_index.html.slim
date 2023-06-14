@@ -26,7 +26,7 @@
 
         /オファー操作モーダルを開けるボタン 削除or承認
         .col-12.col-md-3.d-flex.align-items-center.justify-content-around
-          button.btn.btn-primary.btn-rounded[data-toggle="modal" data-target="#OKmodal"]
+          button.btn.btn-primary.btn-rounded[data-toggle="modal" data-target="#OKmodal_#{offer.id}"]
             i.fas.fa-check.fa-2x
-          button.btn.btn-danger.btn-rounded[data-toggle="modal" data-target="#receiveNGmodal"]
+          button.btn.btn-danger.btn-rounded[data-toggle="modal" data-target="#NGmodal_#{offer.id}"]
             i.fas.fa-times.fa-2x

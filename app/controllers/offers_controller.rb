@@ -7,9 +7,8 @@ class OffersController < ApplicationController
     offer=Offer.new(offer_params)
     offer.user = current_user
     offer.save
-
     flash.now[:notice] = "オファーを送りました！"
-    # メールを作成
+    # メールを作成。deliver_laterでバックグラウンド処理になる
     @from = offer.user
     @job = offer.job
     @content = offer.content
@@ -19,7 +18,9 @@ class OffersController < ApplicationController
   def destroy
     offer = Offer.find(params[:offer_id])
     offer.destroy
-    redirect_to request.referrer,flash: {alert: "オファーを削除しました"}
+    flash.now[:alert] = "オファーを削除しました"
+
+    @send_offers = current_user.offers.all # 送ったオファー一覧
   end
 
 

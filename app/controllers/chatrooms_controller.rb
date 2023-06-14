@@ -37,7 +37,7 @@ class ChatroomsController < ApplicationController
       # 応募ユーザーにメール送信
       @mail_to = chatroom.user
       @job = chatroom.job
-      OfferOkMailer.send_mail(@mail_to, @job).deliver
+      OfferOkMailer.send_mail(@mail_to, @job).deliver_later
 
       chatroom.messages.create(user_id: current_user.id, content: "オファーありがとうございます！", read_status: false)
       redirect_to chatroom_path(chatroom),flash: {notice: "メッセージを送ってみましょう！"}
