@@ -20,6 +20,6 @@ div id="NGmodal_#{offer.id}" class="modal fade" aria-hidden="true"
          strong
             | 削除してよろしいですか？
       .modal-footer
-        = link_to "削除する", offers_path(offer_id: offer.id), method: :delete, class: "btn btn-danger btn-rounded"
+        = link_to "削除する", offers_path(offer_id: offer.id), method: :delete, remote: true, class: "btn btn-danger btn-rounded"
         button.btn.btn-secondary.btn-rounded[type="button" data-dismiss="modal"]
           | あとで

@@ -16,10 +16,13 @@ class OffersController < ApplicationController
   end
 
   def destroy
-    offer = Offer.find(params[:offer_id])
-    offer.destroy
+    @offer = Offer.find(params[:offer_id])
+    @offer.destroy
     flash.now[:alert] = "オファーを削除しました"
-
+    
+    #以下は非同期通信のため
+    myjobs_ids = Job.where(user_id: current_user.id).pluck(:id)
+    @receive_offers = Offer.where(job_id: myjobs_ids) # もらったオファー一覧
     @send_offers = current_user.offers.all # 送ったオファー一覧
   end
 
