@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-   before_action :ensure_guest_user, only: [:edit]
-   before_action :ensure_user, only:[:edit, :update]
+  before_action :set_user
+  before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_user, only:[:edit, :update]
 
   def show
-    @user = User.find_by(account_name: params[:account_name])
   end
+  
   def edit
-    @user=User.find_by(account_name: params[:account_name])
   end
+  
   def update
-    user = User.find_by(account_name: params[:account_name])
-    if user.update(user_params)
+    if @user.update(user_params)
       redirect_to user_path(current_user),flash: {notice: "編集を保存しました。"}
     else
       @user = current_user
@@ -24,6 +24,10 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :introduction, :image, :sex, :age, :prefecture)
+    end
+    
+    def set_user
+      @user = User.find_by(account_name: params[:account_name])
     end
 
     def ensure_guest_user
