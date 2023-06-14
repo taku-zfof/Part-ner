@@ -1,0 +1,6 @@
+- if job.offers.where(user_id: current_user.id).exists? or job.chatrooms.where(user_id: current_user.id).exists?
+  button.btn.btn-primary.text-white-50.btn-rounded[data-toggle="modal" data-target="#offerExistModal" data-mdb-toggle="tooltip" title="オファー済み"]
+    i.fa.fa-paper-plane.fa-2x
+- else
+  button.btn.btn-primary.btn-rounded[data-toggle="modal" data-target="#offermodal" data-mdb-toggle="tooltip" title="オファーを送る"]
+    i.fa.fa-paper-plane.fa-2x
