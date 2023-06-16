@@ -22,7 +22,7 @@ module PartNer
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.i18n.default_locale = :ja # I18nライブラリに訳文の探索場所を指示する
-    # config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.yml').to_s]
+    # config.i18n.load_path = Dir[Rails.root.join('config/locales/**/*.yml').to_s]
     config.time_zone = "Tokyo" # タイムゾーンを日本時間に
 
     config.paths.add "lib", eager_load: true # バッチ処理用の有効化
@@ -42,5 +42,17 @@ module PartNer
     Faker::Config.locale = :ja # Fakerの日本語化
 
 
+  config.generators do |g|
+    g.assets false # CSSやJavaScriptファイルを生成しない
+    g.helper false # ヘルパーを生成しない
+    g.jbuilder false # .json.jbuilderファイルを生成しない
+    g.test_framework :rspec, # テストフレームワークとしてRSpecを指定
+     fixtures: false, # テストデータを作るfixtureを作成しない
+     request_specs: false, # リクエストスペックを作成しない
+     view_specs: false, # ビュー用のスペックを作成しない
+     helper_specs: false, # ヘルパ用のスペックを作成しない
+     routing_specs: false # ルーティングのスペックを作成しない
+   end
+  
   end
 end
