@@ -33,7 +33,7 @@ class User < ApplicationRecord
   validates :sex, presence: true
   validates :age, presence: true
   validates :prefecture, presence: true
-  validates :introduction, length: {maximum: 1000}
+  validates :introduction, length: {maximum: 1500}
 
   # 都道府県コード→都道府県名
   enum prefecture: {
