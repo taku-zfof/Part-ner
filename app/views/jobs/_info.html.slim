@@ -55,15 +55,15 @@
 
           .row.align-items-center.mb-4
             = f.label :hourly_wage,"時給", class: "col-12"
-            = f.number_field :hourly_wage, class: "form-control w-75 ", placeholder: "半角数字"
+            = f.text_field :hourly_wage, class: "form-control w-75 ", placeholder: "半角数字"
             | 円
-            - if @job.errors.include?(:hourly_wage)
+            - if @job.errors.include?(:hourly_wage_before_type_cast)
               small.text-danger.text-nowrap
-                = @job.errors.full_messages_for(:hourly_wage).first
+                = @job.errors.full_messages_for(:hourly_wage_before_type_cast).first
 
           .row.align-items-center.mb-4
             = f.label :postal_code, "郵便番号"
-            = f.number_field :postal_code, class: "postal_code form-control w-75", placeholder: "0000000"
+            = f.text_field :postal_code, class: "postal_code form-control w-75", placeholder: "0000000"
             - if @job.errors.include?(:postal_code)
               small.text-danger.text-nowrap
                 = @job.errors.full_messages_for(:postal_code).first

@@ -10,16 +10,16 @@ class Job < ApplicationRecord
     has_many :chatrooms, dependent: :destroy
 
     has_one_attached :image
-    
+
     # バリデーション。
     with_options on: :release do
-      validates :tytle, presence: true
+      validates :tytle, length: { minimum: 1, maximum: 30}
       validates :job_type, presence: true
       validates :introduction, length: { minimum: 1, maximum: 3000}
       validates :prefecture_code, presence: true
       validates :other_address, presence: true
       validates :postal_code, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}# 半角数字７桁のみ。ハイフン有り無しok,
-      validates :hourly_wage, format:{ with: /\A[0-9]+\z/}# 半角数字のみ
+      validates :hourly_wage_before_type_cast, format: {with: /\A[0-9]+\z/}# 半角数字のみ
     end
 
 
@@ -28,7 +28,7 @@ class Job < ApplicationRecord
   def get_image(width,height)
     unless image.attached?
       image_number = rand(1..4)
-      
+
       file_path = Rails.root.join("app/assets/images/noimage_job(#{image_number}).png")
       image.attach(io: File.open(file_path), filename: "noimage_job.jpg", content_type: "image/png")
     end

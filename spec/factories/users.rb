@@ -5,7 +5,7 @@ FactoryBot.define do
       password { Faker::Lorem.characters(number:8) }
       sex { 2 }
       age { 30 }
-      prefecture { Faker::Number.between(from: 1, to: 47)}
+      prefecture { 15 }
       introduction { Faker::Lorem.characters(number:500) }
       account_name{ SecureRandom.base36 }
   end
