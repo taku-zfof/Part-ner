@@ -42,7 +42,6 @@ RSpec.describe User, type: :model do
 
   describe "アソシエーション" do
     let(:association) { described_class.reflect_on_association(target) }
-
     context  do
       let(:target) { :jobs }
       it "Jobに対してhas_many" do
