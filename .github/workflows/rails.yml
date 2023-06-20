@@ -17,8 +17,8 @@ jobs:
      uses: ruby/setup-ruby@v1 # 常に最新バージョンを参照
      with:
        ruby-version: ${{ matrix.ruby-version }}
-       bundler-cache: true #　bundle installさせる
-
+       bundler-cache: true # bundle installさせる
+  
    - name: Setup Database #DBを作成
      run: |
        bundle exec rails db:create
