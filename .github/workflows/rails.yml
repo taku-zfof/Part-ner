@@ -18,7 +18,6 @@ jobs:
      with:
        ruby-version: ${{ matrix.ruby-version }}
        bundler-cache: true # bundle installさせる
-  
    - name: Setup Database #DBを作成
      run: |
        bundle exec rails db:create
