@@ -9,7 +9,7 @@ jobs:
    runs-on: ubuntu-latest
    strategy:
      matrix:
-       ruby-version: ['3.1.2'] # 3.1.2で実行
+       ruby-version: ['3.1.2'] # 3.1.2実行
 
    steps:
    - uses: actions/checkout@v2
@@ -18,16 +18,15 @@ jobs:
      with:
        ruby-version: ${{ matrix.ruby-version }}
        bundler-cache: true # bundle installさせる
-   - name: Setup Database #DBを作成
+   - name: Mysql
      run: |
-       bundle exec rails db:create
-       bundle exec rails db:migrate
+        bundle exec rails db:create
+        bundle exec rails db:mi
       env:
         RAILS_ENV: test
-
+     
    - name: RSpec
      run: bundle exec rspec # rspecを実行
-
 
   build:
     runs-on: ubuntu-latest
