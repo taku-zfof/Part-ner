@@ -6,35 +6,29 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest 
-    steps:
-    - uses: actions/checkout@v1
-    - name: Setup Ruby version
-      uses: actions/setup-ruby@master
-      with:
-        ruby-version: 3.1.2
+   runs-on: ubuntu-latest
+   strategy:
+     matrix:
+       ruby-version: ['3.1.2'] # 3.1.2で実行
 
-    - name: Install dependent libralies
-      run: sudo apt-get install libmysqlclient-dev
+   steps:
+   - uses: actions/checkout@v2
+   - name: Set up Ruby
+     uses: ruby/setup-ruby@v1 # 常に最新バージョンを参照
+     with:
+       ruby-version: ${{ matrix.ruby-version }}
+       bundler-cache: true #　bundle installさせる
 
-    - name: Setup bundler
-      run: gem install bundler
-
-    - name: bundle install
-      run: |
-        bundle install --jobs 4 --retry 3
-
-    - name: Setup Database #DBを作成
-      run: |
-        bundle exec rails db:create
-        bundle exec rails db:migrate
+   - name: Setup Database #DBを作成
+     run: |
+       bundle exec rails db:create
+       bundle exec rails db:migrate
       env:
         RAILS_ENV: test
 
-    - name: Run RSpec
-      run: bundle exec rspec
-      env:
-        RAILS_ENV: test
+   - name: RSpec
+     run: bundle exec rspec # rspecを実行
+
 
   build:
     runs-on: ubuntu-latest
