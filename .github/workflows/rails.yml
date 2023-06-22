@@ -9,7 +9,7 @@ jobs:
    runs-on: ubuntu-latest
    strategy:
      matrix:
-       ruby-version: ['3.1.2'] # 2.7のみで実行
+       ruby-version: ['3.1.2'] # 3.1.2で実行
        
    steps:
    - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
        ruby-version: ${{ matrix.ruby-version }}
        bundler-cache: true # bundle installさせる
    - name: RSpec
-     run: docker-compose run web bundle exec rspec
+     run: docker-compose run web bundle exec rspec # dockerでテストを走らせる
        
   
   build:
