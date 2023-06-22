@@ -35,12 +35,13 @@
 
 ## テスト
 - RSpec
+- Github Actionsによる自動テスト
 
 ## 本番環境
 - AWS (EC2,RDS)
 - MySQL2
 - Nginx、 Puma
-- Github ActionsによるCI/CD
+- Github Actionsによる自動デプロイ
 
 ## 使用技術
 - ユーザー認証機能、ゲストログイン機能（devise）
