@@ -41,11 +41,7 @@
 - AWS (EC2,RDS)
 - MySQL2
 - Nginx、 Puma
-<<<<<<< Updated upstream
 - Github Actionsによる自動デプロイ
-=======
-- Github Actionsによる自動テスト、デプロイ
->>>>>>> Stashed changes
 
 ## 使用技術
 - ユーザー認証機能、ゲストログイン機能（devise）
