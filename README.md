@@ -78,3 +78,10 @@
 - favicon作成：Favicon ジェネレーター（https://favicon-generator.mintsu-dev.com/）
 - サンプルデータ素材：photoAC（https://www.photo-ac.com/）
 - noimage素材、aboutページなどのイラスト素材：unDraw（https://undraw.co/）
+
+## 設計書等
+- 実装機能リスト : (https://docs.google.com/spreadsheets/d/1KvpgtNfRZIdZXWGXveWcdHxIT_q6luyyW-vhdPpbdCM/edit?usp=sharing)
+- WBS : (https://docs.google.com/spreadsheets/d/1eEqrMuWoFfGu6LeMgfXPfS9cMUMM3Wa0fLnLIztlMdA/edit?usp=sharing)
+- テーブル定義書 : (https://docs.google.com/spreadsheets/d/1LIUpZH5LBCQhBmSAWwTvdN8QQmk87YJMJWTP8BqHtIQ/edit?usp=sharing)
+- ER図 : (https://drive.google.com/file/d/1SNTUzvYsYRI6xK1Fc9BJyTy5gO9ONAqu/view?usp=sharing)
+- ワイヤーフレーム : (https://drive.google.com/file/d/1MK9j6DTC2_FPx_QWRob_Y3e5mV4mhkTu/view?usp=sharing)
