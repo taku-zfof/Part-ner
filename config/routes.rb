@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
     get "users/sign_up" => "devise/registrations#new", as: "new_user_registration"
-   post "users" => "devise/registrations#create", as: "user_registration"
+    post "users" => "devise/registrations#create", as: "user_registration"
   end
 
   resources :users, only:[:show, :edit, :update], param: :account_name # ランダム文字列をidの代わりに使用
